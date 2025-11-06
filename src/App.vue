@@ -4,15 +4,7 @@
     <NavBar />
 
     <!-- Contenu principal -->
-    <router-view>
-      <!-- Page d'accueil par défaut -->
-      <main>
-        <HeroSection />
-        <FeaturesSection />
-        <FAQSection />
-        <ContactSection />
-      </main>
-    </router-view>
+    <router-view />
 
     <!-- Footer -->
     <Footer />
@@ -21,10 +13,6 @@
 
 <script setup>
 import NavBar from './components/NavBar.vue'
-import HeroSection from './components/HeroSection.vue'
-import FeaturesSection from './components/FeaturesSection.vue'
-import FAQSection from './components/FAQSection.vue'
-import ContactSection from './components/ContactSection.vue'
 import Footer from './components/Footer.vue'
 </script>
 
