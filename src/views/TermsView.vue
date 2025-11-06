@@ -1,0 +1,260 @@
+<template>
+  <div class="legal-page">
+    <div class="container">
+      <header class="page-header">
+        <div class="header-content">
+          <router-link to="/" class="back-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            {{ $t('nav.home') }}
+          </router-link>
+          <h1 class="page-title">{{ $t('terms.title') }}</h1>
+          <p class="page-subtitle">{{ $t('terms.subtitle') }}</p>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.object.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.object.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.usage.title') }}</h2>
+          <div class="section-content">
+            <h3>{{ $t('terms.usage.age.title') }}</h3>
+            <p>{{ $t('terms.usage.age.content') }}</p>
+
+            <h3>{{ $t('terms.usage.responsibility.title') }}</h3>
+            <p>{{ $t('terms.usage.responsibility.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.features.title') }}</h2>
+          <div class="section-content">
+            <div class="highlight-box">
+              <h3>{{ $t('terms.features.sharing.title') }}</h3>
+              <p>{{ $t('terms.features.sharing.content') }}</p>
+            </div>
+            <p>{{ $t('terms.features.limitations') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.property.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.property.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.data.title') }}</h2>
+          <div class="section-content">
+            <p v-html="$t('terms.data.content')"></p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.availability.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.availability.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.modifications.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.modifications.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.resiliation.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.resiliation.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.law.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.law.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('terms.contact.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('terms.contact.content') }}</p>
+          </div>
+        </section>
+      </main>
+
+      <div class="contact-section">
+        <h3 class="contact-title">{{ $t('terms.questions.title') }}</h3>
+        <p class="contact-text">{{ $t('terms.questions.content') }}</p>
+        <router-link to="/#contact" class="action-link">{{ $t('terms.contactLink') }}</router-link>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+</script>
+
+<style scoped>
+.legal-page {
+  min-height: 100vh;
+  background: var(--background);
+  padding: 80px 0 40px;
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--primary-dark);
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.page-content {
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.legal-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.section-content {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.section-content h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 24px 0 12px 0;
+}
+
+.section-content p {
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.highlight-box {
+  background: var(--background-light);
+  border-left: 4px solid var(--primary-color);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+.highlight-box h3 {
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.contact-section {
+  background: var(--background-light);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.contact-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.contact-text {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.action-link {
+  display: inline-block;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.action-link:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 60px 0 20px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .contact-section {
+    padding: 20px;
+  }
+}
+</style>

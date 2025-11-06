@@ -4,12 +4,14 @@
     <NavBar />
 
     <!-- Contenu principal -->
-    <main>
-      <HeroSection />
-      <FeaturesSection />
-      <FAQSection />
-      <ContactSection />
-    </main>
+    <router-view>
+      <main>
+        <HeroSection />
+        <FeaturesSection />
+        <FAQSection />
+        <ContactSection />
+      </main>
+    </router-view>
 
     <!-- Footer -->
     <Footer />

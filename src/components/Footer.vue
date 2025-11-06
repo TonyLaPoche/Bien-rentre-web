@@ -10,8 +10,8 @@
         <div class="footer-links">
           <a href="#features">{{ $t('nav.features') }}</a>
           <a href="#faq">{{ $t('nav.contact') }}</a>
-          <a href="terms.html">{{ $t('nav.terms') }}</a>
-          <a href="privacy.html">{{ $t('nav.privacy') }}</a>
+          <router-link to="/terms">{{ $t('nav.terms') }}</router-link>
+          <router-link to="/privacy">{{ $t('nav.privacy') }}</router-link>
         </div>
 
         <div class="footer-copyright">
