@@ -58,12 +58,14 @@ src/
 
 ### Internationalisation (i18n) :
 - **Langues supportées** : Français 🇫🇷, Anglais 🇺🇸
+- **Pages traduites** : Accueil, Conditions d'utilisation, Politique de confidentialité
 - **Détection automatique** : Basée sur la langue du navigateur
 - **Sauvegarde persistante** : Préférence utilisateur sauvegardée
 - **Sélecteur intégré** : Dans la barre de navigation avec drapeaux
 - **Architecture complète** : Service, repository, use cases dédiés
 - **Attributs data-i18n** : Tous les textes statiques sont traduisibles
 - **Événements** : Changement de langue avec notifications utilisateur
+- **SEO optimisé** : Attribut lang dynamique et meta descriptions traduites
 
 ### Construction du bundle :
 ```bash
