@@ -54,7 +54,7 @@
         <section class="legal-section">
           <h2 class="section-title">{{ $t('terms.data.title') }}</h2>
           <div class="section-content">
-            <p v-html="$t('terms.data.content')"></p>
+            <p>{{ $t('terms.data.content') }}</p>
           </div>
         </section>
 

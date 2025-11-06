@@ -15,12 +15,6 @@
       </header>
 
       <main class="page-content">
-        <div style="padding: 20px; background: #f0f0f0; border-radius: 8px; margin: 20px 0;">
-          <h3>Test de contenu</h3>
-          <p>Si vous voyez ce texte, le composant fonctionne.</p>
-          <p>Titre de la page: {{ $t('privacy.title') }}</p>
-        </div>
-
         <section class="legal-section">
           <h2 class="section-title">{{ $t('privacy.controller.title') }}</h2>
           <div class="section-content">
@@ -97,11 +91,11 @@
           <div class="section-content">
             <p>{{ $t('privacy.rights.content') }}</p>
             <ul>
-              <li v-html="$t('privacy.rights.list1')"></li>
-              <li v-html="$t('privacy.rights.list2')"></li>
-              <li v-html="$t('privacy.rights.list3')"></li>
-              <li v-html="$t('privacy.rights.list4')"></li>
-              <li v-html="$t('privacy.rights.list5')"></li>
+              <li>{{ $t('privacy.rights.list1') }}</li>
+              <li>{{ $t('privacy.rights.list2') }}</li>
+              <li>{{ $t('privacy.rights.list3') }}</li>
+              <li>{{ $t('privacy.rights.list4') }}</li>
+              <li>{{ $t('privacy.rights.list5') }}</li>
             </ul>
             <p>{{ $t('privacy.rights.contact') }}</p>
           </div>

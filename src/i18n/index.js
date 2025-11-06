@@ -52,7 +52,7 @@ export const messages = {
       },
       data: {
         title: '5. Protection des données',
-        content: 'Nous nous engageons à protéger vos données personnelles conformément au RGPD. Pour plus de détails sur notre politique de confidentialité, <a href="/#/privacy" style="color: #6366f1;">cliquez ici</a>.'
+        content: 'Nous nous engageons à protéger vos données personnelles conformément au RGPD. Pour plus de détails sur notre politique de confidentialité, consultez la section dédiée ci-dessous.'
       },
       availability: {
         title: '6. Disponibilité du service',
@@ -133,11 +133,11 @@ export const messages = {
       rights: {
         title: '7. Droits des utilisateurs',
         content: 'Conformément au RGPD, vous disposez des droits suivants :',
-        list1: '<strong>Droit d\'accès :</strong> Connaître les données que nous détenons sur vous',
-        list2: '<strong>Droit de rectification :</strong> Corriger des données inexactes',
-        list3: '<strong>Droit à l\'effacement :</strong> Supprimer vos données personnelles',
-        list4: '<strong>Droit à la portabilité :</strong> Récupérer vos données dans un format exploitable',
-        list5: '<strong>Droit d\'opposition :</strong> Refuser certains traitements',
+        list1: 'Droit d\'accès : Connaître les données que nous détenons sur vous',
+        list2: 'Droit de rectification : Corriger des données inexactes',
+        list3: 'Droit à l\'effacement : Supprimer vos données personnelles',
+        list4: 'Droit à la portabilité : Récupérer vos données dans un format exploitable',
+        list5: 'Droit d\'opposition : Refuser certains traitements',
         contact: 'Pour exercer ces droits, contactez-nous via notre formulaire de contact.'
       },
       security: {
@@ -274,7 +274,7 @@ export const messages = {
       },
       data: {
         title: '5. Data Protection',
-        content: 'We are committed to protecting your personal data in accordance with GDPR. For more details about our privacy policy, <a href="/#/privacy" style="color: #6366f1;">click here</a>.'
+        content: 'We are committed to protecting your personal data in accordance with GDPR. For more details about our privacy policy, see the dedicated section below.'
       },
       availability: {
         title: '6. Service Availability',
@@ -355,11 +355,11 @@ export const messages = {
       rights: {
         title: '7. User Rights',
         content: 'In accordance with GDPR, you have the following rights:',
-        list1: '<strong>Right of access:</strong> Know what data we hold about you',
-        list2: '<strong>Right of rectification:</strong> Correct inaccurate data',
-        list3: '<strong>Right to erasure:</strong> Delete your personal data',
-        list4: '<strong>Right to portability:</strong> Retrieve your data in a usable format',
-        list5: '<strong>Right to object:</strong> Refuse certain processing',
+        list1: 'Right of access: Know what data we hold about you',
+        list2: 'Right of rectification: Correct inaccurate data',
+        list3: 'Right to erasure: Delete your personal data',
+        list4: 'Right to portability: Retrieve your data in a usable format',
+        list5: 'Right to object: Refuse certain processing',
         contact: 'To exercise these rights, contact us through our contact form.'
       },
       security: {
