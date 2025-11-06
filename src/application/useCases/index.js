@@ -5,3 +5,4 @@
 export { SendContactEmail } from './SendContactEmail.js';
 export { ValidateContactForm } from './ValidateContactForm.js';
 export { ManageFAQ } from './ManageFAQ.js';
+export { ManageTranslations } from './ManageTranslations.js';

@@ -1,6 +1,6 @@
 /**
  * Bundle Bien-Rentré - Généré automatiquement
- * Date: 2025-11-06T16:34:48.640Z
+ * Date: 2025-11-06T16:39:26.722Z
  */
 
 
@@ -178,8 +178,12 @@ const CUSTOM_EVENTS = {
     EMAIL_ERROR: 'email:error',
     MODAL_OPEN: 'modal:open',
     MODAL_CLOSE: 'modal:close',
+    MODAL_BUTTON_CLICK: 'modal:button_click',
     FAQ_TOGGLE: 'faq:toggle',
-    NAV_TOGGLE: 'nav:toggle'
+    NAV_TOGGLE: 'nav:toggle',
+    LANGUAGE_CHANGED: 'language:changed',
+    TRANSLATION_LOADED: 'translation:loaded',
+    TRANSLATION_ERROR: 'translation:error'
 };
 
 
@@ -1305,6 +1309,76 @@ class ILocalStorageRepository {
 }
 
 
+// ===== domain/repositories/ITranslationRepository.js =====
+/**
+ * Interface Repository pour les traductions
+ * Définit le contrat pour l'accès aux traductions
+ */
+class ITranslationRepository {
+    /**
+     * Définit la langue actuelle
+     * @param {string} language
+     * @returns {Promise<boolean>}
+     */
+    async setLanguage(language) {
+        throw new Error('Method setLanguage must be implemented');
+    }
+
+    /**
+     * Récupère la langue actuelle
+     * @returns {Promise<string>}
+     */
+    async getCurrentLanguage() {
+        throw new Error('Method getCurrentLanguage must be implemented');
+    }
+
+    /**
+     * Traduit une clé
+     * @param {string} key
+     * @param {Object} params
+     * @returns {Promise<string>}
+     */
+    async translate(key, params = {}) {
+        throw new Error('Method translate must be implemented');
+    }
+
+    /**
+     * Traduit plusieurs clés
+     * @param {string[]} keys
+     * @param {Object} params
+     * @returns {Promise<Object>}
+     */
+    async translateMultiple(keys, params = {}) {
+        throw new Error('Method translateMultiple must be implemented');
+    }
+
+    /**
+     * Récupère toutes les traductions
+     * @returns {Promise<Object>}
+     */
+    async getAllTranslations() {
+        throw new Error('Method getAllTranslations must be implemented');
+    }
+
+    /**
+     * Vérifie si une langue est supportée
+     * @param {string} language
+     * @returns {Promise<boolean>}
+     */
+    async isLanguageSupported(language) {
+        throw new Error('Method isLanguageSupported must be implemented');
+    }
+
+    /**
+     * Récupère la liste des langues supportées
+     * @returns {Promise<string[]>}
+     */
+    async getSupportedLanguages() {
+        throw new Error('Method getSupportedLanguages must be implemented');
+    }
+}
+
+
 // ===== domain/repositories/index.js =====
 /**
  * Export des interfaces de repositories
@@ -1312,6 +1386,7 @@ class ILocalStorageRepository {
 
 // export {IEmailRepository } from './IEmailRepository.js';
 // export {ILocalStorageRepository } from './ILocalStorageRepository.js';
+// export {ITranslationRepository } from './ITranslationRepository.js';
 
 
 // ===== domain/index.js =====
@@ -1377,6 +1452,223 @@ class ManageFAQ {
      */
     getFAQStats() {
         return this.faqService.getStats();
+    }
+}
+
+
+// ===== application/useCases/ManageTranslations.js =====
+/**
+ * Use Case - Gérer les traductions
+ * Orchestre les opérations de traduction et changement de langue
+ */
+class ManageTranslations {
+    /**
+     * @param {ITranslationRepository} translationRepository
+     * @param {ILocalStorageRepository} storageRepository
+     */
+    constructor(translationRepository, storageRepository) {
+        this.translationRepository = translationRepository;
+        this.storageRepository = storageRepository;
+        this.STORAGE_KEY = 'bienrentre_language';
+    }
+
+    /**
+     * Change la langue de l'application
+     * @param {string} language
+     * @returns {Promise<{success: boolean, language: string, previousLanguage?: string}>}
+     */
+    async changeLanguage(language) {
+        try {
+            const previousLanguage = await this.translationRepository.getCurrentLanguage();
+
+            // Vérifier si la langue est supportée
+            const isSupported = await this.translationRepository.isLanguageSupported(language);
+            if (!isSupported) {
+                return {
+                    success: false,
+                    language: previousLanguage,
+                    error: 'Language not supported'
+                };
+            }
+
+            // Changer la langue
+            await this.translationRepository.setLanguage(language);
+
+            // Sauvegarder la préférence utilisateur
+            await this.storageRepository.setItem(this.STORAGE_KEY, language);
+
+            return {
+                success: true,
+                language: language,
+                previousLanguage: previousLanguage
+            };
+
+        } catch (error) {
+            console.error('Error changing language:', error);
+            return {
+                success: false,
+                language: await this.translationRepository.getCurrentLanguage(),
+                error: error.message
+            };
+        }
+    }
+
+    /**
+     * Récupère la langue actuelle
+     * @returns {Promise<string>}
+     */
+    async getCurrentLanguage() {
+        return await this.translationRepository.getCurrentLanguage();
+    }
+
+    /**
+     * Récupère les langues supportées
+     * @returns {Promise<Array>}
+     */
+    async getSupportedLanguages() {
+        const languageCodes = await this.translationRepository.getSupportedLanguages();
+        const languages = [];
+
+        for (const code of languageCodes) {
+            const info = await this.translationRepository.getLanguageInfo(code);
+            if (info) {
+                languages.push(info);
+            }
+        }
+
+        return languages;
+    }
+
+    /**
+     * Traduit une clé
+     * @param {string} key
+     * @param {Object} params
+     * @returns {Promise<string>}
+     */
+    async translate(key, params = {}) {
+        return await this.translationRepository.translate(key, params);
+    }
+
+    /**
+     * Traduit plusieurs clés
+     * @param {string[]} keys
+     * @param {Object} params
+     * @returns {Promise<Object>}
+     */
+    async translateMultiple(keys, params = {}) {
+        return await this.translationRepository.translateMultiple(keys, params);
+    }
+
+    /**
+     * Charge la langue sauvegardée de l'utilisateur
+     * @returns {Promise<string>}
+     */
+    async loadSavedLanguage() {
+        try {
+            const savedLanguage = await this.storageRepository.getItem(this.STORAGE_KEY);
+
+            if (savedLanguage) {
+                const isSupported = await this.translationRepository.isLanguageSupported(savedLanguage);
+                if (isSupported) {
+                    await this.translationRepository.setLanguage(savedLanguage);
+                    return savedLanguage;
+                }
+            }
+
+            // Détecter la langue du navigateur
+            const browserLanguage = this.detectBrowserLanguage();
+            if (browserLanguage) {
+                await this.translationRepository.setLanguage(browserLanguage);
+                return browserLanguage;
+            }
+
+            // Utiliser la langue par défaut
+            return await this.translationRepository.getCurrentLanguage();
+
+        } catch (error) {
+            console.error('Error loading saved language:', error);
+            return await this.translationRepository.getCurrentLanguage();
+        }
+    }
+
+    /**
+     * Détecte la langue du navigateur
+     * @returns {string|null}
+     */
+    detectBrowserLanguage() {
+        try {
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (!browserLang) return null;
+
+            // Extraire le code de langue (ex: 'fr-FR' -> 'fr')
+            const langCode = browserLang.split('-')[0].toLowerCase();
+
+            // Mapper vers nos langues supportées
+            const supportedLanguages = ['fr', 'en'];
+            return supportedLanguages.includes(langCode) ? langCode : null;
+
+        } catch (error) {
+            console.error('Error detecting browser language:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Réinitialise la langue à la valeur par défaut
+     * @returns {Promise<{success: boolean, language: string}>}
+     */
+    async resetToDefaultLanguage() {
+        try {
+            const defaultLanguage = 'fr'; // Langue par défaut
+            await this.translationRepository.setLanguage(defaultLanguage);
+            await this.storageRepository.removeItem(this.STORAGE_KEY);
+
+            return {
+                success: true,
+                language: defaultLanguage
+            };
+
+        } catch (error) {
+            console.error('Error resetting to default language:', error);
+            return {
+                success: false,
+                language: await this.translationRepository.getCurrentLanguage(),
+                error: error.message
+            };
+        }
+    }
+
+    /**
+     * Recherche dans les traductions
+     * @param {string} query
+     * @returns {Promise<Array>}
+     */
+    async searchInTranslations(query) {
+        return await this.translationRepository.searchTranslations(query);
+    }
+
+    /**
+     * Valide l'intégrité des traductions
+     * @returns {Promise<Object>}
+     */
+    async validateTranslationsIntegrity() {
+        return await this.translationRepository.validateTranslations();
+    }
+
+    /**
+     * Exporte les traductions actuelles
+     * @returns {Promise<Object>}
+     */
+    async exportCurrentTranslations() {
+        const language = await this.translationRepository.getCurrentLanguage();
+        const translations = await this.translationRepository.getAllTranslations();
+
+        return {
+            language,
+            translations,
+            exportedAt: new Date().toISOString(),
+            version: '1.0.0'
+        };
     }
 }
 
@@ -1496,6 +1788,7 @@ class ValidateContactForm {
 // export {SendContactEmail } from './SendContactEmail.js';
 // export {ValidateContactForm } from './ValidateContactForm.js';
 // export {ManageFAQ } from './ManageFAQ.js';
+// export {ManageTranslations } from './ManageTranslations.js';
 
 
 // ===== application/index.js =====
@@ -3392,6 +3685,363 @@ class NavigationController {
 export * from './controllers/index.js';
 
 
+// ===== infrastructure/i18n/index.js =====
+/**
+ * Export du service de traduction
+ */
+
+// export {TranslationService } from './TranslationService.js';
+
+
+// ===== infrastructure/i18n/TranslationService.js =====
+// import { ITranslationRepository } from '../../domain/repositories/ITranslationRepository.js';
+// import fr from '../../shared/i18n/locales/fr.json';
+// import en from '../../shared/i18n/locales/en.json';
+
+/**
+ * Service de traduction - Implémentation de ITranslationRepository
+ * Gère le chargement et l'accès aux traductions
+ * @class
+ */
+class TranslationService extends ITranslationRepository {
+    constructor() {
+        super();
+        this.translations = {
+            fr: fr,
+            en: en
+        };
+        this.currentLanguage = 'fr';
+        this.fallbackLanguage = 'fr';
+        this.listeners = new Set();
+    }
+
+    /**
+     * Définit la langue actuelle
+     * @param {string} language
+     * @returns {Promise<boolean>}
+     */
+    async setLanguage(language) {
+        if (!this.isLanguageSupported(language)) {
+            console.warn(`Language '${language}' is not supported. Using fallback '${this.fallbackLanguage}'`);
+            language = this.fallbackLanguage;
+        }
+
+        const previousLanguage = this.currentLanguage;
+        this.currentLanguage = language;
+
+        // Notifier les écouteurs du changement de langue
+        this.notifyListeners(previousLanguage, language);
+
+        return true;
+    }
+
+    /**
+     * Récupère la langue actuelle
+     * @returns {Promise<string>}
+     */
+    async getCurrentLanguage() {
+        return this.currentLanguage;
+    }
+
+    /**
+     * Traduit une clé
+     * @param {string} key - Clé de traduction (ex: 'hero.title')
+     * @param {Object} params - Paramètres de substitution
+     * @returns {Promise<string>}
+     */
+    async translate(key, params = {}) {
+        try {
+            const translation = this.getTranslation(key);
+
+            if (!translation) {
+                console.warn(`Translation key '${key}' not found for language '${this.currentLanguage}'`);
+                return key; // Retourner la clé si traduction non trouvée
+            }
+
+            return this.interpolateParams(translation, params);
+        } catch (error) {
+            console.error('Translation error:', error);
+            return key;
+        }
+    }
+
+    /**
+     * Traduit plusieurs clés
+     * @param {string[]} keys
+     * @param {Object} params
+     * @returns {Promise<Object>}
+     */
+    async translateMultiple(keys, params = {}) {
+        const translations = {};
+
+        for (const key of keys) {
+            translations[key] = await this.translate(key, params);
+        }
+
+        return translations;
+    }
+
+    /**
+     * Récupère toutes les traductions pour la langue actuelle
+     * @returns {Promise<Object>}
+     */
+    async getAllTranslations() {
+        return { ...this.translations[this.currentLanguage] };
+    }
+
+    /**
+     * Vérifie si une langue est supportée
+     * @param {string} language
+     * @returns {Promise<boolean>}
+     */
+    async isLanguageSupported(language) {
+        return this.translations.hasOwnProperty(language);
+    }
+
+    /**
+     * Récupère la liste des langues supportées
+     * @returns {Promise<string[]>}
+     */
+    async getSupportedLanguages() {
+        return Object.keys(this.translations);
+    }
+
+    /**
+     * Récupère les informations d'une langue
+     * @param {string} language
+     * @returns {Promise<Object|null>}
+     */
+    async getLanguageInfo(language) {
+        if (!await this.isLanguageSupported(language)) {
+            return null;
+        }
+
+        const translations = this.translations[language];
+        const languageNames = {
+            fr: 'Français',
+            en: 'English'
+        };
+
+        return {
+            code: language,
+            name: languageNames[language] || language,
+            isRTL: false, // Pour l'instant, pas de langue RTL supportée
+            flag: this.getLanguageFlag(language)
+        };
+    }
+
+    /**
+     * Ajoute un écouteur de changement de langue
+     * @param {Function} listener
+     */
+    addLanguageChangeListener(listener) {
+        this.listeners.add(listener);
+    }
+
+    /**
+     * Supprime un écouteur de changement de langue
+     * @param {Function} listener
+     */
+    removeLanguageChangeListener(listener) {
+        this.listeners.delete(listener);
+    }
+
+    /**
+     * Notifie les écouteurs du changement de langue
+     * @param {string} previousLanguage
+     * @param {string} newLanguage
+     */
+    notifyListeners(previousLanguage, newLanguage) {
+        this.listeners.forEach(listener => {
+            try {
+                listener(newLanguage, previousLanguage);
+            } catch (error) {
+                console.error('Error in language change listener:', error);
+            }
+        });
+    }
+
+    /**
+     * Récupère une traduction par sa clé
+     * @param {string} key
+     * @returns {string|null}
+     */
+    getTranslation(key) {
+        const keys = key.split('.');
+        let value = this.translations[this.currentLanguage];
+
+        // Naviguer dans l'objet de traduction
+        for (const k of keys) {
+            if (value && typeof value === 'object' && value.hasOwnProperty(k)) {
+                value = value[k];
+            } else {
+                // Essayer avec la langue de fallback
+                value = this.translations[this.fallbackLanguage];
+                for (const fallbackKey of keys) {
+                    if (value && typeof value === 'object' && value.hasOwnProperty(fallbackKey)) {
+                        value = value[fallbackKey];
+                    } else {
+                        return null;
+                    }
+                }
+                break;
+            }
+        }
+
+        return typeof value === 'string' ? value : null;
+    }
+
+    /**
+     * Interpole les paramètres dans une chaîne de traduction
+     * @param {string} text
+     * @param {Object} params
+     * @returns {string}
+     */
+    interpolateParams(text, params) {
+        return text.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+            return params.hasOwnProperty(key) ? params[key] : match;
+        });
+    }
+
+    /**
+     * Récupère le drapeau d'une langue
+     * @param {string} language
+     * @returns {string}
+     */
+    getLanguageFlag(language) {
+        const flags = {
+            fr: '🇫🇷',
+            en: '🇺🇸'
+        };
+        return flags[language] || '🏳️';
+    }
+
+    /**
+     * Recherche dans les traductions
+     * @param {string} query
+     * @returns {Promise<Array>}
+     */
+    async searchTranslations(query) {
+        const results = [];
+        const currentTranslations = this.translations[this.currentLanguage];
+
+        const searchInObject = (obj, path = '') => {
+            for (const [key, value] of Object.entries(obj)) {
+                const currentPath = path ? `${path}.${key}` : key;
+
+                if (typeof value === 'string') {
+                    if (value.toLowerCase().includes(query.toLowerCase())) {
+                        results.push({
+                            key: currentPath,
+                            value: value,
+                            language: this.currentLanguage
+                        });
+                    }
+                } else if (typeof value === 'object' && value !== null) {
+                    searchInObject(value, currentPath);
+                }
+            }
+        };
+
+        searchInObject(currentTranslations);
+        return results;
+    }
+
+    /**
+     * Valide l'intégrité des traductions
+     * @returns {Promise<Object>}
+     */
+    async validateTranslations() {
+        const issues = {
+            missingKeys: [],
+            extraKeys: [],
+            invalidValues: []
+        };
+
+        const referenceLang = this.fallbackLanguage;
+        const referenceTranslations = this.translations[referenceLang];
+
+        for (const [lang, translations] of Object.entries(this.translations)) {
+            if (lang === referenceLang) continue;
+
+            // Vérifier les clés manquantes et en trop
+            const refKeys = this.getAllKeys(referenceTranslations);
+            const langKeys = this.getAllKeys(translations);
+
+            issues.missingKeys.push(...refKeys.filter(key => !langKeys.includes(key)).map(key => ({ lang, key })));
+            issues.extraKeys.push(...langKeys.filter(key => !refKeys.includes(key)).map(key => ({ lang, key })));
+
+            // Vérifier les valeurs invalides
+            this.validateTranslationValues(translations, lang, issues.invalidValues);
+        }
+
+        return issues;
+    }
+
+    /**
+     * Récupère récursivement toutes les clés d'un objet
+     * @param {Object} obj
+     * @param {string} prefix
+     * @returns {string[]}
+     */
+    getAllKeys(obj, prefix = '') {
+        const keys = [];
+
+        for (const [key, value] of Object.entries(obj)) {
+            const fullKey = prefix ? `${prefix}.${key}` : key;
+
+            if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+                keys.push(...this.getAllKeys(value, fullKey));
+            } else {
+                keys.push(fullKey);
+            }
+        }
+
+        return keys;
+    }
+
+    /**
+     * Valide les valeurs de traduction
+     * @param {Object} translations
+     * @param {string} lang
+     * @param {Array} invalidValues
+     */
+    validateTranslationValues(translations, lang, invalidValues) {
+        const validateObject = (obj, path = '') => {
+            for (const [key, value] of Object.entries(obj)) {
+                const currentPath = path ? `${path}.${key}` : key;
+
+                if (typeof value === 'string') {
+                    // Vérifier si la chaîne n'est pas vide
+                    if (value.trim() === '') {
+                        invalidValues.push({ lang, key: currentPath, issue: 'empty_string' });
+                    }
+                    // Vérifier les paramètres de substitution non utilisés
+                    const paramMatches = value.match(/\{\{(\w+)\}\}/g);
+                    if (paramMatches) {
+                        // Ici on pourrait vérifier si les paramètres sont utilisés correctement
+                    }
+                } else if (typeof value === 'object' && value !== null) {
+                    validateObject(value, currentPath);
+                } else {
+                    invalidValues.push({ lang, key: currentPath, issue: 'invalid_type', type: typeof value });
+                }
+            }
+        };
+
+        validateObject(translations);
+    }
+
+    /**
+     * Nettoie les ressources du service
+     */
+    destroy() {
+        this.listeners.clear();
+        this.translations = {};
+    }
+}
+
+
 // ===== presentation/components/index.js =====
 /**
  * Export des composants réutilisables
@@ -3400,6 +4050,647 @@ export * from './controllers/index.js';
 // export {Modal, ModalManager, modalManager } from './Modal.js';
 // export {LoadingSpinner, SpinnerManager, spinnerManager } from './LoadingSpinner.js';
 // export {Notification, NotificationManager, notificationManager } from './Notification.js';
+// export {LanguageSelector } from './LanguageSelector.js';
+
+
+// ===== presentation/components/LanguageSelector.js =====
+// import { DOMHelper } from '../../infrastructure/ui/DOMHelper.js';
+// import { eventManager } from '../../infrastructure/ui/EventManager.js';
+// import { CUSTOM_EVENTS } from '../../shared/constants/index.js';
+
+/**
+ * Composant LanguageSelector - Sélecteur de langue
+ * Permet à l'utilisateur de changer la langue de l'application
+ * @class
+ */
+class LanguageSelector {
+    /**
+     * @param {ManageTranslations} manageTranslationsUseCase
+     * @param {Object} options
+     */
+    constructor(manageTranslationsUseCase, options = {}) {
+        this.manageTranslationsUseCase = manageTranslationsUseCase;
+        this.options = {
+            showFlags: options.showFlags !== false,
+            showNames: options.showNames !== false,
+            position: options.position || 'top-right', // top-right, top-left, bottom-right, bottom-left
+            theme: options.theme || 'default', // default, minimal, rounded
+            ...options
+        };
+
+        this.element = null;
+        this.currentLanguage = 'fr';
+        this.supportedLanguages = [];
+        this.isOpen = false;
+
+        this.init();
+    }
+
+    /**
+     * Initialise le sélecteur de langue
+     */
+    async init() {
+        await this.loadLanguages();
+        await this.loadCurrentLanguage();
+        this.createSelectorElement();
+        this.bindEvents();
+        this.injectStyles();
+    }
+
+    /**
+     * Charge les langues supportées
+     */
+    async loadLanguages() {
+        try {
+            this.supportedLanguages = await this.manageTranslationsUseCase.getSupportedLanguages();
+        } catch (error) {
+            console.error('Error loading supported languages:', error);
+            this.supportedLanguages = [
+                { code: 'fr', name: 'Français', flag: '🇫🇷' },
+                { code: 'en', name: 'English', flag: '🇺🇸' }
+            ];
+        }
+    }
+
+    /**
+     * Charge la langue actuelle
+     */
+    async loadCurrentLanguage() {
+        try {
+            this.currentLanguage = await this.manageTranslationsUseCase.getCurrentLanguage();
+        } catch (error) {
+            console.error('Error loading current language:', error);
+            this.currentLanguage = 'fr';
+        }
+    }
+
+    /**
+     * Crée l'élément DOM du sélecteur
+     */
+    createSelectorElement() {
+        const containerClass = `language-selector language-selector-${this.options.theme} language-selector-${this.options.position}`;
+
+        this.element = DOMHelper.createElement('div', {
+            className: containerClass,
+            'data-current-lang': this.currentLanguage
+        });
+
+        // Bouton principal
+        const button = this.createMainButton();
+        this.element.appendChild(button);
+
+        // Menu déroulant
+        const dropdown = this.createDropdownMenu();
+        this.element.appendChild(dropdown);
+
+        // Ajouter à la page
+        this.addToPage();
+    }
+
+    /**
+     * Crée le bouton principal du sélecteur
+     * @returns {Element}
+     */
+    createMainButton() {
+        const currentLang = this.supportedLanguages.find(lang => lang.code === this.currentLanguage);
+        const displayText = this.getLanguageDisplayText(currentLang);
+
+        const button = DOMHelper.createElement('button', {
+            className: 'language-selector-button',
+            type: 'button',
+            'aria-label': 'Changer de langue',
+            'aria-expanded': 'false'
+        }, displayText);
+
+        // Ajouter l'indicateur de menu
+        const indicator = DOMHelper.createElement('span', {
+            className: 'language-selector-indicator'
+        }, '▼');
+        button.appendChild(indicator);
+
+        return button;
+    }
+
+    /**
+     * Crée le menu déroulant
+     * @returns {Element}
+     */
+    createDropdownMenu() {
+        const dropdown = DOMHelper.createElement('ul', {
+            className: 'language-selector-dropdown',
+            role: 'menu',
+            'aria-hidden': 'true'
+        });
+
+        this.supportedLanguages.forEach(language => {
+            const item = this.createDropdownItem(language);
+            dropdown.appendChild(item);
+        });
+
+        return dropdown;
+    }
+
+    /**
+     * Crée un élément du menu déroulant
+     * @param {Object} language
+     * @returns {Element}
+     */
+    createDropdownItem(language) {
+        const isActive = language.code === this.currentLanguage;
+
+        const item = DOMHelper.createElement('li', {
+            className: `language-selector-item ${isActive ? 'active' : ''}`,
+            role: 'menuitem',
+            'data-lang': language.code,
+            'aria-current': isActive ? 'true' : 'false'
+        });
+
+        // Drapeau (optionnel)
+        if (this.options.showFlags) {
+            const flag = DOMHelper.createElement('span', {
+                className: 'language-flag'
+            }, language.flag || '🏳️');
+            item.appendChild(flag);
+        }
+
+        // Nom de la langue
+        if (this.options.showNames) {
+            const name = DOMHelper.createElement('span', {
+                className: 'language-name'
+            }, language.name);
+            item.appendChild(name);
+        }
+
+        // Code de langue (fallback)
+        if (!this.options.showFlags && !this.options.showNames) {
+            const code = DOMHelper.createElement('span', {
+                className: 'language-code'
+            }, language.code.toUpperCase());
+            item.appendChild(code);
+        }
+
+        return item;
+    }
+
+    /**
+     * Ajoute le sélecteur à la page
+     */
+    addToPage() {
+        // Trouver l'élément cible (header, nav, ou body)
+        let targetElement = document.querySelector('.navbar .nav-links');
+        if (!targetElement) {
+            targetElement = document.querySelector('header');
+        }
+        if (!targetElement) {
+            targetElement = document.body;
+        }
+
+        targetElement.appendChild(this.element);
+    }
+
+    /**
+     * Lie les événements du sélecteur
+     */
+    bindEvents() {
+        const button = this.element.querySelector('.language-selector-button');
+        const dropdown = this.element.querySelector('.language-selector-dropdown');
+
+        // Toggle du menu
+        DOMHelper.addEventListener(button, 'click', (e) => {
+            e.preventDefault();
+            this.toggleDropdown();
+        });
+
+        // Sélection d'une langue
+        DOMHelper.addEventListener(dropdown, 'click', (e) => {
+            const item = e.target.closest('.language-selector-item');
+            if (item) {
+                const languageCode = item.dataset.lang;
+                this.selectLanguage(languageCode);
+            }
+        });
+
+        // Fermeture au clic extérieur
+        DOMHelper.addEventListener(document, 'click', (e) => {
+            if (!this.element.contains(e.target) && this.isOpen) {
+                this.closeDropdown();
+            }
+        });
+
+        // Navigation clavier
+        DOMHelper.addEventListener(this.element, 'keydown', (e) => {
+            this.handleKeyboardNavigation(e);
+        });
+
+        // Écouter les changements de langue
+        this.manageTranslationsUseCase.translationRepository.addLanguageChangeListener(
+            (newLang, oldLang) => {
+                this.updateDisplay(newLang);
+            }
+        );
+    }
+
+    /**
+     * Injecte les styles CSS
+     */
+    injectStyles() {
+        if (document.getElementById('language-selector-styles')) return;
+
+        const styles = `
+            .language-selector {
+                position: relative;
+                display: inline-block;
+                font-family: 'Bricolage Grotesque', sans-serif;
+                z-index: 1000;
+            }
+
+            .language-selector-button {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 12px;
+                background: rgba(255, 255, 255, 0.9);
+                border: 1px solid #e5e5e5;
+                border-radius: 6px;
+                color: #0f032b;
+                font-size: 0.875rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .language-selector-button:hover {
+                background: white;
+                border-color: #5b1aff;
+                box-shadow: 0 2px 8px rgba(91, 26, 255, 0.1);
+            }
+
+            .language-selector-indicator {
+                font-size: 0.75rem;
+                transition: transform 0.2s ease;
+                color: #6b7280;
+            }
+
+            .language-selector.open .language-selector-indicator {
+                transform: rotate(180deg);
+            }
+
+            .language-selector-dropdown {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                min-width: 140px;
+                background: white;
+                border: 1px solid #e5e5e5;
+                border-radius: 8px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                margin-top: 4px;
+                padding: 4px 0;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.2s ease;
+                list-style: none;
+            }
+
+            .language-selector.open .language-selector-dropdown {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .language-selector-item {
+                padding: 10px 16px;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .language-selector-item:hover,
+            .language-selector-item:focus {
+                background: #f8f9fa;
+                outline: none;
+            }
+
+            .language-selector-item.active {
+                background: #f0f9ff;
+                color: #5b1aff;
+                font-weight: 600;
+            }
+
+            .language-flag {
+                font-size: 1.25rem;
+                line-height: 1;
+            }
+
+            .language-name {
+                flex: 1;
+                font-size: 0.875rem;
+            }
+
+            .language-code {
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: #6b7280;
+            }
+
+            /* Positions */
+            .language-selector-top-right {
+                /* Position par défaut */
+            }
+
+            .language-selector-top-left {
+                /* Aligné à gauche */
+            }
+
+            .language-selector-top-left .language-selector-dropdown {
+                right: auto;
+                left: 0;
+            }
+
+            .language-selector-bottom-right {
+                /* En bas à droite */
+            }
+
+            .language-selector-bottom-right .language-selector-dropdown {
+                top: auto;
+                bottom: 100%;
+                margin-top: 0;
+                margin-bottom: 4px;
+            }
+
+            .language-selector-bottom-left {
+                /* En bas à gauche */
+            }
+
+            .language-selector-bottom-left .language-selector-dropdown {
+                top: auto;
+                bottom: 100%;
+                right: auto;
+                left: 0;
+                margin-top: 0;
+                margin-bottom: 4px;
+            }
+
+            /* Thèmes */
+            .language-selector-minimal .language-selector-button {
+                padding: 6px 10px;
+                font-size: 0.8125rem;
+                border: none;
+                background: transparent;
+            }
+
+            .language-selector-rounded .language-selector-button,
+            .language-selector-rounded .language-selector-dropdown {
+                border-radius: 20px;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .language-selector {
+                    font-size: 0.875rem;
+                }
+
+                .language-selector-dropdown {
+                    min-width: 120px;
+                    right: -10px;
+                }
+            }
+
+            /* Animation d'entrée */
+            @keyframes language-selector-fade-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .language-selector-dropdown {
+                animation: language-selector-fade-in 0.2s ease;
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'language-selector-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Toggle l'ouverture du menu déroulant
+     */
+    toggleDropdown() {
+        if (this.isOpen) {
+            this.closeDropdown();
+        } else {
+            this.openDropdown();
+        }
+    }
+
+    /**
+     * Ouvre le menu déroulant
+     */
+    openDropdown() {
+        this.isOpen = true;
+        DOMHelper.addClass(this.element, 'open');
+        this.element.setAttribute('aria-expanded', 'true');
+
+        const dropdown = this.element.querySelector('.language-selector-dropdown');
+        dropdown.setAttribute('aria-hidden', 'false');
+
+        // Focus sur le premier élément
+        const firstItem = dropdown.querySelector('.language-selector-item');
+        if (firstItem) {
+            setTimeout(() => firstItem.focus(), 100);
+        }
+    }
+
+    /**
+     * Ferme le menu déroulant
+     */
+    closeDropdown() {
+        this.isOpen = false;
+        DOMHelper.removeClass(this.element, 'open');
+        this.element.setAttribute('aria-expanded', 'false');
+
+        const dropdown = this.element.querySelector('.language-selector-dropdown');
+        dropdown.setAttribute('aria-hidden', 'true');
+    }
+
+    /**
+     * Sélectionne une langue
+     * @param {string} languageCode
+     */
+    async selectLanguage(languageCode) {
+        if (languageCode === this.currentLanguage) {
+            this.closeDropdown();
+            return;
+        }
+
+        try {
+            const result = await this.manageTranslationsUseCase.changeLanguage(languageCode);
+
+            if (result.success) {
+                this.currentLanguage = languageCode;
+                this.updateDisplay(languageCode);
+                this.closeDropdown();
+
+                // Émettre un événement de changement de langue
+                eventManager.emit(CUSTOM_EVENTS.LANGUAGE_CHANGED, {
+                    newLanguage: languageCode,
+                    previousLanguage: result.previousLanguage
+                });
+
+            } else {
+                console.error('Failed to change language:', result.error);
+            }
+
+        } catch (error) {
+            console.error('Error selecting language:', error);
+        }
+    }
+
+    /**
+     * Met à jour l'affichage du sélecteur
+     * @param {string} languageCode
+     */
+    updateDisplay(languageCode) {
+        this.currentLanguage = languageCode;
+        this.element.setAttribute('data-current-lang', languageCode);
+
+        const currentLang = this.supportedLanguages.find(lang => lang.code === languageCode);
+        if (currentLang) {
+            const button = this.element.querySelector('.language-selector-button');
+            const displayText = this.getLanguageDisplayText(currentLang);
+
+            // Supprimer le contenu texte (garder l'indicateur)
+            const indicator = button.querySelector('.language-selector-indicator');
+            button.textContent = displayText;
+            button.appendChild(indicator);
+
+            // Mettre à jour les éléments actifs
+            const items = this.element.querySelectorAll('.language-selector-item');
+            items.forEach(item => {
+                const isActive = item.dataset.lang === languageCode;
+                item.setAttribute('aria-current', isActive ? 'true' : 'false');
+                DOMHelper.toggleClass(item, 'active', isActive);
+            });
+        }
+    }
+
+    /**
+     * Gère la navigation clavier
+     * @param {KeyboardEvent} e
+     */
+    handleKeyboardNavigation(e) {
+        if (!this.isOpen) return;
+
+        const items = Array.from(this.element.querySelectorAll('.language-selector-item'));
+        const currentIndex = items.findIndex(item => item === document.activeElement);
+
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                const nextIndex = Math.min(currentIndex + 1, items.length - 1);
+                items[nextIndex].focus();
+                break;
+
+            case 'ArrowUp':
+                e.preventDefault();
+                const prevIndex = Math.max(currentIndex - 1, 0);
+                items[prevIndex].focus();
+                break;
+
+            case 'Enter':
+            case ' ':
+                e.preventDefault();
+                if (document.activeElement.classList.contains('language-selector-item')) {
+                    const languageCode = document.activeElement.dataset.lang;
+                    this.selectLanguage(languageCode);
+                }
+                break;
+
+            case 'Escape':
+                e.preventDefault();
+                this.closeDropdown();
+                this.element.querySelector('.language-selector-button').focus();
+                break;
+        }
+    }
+
+    /**
+     * Obtient le texte d'affichage pour une langue
+     * @param {Object} language
+     * @returns {string}
+     */
+    getLanguageDisplayText(language) {
+        if (!language) return 'FR';
+
+        if (this.options.showFlags && this.options.showNames) {
+            return `${language.flag} ${language.name}`;
+        } else if (this.options.showFlags) {
+            return language.flag;
+        } else if (this.options.showNames) {
+            return language.name;
+        } else {
+            return language.code.toUpperCase();
+        }
+    }
+
+    /**
+     * Vérifie si le menu est ouvert
+     * @returns {boolean}
+     */
+    isDropdownOpen() {
+        return this.isOpen;
+    }
+
+    /**
+     * Force la fermeture du menu
+     */
+    forceClose() {
+        if (this.isOpen) {
+            this.closeDropdown();
+        }
+    }
+
+    /**
+     * Obtient l'élément DOM du sélecteur
+     * @returns {Element}
+     */
+    getElement() {
+        return this.element;
+    }
+
+    /**
+     * Nettoie les ressources du sélecteur
+     */
+    destroy() {
+        this.forceClose();
+
+        if (this.element && this.element.parentNode) {
+            this.element.parentNode.removeChild(this.element);
+        }
+
+        // Supprimer l'écouteur de changement de langue
+        if (this.manageTranslationsUseCase.translationRepository) {
+            this.manageTranslationsUseCase.translationRepository.removeLanguageChangeListener(
+                this.updateDisplay.bind(this)
+            );
+        }
+
+        this.element = null;
+        this.supportedLanguages = [];
+    }
+}
 
 
 // ===== presentation/components/LoadingSpinner.js =====
@@ -5712,12 +7003,14 @@ import {
 import {
     SendContactEmail,
     ValidateContactForm,
-    ManageFAQ
+    ManageFAQ,
+    ManageTranslations
 } from './application/index.js';
 
 import {
     EmailJSAdapter,
     LocalStorageAdapter,
+    TranslationService,
     DOMHelper,
     eventManager
 } from './infrastructure/index.js';
@@ -5728,8 +7021,12 @@ import {
     NavigationController
 } from './presentation/index.js';
 
+import {
+    LanguageSelector
+} from './presentation/components/index.js';
+
 // Import des constantes
-import { APP_CONFIG } from './shared/constants/index.js';
+import { APP_CONFIG, CUSTOM_EVENTS } from './shared/constants/index.js';
 
 /**
  * Classe principale de l'application
@@ -5803,6 +7100,9 @@ class BienRentreApp {
         // Repository pour le stockage local
         this.repositories.storage = new LocalStorageAdapter();
 
+        // Repository pour les traductions
+        this.repositories.translation = new TranslationService();
+
         console.log('✅ Repositories initialisés');
     }
 
@@ -5826,6 +7126,12 @@ class BienRentreApp {
         // Use case pour la gestion des FAQ
         this.useCases.manageFAQ = new ManageFAQ(
             this.services.faq
+        );
+
+        // Use case pour la gestion des traductions
+        this.useCases.manageTranslations = new ManageTranslations(
+            this.repositories.translation,
+            this.repositories.storage
         );
 
         console.log('✅ Use cases initialisés');
@@ -5867,10 +7173,141 @@ class BienRentreApp {
             });
         }
 
+        // Initialiser la langue sauvegardée
+        await this.initLanguage();
+
         // Les controllers s'initialisent automatiquement dans leur constructeur
         // Ici on peut ajouter des initialisations supplémentaires si nécessaire
 
         console.log('✅ Cycle de vie initialisé');
+    }
+
+    /**
+     * Initialise la langue de l'application
+     */
+    async initLanguage() {
+        try {
+            console.log('🌍 Initialisation de la langue...');
+
+            // Charger la langue sauvegardée ou détecter automatiquement
+            const savedLanguage = await this.useCases.manageTranslations.loadSavedLanguage();
+            console.log(`📝 Langue chargée: ${savedLanguage}`);
+
+            // Initialiser le gestionnaire de notifications
+            this.notificationManager = notificationManager;
+            this.notificationManager.init();
+
+            // Initialiser le sélecteur de langue
+            this.languageSelector = new LanguageSelector(this.useCases.manageTranslations, {
+                showFlags: true,
+                showNames: true,
+                position: 'top-right'
+            });
+
+            // Écouter les changements de langue
+            this.setupLanguageChangeListener();
+
+            // Charger les traductions pour mettre à jour l'interface
+            await this.updateInterfaceWithTranslations();
+
+            console.log('✅ Langue initialisée');
+
+        } catch (error) {
+            console.error('❌ Erreur lors de l\'initialisation de la langue:', error);
+        }
+    }
+
+    /**
+     * Met à jour l'interface avec les traductions actuelles
+     */
+    async updateInterfaceWithTranslations() {
+        try {
+            // Mettre à jour le titre de la page
+            const title = await this.useCases.manageTranslations.translate('meta.title');
+            if (title && title !== 'meta.title') {
+                document.title = title;
+            }
+
+            // Mettre à jour la meta description
+            const description = await this.useCases.manageTranslations.translate('meta.description');
+            if (description && description !== 'meta.description') {
+                const metaDescription = document.querySelector('meta[name="description"]');
+                if (metaDescription) {
+                    metaDescription.setAttribute('content', description);
+                }
+            }
+
+            // Mettre à jour l'attribut lang du HTML
+            const currentLang = await this.useCases.manageTranslations.getCurrentLanguage();
+            const htmlElement = document.documentElement;
+            htmlElement.setAttribute('lang', currentLang);
+            htmlElement.setAttribute('data-lang', currentLang);
+
+            // Mettre à jour les éléments de l'interface qui ont des attributs data-i18n
+            await this.updateI18nElements();
+
+            // Émettre un événement de traductions chargées
+            eventManager.emit(CUSTOM_EVENTS.TRANSLATION_LOADED, { language: currentLang });
+
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour de l\'interface:', error);
+            eventManager.emit(CUSTOM_EVENTS.TRANSLATION_ERROR, { error: error.message });
+        }
+    }
+
+    /**
+     * Configure l'écouteur de changement de langue
+     */
+    setupLanguageChangeListener() {
+        eventManager.on(CUSTOM_EVENTS.LANGUAGE_CHANGED, async (data) => {
+            console.log(`🌍 Changement de langue: ${data.previousLanguage} → ${data.newLanguage}`);
+
+            // Mettre à jour l'interface avec la nouvelle langue
+            await this.updateInterfaceWithTranslations();
+
+            // Afficher une notification de confirmation
+            if (this.notificationManager) {
+                const currentLangInfo = await this.useCases.manageTranslations.getSupportedLanguages()
+                    .then(langs => langs.find(lang => lang.code === data.newLanguage));
+
+                if (currentLangInfo) {
+                    this.notificationManager.info(
+                        `Langue changée vers ${currentLangInfo.name}`,
+                        'Langue'
+                    );
+                }
+            }
+        });
+    }
+
+    /**
+     * Met à jour les éléments HTML avec l'attribut data-i18n
+     */
+    async updateI18nElements() {
+        const i18nElements = document.querySelectorAll('[data-i18n]');
+
+        for (const element of i18nElements) {
+            const key = element.getAttribute('data-i18n');
+            const translation = await this.useCases.manageTranslations.translate(key);
+
+            if (translation && translation !== key) {
+                // Mettre à jour selon le type d'élément
+                if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                } else if ((element.tagName === 'INPUT' || element.tagName === 'BUTTON') && element.type === 'submit') {
+                    element.value = translation;
+                } else if (element.tagName === 'TEXTAREA' && element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                } else if (element.tagName === 'META' && element.hasAttribute('content')) {
+                    element.setAttribute('content', translation);
+                } else if (element.tagName === 'TITLE') {
+                    element.textContent = translation;
+                } else {
+                    // Pour tous les autres éléments, mettre à jour le textContent
+                    element.textContent = translation;
+                }
+            }
+        }
     }
 
     /**

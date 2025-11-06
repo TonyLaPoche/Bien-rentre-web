@@ -14,12 +14,14 @@ import {
 import {
     SendContactEmail,
     ValidateContactForm,
-    ManageFAQ
+    ManageFAQ,
+    ManageTranslations
 } from './application/index.js';
 
 import {
     EmailJSAdapter,
     LocalStorageAdapter,
+    TranslationService,
     DOMHelper,
     eventManager
 } from './infrastructure/index.js';
@@ -30,8 +32,12 @@ import {
     NavigationController
 } from './presentation/index.js';
 
+import {
+    LanguageSelector
+} from './presentation/components/index.js';
+
 // Import des constantes
-import { APP_CONFIG } from './shared/constants/index.js';
+import { APP_CONFIG, CUSTOM_EVENTS } from './shared/constants/index.js';
 
 /**
  * Classe principale de l'application
@@ -105,6 +111,9 @@ class BienRentreApp {
         // Repository pour le stockage local
         this.repositories.storage = new LocalStorageAdapter();
 
+        // Repository pour les traductions
+        this.repositories.translation = new TranslationService();
+
         console.log('✅ Repositories initialisés');
     }
 
@@ -128,6 +137,12 @@ class BienRentreApp {
         // Use case pour la gestion des FAQ
         this.useCases.manageFAQ = new ManageFAQ(
             this.services.faq
+        );
+
+        // Use case pour la gestion des traductions
+        this.useCases.manageTranslations = new ManageTranslations(
+            this.repositories.translation,
+            this.repositories.storage
         );
 
         console.log('✅ Use cases initialisés');
@@ -169,10 +184,141 @@ class BienRentreApp {
             });
         }
 
+        // Initialiser la langue sauvegardée
+        await this.initLanguage();
+
         // Les controllers s'initialisent automatiquement dans leur constructeur
         // Ici on peut ajouter des initialisations supplémentaires si nécessaire
 
         console.log('✅ Cycle de vie initialisé');
+    }
+
+    /**
+     * Initialise la langue de l'application
+     */
+    async initLanguage() {
+        try {
+            console.log('🌍 Initialisation de la langue...');
+
+            // Charger la langue sauvegardée ou détecter automatiquement
+            const savedLanguage = await this.useCases.manageTranslations.loadSavedLanguage();
+            console.log(`📝 Langue chargée: ${savedLanguage}`);
+
+            // Initialiser le gestionnaire de notifications
+            this.notificationManager = notificationManager;
+            this.notificationManager.init();
+
+            // Initialiser le sélecteur de langue
+            this.languageSelector = new LanguageSelector(this.useCases.manageTranslations, {
+                showFlags: true,
+                showNames: true,
+                position: 'top-right'
+            });
+
+            // Écouter les changements de langue
+            this.setupLanguageChangeListener();
+
+            // Charger les traductions pour mettre à jour l'interface
+            await this.updateInterfaceWithTranslations();
+
+            console.log('✅ Langue initialisée');
+
+        } catch (error) {
+            console.error('❌ Erreur lors de l\'initialisation de la langue:', error);
+        }
+    }
+
+    /**
+     * Met à jour l'interface avec les traductions actuelles
+     */
+    async updateInterfaceWithTranslations() {
+        try {
+            // Mettre à jour le titre de la page
+            const title = await this.useCases.manageTranslations.translate('meta.title');
+            if (title && title !== 'meta.title') {
+                document.title = title;
+            }
+
+            // Mettre à jour la meta description
+            const description = await this.useCases.manageTranslations.translate('meta.description');
+            if (description && description !== 'meta.description') {
+                const metaDescription = document.querySelector('meta[name="description"]');
+                if (metaDescription) {
+                    metaDescription.setAttribute('content', description);
+                }
+            }
+
+            // Mettre à jour l'attribut lang du HTML
+            const currentLang = await this.useCases.manageTranslations.getCurrentLanguage();
+            const htmlElement = document.documentElement;
+            htmlElement.setAttribute('lang', currentLang);
+            htmlElement.setAttribute('data-lang', currentLang);
+
+            // Mettre à jour les éléments de l'interface qui ont des attributs data-i18n
+            await this.updateI18nElements();
+
+            // Émettre un événement de traductions chargées
+            eventManager.emit(CUSTOM_EVENTS.TRANSLATION_LOADED, { language: currentLang });
+
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour de l\'interface:', error);
+            eventManager.emit(CUSTOM_EVENTS.TRANSLATION_ERROR, { error: error.message });
+        }
+    }
+
+    /**
+     * Configure l'écouteur de changement de langue
+     */
+    setupLanguageChangeListener() {
+        eventManager.on(CUSTOM_EVENTS.LANGUAGE_CHANGED, async (data) => {
+            console.log(`🌍 Changement de langue: ${data.previousLanguage} → ${data.newLanguage}`);
+
+            // Mettre à jour l'interface avec la nouvelle langue
+            await this.updateInterfaceWithTranslations();
+
+            // Afficher une notification de confirmation
+            if (this.notificationManager) {
+                const currentLangInfo = await this.useCases.manageTranslations.getSupportedLanguages()
+                    .then(langs => langs.find(lang => lang.code === data.newLanguage));
+
+                if (currentLangInfo) {
+                    this.notificationManager.info(
+                        `Langue changée vers ${currentLangInfo.name}`,
+                        'Langue'
+                    );
+                }
+            }
+        });
+    }
+
+    /**
+     * Met à jour les éléments HTML avec l'attribut data-i18n
+     */
+    async updateI18nElements() {
+        const i18nElements = document.querySelectorAll('[data-i18n]');
+
+        for (const element of i18nElements) {
+            const key = element.getAttribute('data-i18n');
+            const translation = await this.useCases.manageTranslations.translate(key);
+
+            if (translation && translation !== key) {
+                // Mettre à jour selon le type d'élément
+                if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                } else if ((element.tagName === 'INPUT' || element.tagName === 'BUTTON') && element.type === 'submit') {
+                    element.value = translation;
+                } else if (element.tagName === 'TEXTAREA' && element.hasAttribute('placeholder')) {
+                    element.placeholder = translation;
+                } else if (element.tagName === 'META' && element.hasAttribute('content')) {
+                    element.setAttribute('content', translation);
+                } else if (element.tagName === 'TITLE') {
+                    element.textContent = translation;
+                } else {
+                    // Pour tous les autres éléments, mettre à jour le textContent
+                    element.textContent = translation;
+                }
+            }
+        }
     }
 
     /**

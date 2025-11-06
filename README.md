@@ -44,6 +44,7 @@ src/
 - **Modal** : Fenêtres modales réutilisables avec gestion d'événements
 - **LoadingSpinner** : Indicateurs de chargement personnalisables
 - **Notification** : Système de notifications toast (succès, erreur, avertissement, info)
+- **LanguageSelector** : Sélecteur de langue avec drapeaux et sauvegarde automatique
 
 ### Utilitaires fournis :
 - **formatUtils** : Formatage de dates, textes, URLs
@@ -55,9 +56,16 @@ src/
 - **storageUtils** : Stockage local sécurisé
 - **performanceUtils** : Mesure de performance et lazy loading
 
+### Internationalisation (i18n) :
+- **Langues supportées** : Français 🇫🇷, Anglais 🇺🇸
+- **Détection automatique** : Basée sur la langue du navigateur
+- **Sauvegarde persistante** : Préférence utilisateur sauvegardée
+- **Sélecteur intégré** : Dans la barre de navigation
+- **Architecture complète** : Service, repository, use cases dédiés
+
 ### Construction du bundle :
 ```bash
-node build.js  # Génère script.js à partir des modules ES6 (156.70 KB)
+node build.js  # Génère script.js à partir des modules ES6 (200.33 KB)
 ```
 
 ## 🚀 Déploiement sur GitHub Pages

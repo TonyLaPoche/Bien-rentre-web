@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "title": "Bien-Rentré - Sécurité pour vos retours de soirée",
+    "description": "Application mobile de sécurité qui vous permet de partager votre géolocalisation en temps réel avec un contact de confiance lors de vos déplacements nocturnes.",
+    "keywords": "sécurité, géolocalisation, soirées, protection, mobile, app"
+  },
+  "nav": {
+    "home": "Accueil",
+    "features": "Fonctionnalités",
+    "howItWorks": "Comment ça marche",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
+  "hero": {
+    "title": "Rentrez en sécurité avec",
+    "highlight": "Bien-Rentré",
+    "subtitle": "Partagez votre géolocalisation en temps réel avec un contact de confiance lors de vos déplacements nocturnes. Une protection simple et efficace pour vos retours de soirée.",
+    "contactButton": "Nous contacter",
+    "discoverButton": "Découvrir",
+    "locationShared": "Position partagée"
+  },
+  "features": {
+    "title": "Fonctionnalités principales",
+    "subtitle": "Découvrez ce qui fait de Bien-Rentré votre compagnon de sécurité idéal",
+    "items": {
+      "realtimeLocation": {
+        "title": "Géolocalisation temps réel",
+        "description": "Partagez votre position GPS en continu avec vos contacts de confiance pendant vos déplacements."
+      },
+      "secureAuth": {
+        "title": "Sécurité authentifiée",
+        "description": "Système de codes uniques pour activer le partage de manière sécurisée et contrôlée."
+      },
+      "interactiveMap": {
+        "title": "Carte interactive",
+        "description": "Visualisez votre trajet en temps réel et consultez l'historique de vos sessions."
+      },
+      "smartNotifications": {
+        "title": "Notifications intelligentes",
+        "description": "Alertes automatiques d'arrivée à destination et notifications de sécurité personnalisables."
+      },
+      "contactManagement": {
+        "title": "Gestion des contacts",
+        "description": "Sélectionnez et gérez facilement les personnes autorisées à suivre vos déplacements."
+      },
+      "crossPlatform": {
+        "title": "Application cross-platform",
+        "description": "Disponible sur Android et iOS avec une interface intuitive et moderne."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ça marche",
+    "subtitle": "Quatre étapes simples pour une protection maximale",
+    "steps": {
+      "1": {
+        "title": "Installez l'app",
+        "description": "Téléchargez Bien-Rentré sur votre smartphone depuis l'App Store ou Google Play."
+      },
+      "2": {
+        "title": "Choisissez votre contact",
+        "description": "Sélectionnez une personne de confiance qui pourra suivre votre trajet en temps réel."
+      },
+      "3": {
+        "title": "Activez le partage",
+        "description": "Générez un code unique et partagez-le avec votre contact pour commencer la session."
+      },
+      "4": {
+        "title": "Rentrez en sécurité",
+        "description": "Votre contact suit votre trajet en temps réel et reçoit une notification à votre arrivée."
+      }
+    }
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "subtitle": "Tout ce que vous devez savoir sur Bien-Rentré",
+    "questions": {
+      "emergency": {
+        "question": "Est-ce que Bien-Rentré est un système d'alerte d'urgence ?",
+        "answer": "Non, Bien-Rentré n'est pas un système d'alerte d'urgence officiel. C'est un outil de prévention qui permet de partager votre position avec des contacts de confiance pour des déplacements nocturnes. En cas d'urgence réelle, contactez immédiatement les services d'urgence appropriés (112, 911, etc.)."
+      },
+      "dataProtection": {
+        "question": "Comment mes données de localisation sont-elles protégées ?",
+        "answer": "Vos données de géolocalisation ne sont partagées qu'avec les contacts que vous avez explicitement autorisés. Elles sont chiffrées et stockées temporairement pendant la session active. Nous respectons pleinement le RGPD et nos pratiques sont détaillées dans notre politique de confidentialité."
+      },
+      "offline": {
+        "question": "L'application fonctionne-t-elle hors ligne ?",
+        "answer": "Bien-Rentré nécessite une connexion internet pour partager la géolocalisation en temps réel. Cependant, l'application peut détecter la perte de connexion et notifier votre contact en cas d'interruption du signal GPS."
+      },
+      "contacts": {
+        "question": "Combien de contacts puis-je ajouter ?",
+        "answer": "Dans la version gratuite, vous pouvez ajouter jusqu'à 3 contacts de confiance. La version premium permet un nombre illimité de contacts simultanés."
+      },
+      "accuracy": {
+        "question": "Quelle est la précision de la géolocalisation ?",
+        "answer": "L'application utilise le GPS intégré de votre smartphone avec une précision généralement de 5 à 10 mètres. La précision peut varier selon les conditions météorologiques et la couverture réseau."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Vous avez des questions sur Bien-Rentré ? N'hésitez pas à nous contacter.",
+    "email": "Email",
+    "security": "Sécurité",
+    "securityNote": "Vos données sont protégées",
+    "form": {
+      "name": "Nom (optionnel)",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Message",
+      "privacy": "J'accepte que mes données soient utilisées pour répondre à ma demande selon la",
+      "privacyLink": "politique de confidentialité",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès !",
+      "error": "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+      "required": "Ce champ est obligatoire",
+      "invalidEmail": "Veuillez entrer un email valide",
+      "minLength": "Le message doit contenir au moins 10 caractères"
+    }
+  },
+  "footer": {
+    "copyright": "Tous droits réservés.",
+    "backToTop": "Retour en haut"
+  },
+  "language": {
+    "selector": "Langue",
+    "french": "Français",
+    "english": "English",
+    "current": "Français"
+  },
+  "legal": {
+    "tableOfContents": "Table des matières",
+    "print": "Imprimer",
+    "lastUpdated": "Dernière mise à jour",
+    "backToHome": "Retour à l'accueil"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "warning": "Attention",
+    "info": "Information",
+    "close": "Fermer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "yes": "Oui",
+    "no": "Non"
+  }
+}

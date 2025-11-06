@@ -122,6 +122,10 @@ export const CUSTOM_EVENTS = {
     EMAIL_ERROR: 'email:error',
     MODAL_OPEN: 'modal:open',
     MODAL_CLOSE: 'modal:close',
+    MODAL_BUTTON_CLICK: 'modal:button_click',
     FAQ_TOGGLE: 'faq:toggle',
-    NAV_TOGGLE: 'nav:toggle'
+    NAV_TOGGLE: 'nav:toggle',
+    LANGUAGE_CHANGED: 'language:changed',
+    TRANSLATION_LOADED: 'translation:loaded',
+    TRANSLATION_ERROR: 'translation:error'
 };
