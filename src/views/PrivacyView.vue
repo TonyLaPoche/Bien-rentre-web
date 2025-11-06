@@ -100,12 +100,32 @@
             <p>{{ $t('privacy.rights.contact') }}</p>
           </div>
         </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.security.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('privacy.security.content') }}</p>
+            <p>{{ $t('privacy.security.encryption') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.contact.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('privacy.contact.content') }}</p>
+            <ul>
+              <li>{{ $t('privacy.contact.list1') }}</li>
+              <li>{{ $t('privacy.contact.list2') }}</li>
+            </ul>
+            <p>{{ $t('privacy.contact.response') }}</p>
+          </div>
+        </section>
       </main>
 
       <div class="contact-section">
-        <h3 class="contact-title">Questions?</h3>
-        <p class="contact-text">Contact us for any questions about our privacy policy.</p>
-        <router-link to="/#contact" class="action-link">Contact Us</router-link>
+        <h3 class="contact-title">{{ $t('privacy.questions.title') }}</h3>
+        <p class="contact-text">{{ $t('privacy.questions.content') }}</p>
+        <router-link to="/#contact" class="action-link">{{ $t('privacy.contactLink') }}</router-link>
       </div>
     </div>
   </div>
