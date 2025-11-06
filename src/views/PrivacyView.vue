@@ -102,22 +102,22 @@
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">8. Data Security</h2>
+          <h2 class="section-title">{{ $t('privacy.security.title') }}</h2>
           <div class="section-content">
-            <p>We protect your data with security measures.</p>
-            <p>All data is encrypted.</p>
+            <p>{{ $t('privacy.security.content') }}</p>
+            <p>{{ $t('privacy.security.encryption') }}</p>
           </div>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">9. Contact</h2>
+          <h2 class="section-title">{{ $t('privacy.contact.title') }}</h2>
           <div class="section-content">
-            <p>For questions about privacy.</p>
+            <p>{{ $t('privacy.contact.content') }}</p>
             <ul>
-              <li>Contact form</li>
-              <li>Email support</li>
+              <li>{{ $t('privacy.contact.list1') }}</li>
+              <li>{{ $t('privacy.contact.list2') }}</li>
             </ul>
-            <p>We respond within 30 days.</p>
+            <p>{{ $t('privacy.contact.response') }}</p>
           </div>
         </section>
       </main>

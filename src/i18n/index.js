@@ -142,21 +142,21 @@ export const messages = {
       },
       security: {
         title: '8. Sécurité des données',
-        content: 'Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, perte, altération ou divulgation.',
-        encryption: 'Toutes les communications sont chiffrées et les données sensibles sont stockées de manière sécurisée.'
+        content: 'Nous protégeons vos données personnelles.',
+        encryption: 'Données chiffrées.'
       },
       contact: {
         title: '9. Contact',
-        content: 'Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, contactez-nous :',
-        list1: 'Via le formulaire de contact de notre site web',
-        list2: 'Par email : [votre-email@domaine.com]',
-        response: 'Nous nous engageons à répondre à votre demande dans un délai de 30 jours maximum.'
+        content: 'Pour vos questions sur la politique.',
+        list1: 'Formulaire de contact',
+        list2: 'Email',
+        response: 'Réponse sous 30 jours.'
       },
       questions: {
-        title: 'Des questions sur vos données ?',
-        content: 'N\'hésitez pas à nous contacter pour toute question concernant la protection de vos données personnelles.'
+        title: 'Questions ?',
+        content: 'Contactez-nous pour vos questions.'
       },
-      contactLink: 'Nous contacter'
+      contactLink: 'Contact'
     },
     hero: {
       title: 'Bien-Rentré',
@@ -364,21 +364,21 @@ export const messages = {
       },
       security: {
         title: '8. Data Security',
-        content: 'We implement appropriate technical and organizational measures to protect your personal data against any unauthorized access, loss, alteration or disclosure.',
-        encryption: 'All communications are encrypted and sensitive data is stored securely.'
+        content: 'We protect your personal data.',
+        encryption: 'Data is encrypted.'
       },
       contact: {
         title: '9. Contact',
-        content: 'For any questions regarding this privacy policy or to exercise your rights, contact us:',
-        list1: 'Through the contact form on our website',
-        list2: 'By email: [your-email@domain.com]',
-        response: 'We commit to responding to your request within a maximum period of 30 days.'
+        content: 'For questions about privacy policy.',
+        list1: 'Use contact form',
+        list2: 'Send email',
+        response: 'Response within 30 days.'
       },
       questions: {
-        title: 'Questions about your data?',
-        content: 'Don\'t hesitate to contact us for any questions regarding the protection of your personal data.'
+        title: 'Questions?',
+        content: 'Contact us for privacy questions.'
       },
-      contactLink: 'Contact Us'
+      contactLink: 'Contact'
     },
     hero: {
       title: 'Bien-Rentré',
