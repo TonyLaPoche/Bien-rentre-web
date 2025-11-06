@@ -6,6 +6,32 @@ Site vitrine statique pour l'application mobile "Bien-Rentré", une app de sécu
 
 Bien-Rentré est une application mobile qui permet aux utilisateurs de partager leur géolocalisation en temps réel avec des contacts de confiance lors de leurs déplacements nocturnes, offrant ainsi une protection supplémentaire contre les risques liés aux trajets en soirée.
 
+## 🏗️ Architecture Clean Code
+
+Ce projet suit les principes de **Clean Architecture** et **Clean Code** pour une maintenabilité et scalabilité optimales :
+
+```
+src/
+├── domain/           # Règles métier (Entities, Services, Repositories)
+├── application/      # Use Cases - Orchestration métier
+├── infrastructure/   # Interfaces externes (API, DOM, Storage)
+├── presentation/     # Interface utilisateur (Controllers)
+├── shared/           # Utilitaires et constantes partagés
+└── main.js          # Point d'entrée avec injection de dépendances
+```
+
+### Principes appliqués :
+- **Séparation des préoccupations** : Chaque couche a une responsabilité unique
+- **Injection de dépendances** : Interfaces claires entre les couches
+- **SOLID principles** : Code extensible et maintenable
+- **DRY (Don't Repeat Yourself)** : Pas de duplication de code
+- **Single Responsibility** : Une classe = une responsabilité
+
+### Construction du bundle :
+```bash
+node build.js  # Génère script.js à partir des modules ES6
+```
+
 ## 🚀 Déploiement sur GitHub Pages
 
 ### Prérequis
