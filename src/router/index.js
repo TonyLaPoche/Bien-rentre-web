@@ -12,11 +12,6 @@ const routes = [
     path: '/privacy',
     name: 'Privacy',
     component: PrivacyView
-  },
-  // Route par défaut pour rediriger vers la page d'accueil pour les ancres
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/'
   }
 ]
 

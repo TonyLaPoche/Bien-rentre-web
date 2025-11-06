@@ -5,6 +5,7 @@
 
     <!-- Contenu principal -->
     <router-view>
+      <!-- Page d'accueil par défaut -->
       <main>
         <HeroSection />
         <FeaturesSection />
