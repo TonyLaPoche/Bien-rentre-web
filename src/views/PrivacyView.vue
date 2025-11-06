@@ -21,116 +21,20 @@
 
       <main class="page-content">
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.controller.title') }}</h2>
+          <h2 class="section-title">Test Section</h2>
           <div class="section-content">
-            <p>{{ $t('privacy.controller.content') }}</p>
+            <p>This is a test content for PrivacyView.</p>
+            <p>Title translation: {{ $t('privacy.title') }}</p>
+            <p>Controller content: {{ $t('privacy.controller.content') }}</p>
           </div>
         </section>
 
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.data.title') }}</h2>
-          <div class="section-content">
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.data.location.title') }}</h3>
-              <p>{{ $t('privacy.data.location.content') }}</p>
-            </div>
-
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.data.contact.title') }}</h3>
-              <p>{{ $t('privacy.data.contact.content') }}</p>
-            </div>
-
-            <p>{{ $t('privacy.data.note') }}</p>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.purpose.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.purpose.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.purpose.list1') }}</li>
-              <li>{{ $t('privacy.purpose.list2') }}</li>
-              <li>{{ $t('privacy.purpose.list3') }}</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.legal.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.legal.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.legal.list1') }}</li>
-              <li>{{ $t('privacy.legal.list2') }}</li>
-              <li>{{ $t('privacy.legal.list3') }}</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.recipients.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.recipients.content') }}</p>
-            <p>{{ $t('privacy.recipients.support') }}</p>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.retention.title') }}</h2>
-          <div class="section-content">
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.retention.location.title') }}</h3>
-              <p>{{ $t('privacy.retention.location.content') }}</p>
-            </div>
-
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.retention.contact.title') }}</h3>
-              <p>{{ $t('privacy.retention.contact.content') }}</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.rights.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.rights.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.rights.list1') }}</li>
-              <li>{{ $t('privacy.rights.list2') }}</li>
-              <li>{{ $t('privacy.rights.list3') }}</li>
-              <li>{{ $t('privacy.rights.list4') }}</li>
-              <li>{{ $t('privacy.rights.list5') }}</li>
-            </ul>
-            <p>{{ $t('privacy.rights.contact') }}</p>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.security.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.security.content') }}</p>
-            <p>{{ $t('privacy.security.encryption') }}</p>
-          </div>
-        </section>
-
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.contact.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.contact.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.contact.list1') }}</li>
-              <li>{{ $t('privacy.contact.list2') }}</li>
-            </ul>
-            <p>{{ $t('privacy.contact.response') }}</p>
-          </div>
-        </section>
       </main>
 
       <div class="contact-section">
-        <h3 class="contact-title">{{ $t('privacy.questions.title') }}</h3>
-        <p class="contact-text">{{ $t('privacy.questions.content') }}</p>
-        <router-link to="/#contact" class="action-link">{{ $t('privacy.contactLink') }}</router-link>
+        <h3 class="contact-title">Questions?</h3>
+        <p class="contact-text">Test completed.</p>
+        <router-link to="/" class="action-link">Back to Home</router-link>
       </div>
     </div>
   </div>
