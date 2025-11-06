@@ -5,6 +5,18 @@ export default defineConfig({
   plugins: [vue()],
   base: process.env.NODE_ENV === 'production' ? '/Bien-rentre-web/' : '/',
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vue: ['vue'],
+          i18n: ['vue-i18n'],
+          emailjs: ['@emailjs/browser']
+        }
+      }
+    }
   }
 })
