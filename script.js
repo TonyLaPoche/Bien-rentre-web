@@ -1,6 +1,6 @@
 /**
  * Bundle Bien-Rentré - Généré automatiquement
- * Date: 2025-11-06T16:31:01.649Z
+ * Date: 2025-11-06T16:34:48.640Z
  */
 
 
@@ -180,6 +180,535 @@ const CUSTOM_EVENTS = {
     MODAL_CLOSE: 'modal:close',
     FAQ_TOGGLE: 'faq:toggle',
     NAV_TOGGLE: 'nav:toggle'
+};
+
+
+// ===== shared/utils/index.js =====
+/**
+ * Utilitaires partagés - Fonctions helper générales
+ */
+
+/**
+ * Utilitaires de formatage
+ */
+const formatUtils = {
+    /**
+     * Formate une date en français
+     * @param {Date|string} date
+     * @returns {string}
+     */
+    formatDate(date) {
+        const d = new Date(date);
+        return d.toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    },
+
+    /**
+     * Formate une date relative (il y a X minutes/heures/jours)
+     * @param {Date|string} date
+     * @returns {string}
+     */
+    formatRelativeTime(date) {
+        const now = new Date();
+        const past = new Date(date);
+        const diffInSeconds = Math.floor((now - past) / 1000);
+
+        if (diffInSeconds < 60) return 'à l\'instant';
+        if (diffInSeconds < 3600) return `il y a ${Math.floor(diffInSeconds / 60)} min`;
+        if (diffInSeconds < 86400) return `il y a ${Math.floor(diffInSeconds / 3600)} h`;
+        if (diffInSeconds < 604800) return `il y a ${Math.floor(diffInSeconds / 86400)} j`;
+
+        return this.formatDate(date);
+    },
+
+    /**
+     * Nettoie et tronque un texte
+     * @param {string} text
+     * @param {number} maxLength
+     * @returns {string}
+     */
+    truncateText(text, maxLength = 100) {
+        if (!text || text.length <= maxLength) return text;
+        return text.substring(0, maxLength).trim() + '...';
+    },
+
+    /**
+     * Convertit une chaîne en slug URL
+     * @param {string} text
+     * @returns {string}
+     */
+    slugify(text) {
+        return text
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/[\s_-]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+    }
+};
+
+/**
+ * Utilitaires de validation
+ */
+const validationUtils = {
+    /**
+     * Valide une adresse email avec regex
+     * @param {string} email
+     * @returns {boolean}
+     */
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    },
+
+    /**
+     * Valide un numéro de téléphone français
+     * @param {string} phone
+     * @returns {boolean}
+     */
+    isValidFrenchPhone(phone) {
+        const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+        return phoneRegex.test(phone.replace(/\s/g, ''));
+    },
+
+    /**
+     * Vérifie si une chaîne contient uniquement des chiffres
+     * @param {string} str
+     * @returns {boolean}
+     */
+    isNumeric(str) {
+        return /^\d+$/.test(str);
+    },
+
+    /**
+     * Vérifie si une valeur est vide (null, undefined, string vide, array vide)
+     * @param {*} value
+     * @returns {boolean}
+     */
+    isEmpty(value) {
+        if (value == null) return true;
+        if (typeof value === 'string') return value.trim() === '';
+        if (Array.isArray(value)) return value.length === 0;
+        if (typeof value === 'object') return Object.keys(value).length === 0;
+        return false;
+    },
+
+    /**
+     * Nettoie une chaîne de caractères
+     * @param {string} str
+     * @returns {string}
+     */
+    sanitizeString(str) {
+        if (typeof str !== 'string') return '';
+        return str.trim().replace(/[<>]/g, '');
+    }
+};
+
+/**
+ * Utilitaires de manipulation d'arrays
+ */
+const arrayUtils = {
+    /**
+     * Mélange un array (algorithme Fisher-Yates)
+     * @param {Array} array
+     * @returns {Array}
+     */
+    shuffle(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    },
+
+    /**
+     * Supprime les doublons d'un array
+     * @param {Array} array
+     * @returns {Array}
+     */
+    removeDuplicates(array) {
+        return [...new Set(array)];
+    },
+
+    /**
+     * Groupe les éléments d'un array par une clé
+     * @param {Array} array
+     * @param {Function} keyFn
+     * @returns {Object}
+     */
+    groupBy(array, keyFn) {
+        return array.reduce((groups, item) => {
+            const key = keyFn(item);
+            if (!groups[key]) {
+                groups[key] = [];
+            }
+            groups[key].push(item);
+            return groups;
+        }, {});
+    },
+
+    /**
+     * Trie un array d'objets par une propriété
+     * @param {Array} array
+     * @param {string} property
+     * @param {boolean} ascending
+     * @returns {Array}
+     */
+    sortBy(array, property, ascending = true) {
+        return [...array].sort((a, b) => {
+            const aVal = a[property];
+            const bVal = b[property];
+
+            if (aVal < bVal) return ascending ? -1 : 1;
+            if (aVal > bVal) return ascending ? 1 : -1;
+            return 0;
+        });
+    }
+};
+
+/**
+ * Utilitaires pour le DOM
+ */
+const domUtils = {
+    /**
+     * Attend que le DOM soit chargé
+     * @returns {Promise<void>}
+     */
+    waitForDOM() {
+        return new Promise(resolve => {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', resolve);
+            } else {
+                resolve();
+            }
+        });
+    },
+
+    /**
+     * Crée un élément HTML avec des attributs et du contenu
+     * @param {string} tagName
+     * @param {Object} attributes
+     * @param {string|Node} content
+     * @returns {Element}
+     */
+    createElement(tagName, attributes = {}, content = '') {
+        const element = document.createElement(tagName);
+
+        // Attributs
+        Object.entries(attributes).forEach(([key, value]) => {
+            if (key === 'className' && Array.isArray(value)) {
+                element.className = value.join(' ');
+            } else if (key === 'style' && typeof value === 'object') {
+                Object.assign(element.style, value);
+            } else {
+                element.setAttribute(key, value);
+            }
+        });
+
+        // Contenu
+        if (typeof content === 'string') {
+            element.innerHTML = content;
+        } else if (content instanceof Node) {
+            element.appendChild(content);
+        }
+
+        return element;
+    },
+
+    /**
+     * Anime un élément avec une transition CSS
+     * @param {Element} element
+     * @param {Object} properties
+     * @param {number} duration
+     * @returns {Promise<void>}
+     */
+    animate(element, properties, duration = 300) {
+        return new Promise(resolve => {
+            if (!element) {
+                resolve();
+                return;
+            }
+
+            // Appliquer les propriétés finales
+            Object.assign(element.style, properties);
+
+            // Attendre la fin de l'animation
+            setTimeout(resolve, duration);
+        });
+    },
+
+    /**
+     * Détecte si l'utilisateur est sur mobile
+     * @returns {boolean}
+     */
+    isMobile() {
+        return window.innerWidth <= 768 ||
+               /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    },
+
+    /**
+     * Obtient les dimensions de la fenêtre
+     * @returns {Object}
+     */
+    getViewportSize() {
+        return {
+            width: window.innerWidth || document.documentElement.clientWidth,
+            height: window.innerHeight || document.documentElement.clientHeight
+        };
+    }
+};
+
+/**
+ * Utilitaires pour les événements
+ */
+const eventUtils = {
+    /**
+     * Crée un événement personnalisé
+     * @param {string} eventName
+     * @param {Object} detail
+     * @returns {CustomEvent}
+     */
+    createCustomEvent(eventName, detail = {}) {
+        return new CustomEvent(eventName, {
+            detail,
+            bubbles: true,
+            cancelable: true
+        });
+    },
+
+    /**
+     * Dispatch un événement personnalisé
+     * @param {Element} element
+     * @param {string} eventName
+     * @param {Object} detail
+     */
+    dispatchCustomEvent(element, eventName, detail = {}) {
+        const event = this.createCustomEvent(eventName, detail);
+        element.dispatchEvent(event);
+    },
+
+    /**
+     * Debounce une fonction
+     * @param {Function} func
+     * @param {number} wait
+     * @returns {Function}
+     */
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
+
+    /**
+     * Throttle une fonction
+     * @param {Function} func
+     * @param {number} limit
+     * @returns {Function}
+     */
+    throttle(func, limit) {
+        let inThrottle;
+        return function executedFunction(...args) {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+};
+
+/**
+ * Utilitaires pour les API et requêtes HTTP
+ */
+const apiUtils = {
+    /**
+     * Effectue une requête HTTP avec gestion d'erreurs
+     * @param {string} url
+     * @param {Object} options
+     * @returns {Promise<Object>}
+     */
+    async fetchWithErrorHandling(url, options = {}) {
+        try {
+            const response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                },
+                ...options
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return await response.json();
+            } else {
+                return await response.text();
+            }
+        } catch (error) {
+            console.error('API request failed:', error);
+            throw error;
+        }
+    },
+
+    /**
+     * Vérifie si une URL est valide
+     * @param {string} url
+     * @returns {boolean}
+     */
+    isValidUrl(url) {
+        try {
+            new URL(url);
+            return true;
+        } catch {
+            return false;
+        }
+    },
+
+    /**
+     * Construit une URL avec des paramètres de requête
+     * @param {string} baseUrl
+     * @param {Object} params
+     * @returns {string}
+     */
+    buildUrl(baseUrl, params = {}) {
+        const url = new URL(baseUrl, window.location.origin);
+
+        Object.entries(params).forEach(([key, value]) => {
+            if (value != null) {
+                url.searchParams.append(key, value);
+            }
+        });
+
+        return url.toString();
+    }
+};
+
+/**
+ * Utilitaires pour le stockage local
+ */
+const storageUtils = {
+    /**
+     * Sauvegarde dans localStorage avec gestion d'erreurs
+     * @param {string} key
+     * @param {*} value
+     * @returns {boolean}
+     */
+    setItem(key, value) {
+        try {
+            const serialized = JSON.stringify(value);
+            localStorage.setItem(key, serialized);
+            return true;
+        } catch (error) {
+            console.error('Storage setItem failed:', error);
+            return false;
+        }
+    },
+
+    /**
+     * Récupère depuis localStorage avec gestion d'erreurs
+     * @param {string} key
+     * @param {*} defaultValue
+     * @returns {*}
+     */
+    getItem(key, defaultValue = null) {
+        try {
+            const item = localStorage.getItem(key);
+            return item ? JSON.parse(item) : defaultValue;
+        } catch (error) {
+            console.error('Storage getItem failed:', error);
+            return defaultValue;
+        }
+    },
+
+    /**
+     * Supprime un item du localStorage
+     * @param {string} key
+     * @returns {boolean}
+     */
+    removeItem(key) {
+        try {
+            localStorage.removeItem(key);
+            return true;
+        } catch (error) {
+            console.error('Storage removeItem failed:', error);
+            return false;
+        }
+    },
+
+    /**
+     * Vérifie si une clé existe
+     * @param {string} key
+     * @returns {boolean}
+     */
+    hasItem(key) {
+        return localStorage.getItem(key) !== null;
+    }
+};
+
+/**
+ * Utilitaires pour les performances
+ */
+const performanceUtils = {
+    /**
+     * Mesure le temps d'exécution d'une fonction
+     * @param {Function} fn
+     * @param {string} label
+     * @returns {*}
+     */
+    measureExecutionTime(fn, label = 'Execution time') {
+        const start = performance.now();
+        const result = fn();
+        const end = performance.now();
+        console.log(`${label}: ${(end - start).toFixed(2)}ms`);
+        return result;
+    },
+
+    /**
+     * Lazy loading d'une image
+     * @param {HTMLImageElement} img
+     * @param {string} src
+     * @returns {Promise<void>}
+     */
+    lazyLoadImage(img, src) {
+        return new Promise((resolve, reject) => {
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error('Image failed to load'));
+            img.src = src;
+        });
+    },
+
+    /**
+     * Précharge une ressource
+     * @param {string} url
+     * @param {string} as
+     * @returns {Promise<void>}
+     */
+    preloadResource(url, as = 'image') {
+        return new Promise((resolve, reject) => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = as;
+            link.href = url;
+
+            link.onload = () => resolve();
+            link.onerror = () => reject(new Error('Resource failed to preload'));
+
+            document.head.appendChild(link);
+        });
+    }
 };
 
 
@@ -2861,6 +3390,2309 @@ class NavigationController {
  */
 
 export * from './controllers/index.js';
+
+
+// ===== presentation/components/index.js =====
+/**
+ * Export des composants réutilisables
+ */
+
+// export {Modal, ModalManager, modalManager } from './Modal.js';
+// export {LoadingSpinner, SpinnerManager, spinnerManager } from './LoadingSpinner.js';
+// export {Notification, NotificationManager, notificationManager } from './Notification.js';
+
+
+// ===== presentation/components/LoadingSpinner.js =====
+// import { DOMHelper } from '../../infrastructure/ui/DOMHelper.js';
+// import { CSS_CLASSES } from '../../shared/constants/index.js';
+
+/**
+ * Composant LoadingSpinner réutilisable
+ * Affiche un indicateur de chargement avec différentes tailles et styles
+ * @class
+ */
+class LoadingSpinner {
+    /**
+     * @param {Object} options
+     * @param {string} options.size - Taille (small, medium, large)
+     * @param {string} options.color - Couleur (primary, white, gray)
+     * @param {string} options.text - Texte optionnel
+     * @param {boolean} options.overlay - Si afficher en overlay
+     * @param {Element} options.container - Conteneur parent
+     */
+    constructor(options = {}) {
+        this.size = options.size || 'medium';
+        this.color = options.color || 'primary';
+        this.text = options.text || '';
+        this.overlay = options.overlay || false;
+        this.container = options.container || document.body;
+
+        this.element = null;
+        this.isVisible = false;
+
+        this.init();
+    }
+
+    /**
+     * Initialise le spinner
+     */
+    init() {
+        this.createSpinnerElement();
+        this.injectStyles();
+    }
+
+    /**
+     * Crée l'élément DOM du spinner
+     */
+    createSpinnerElement() {
+        const containerClass = this.overlay ? 'spinner-overlay' : 'spinner-container';
+
+        this.element = DOMHelper.createElement('div', {
+            className: `${containerClass} spinner-${this.size} spinner-${this.color}`
+        });
+
+        // Cercle de chargement
+        const spinnerCircle = DOMHelper.createElement('div', {
+            className: 'spinner-circle'
+        });
+
+        // Créer les points du spinner
+        for (let i = 0; i < 3; i++) {
+            const dot = DOMHelper.createElement('div', {
+                className: 'spinner-dot'
+            });
+            spinnerCircle.appendChild(dot);
+        }
+
+        this.element.appendChild(spinnerCircle);
+
+        // Texte optionnel
+        if (this.text) {
+            const textElement = DOMHelper.createElement('div', {
+                className: 'spinner-text'
+            }, this.text);
+            this.element.appendChild(textElement);
+        }
+    }
+
+    /**
+     * Injecte les styles CSS si nécessaire
+     */
+    injectStyles() {
+        if (document.getElementById('spinner-styles')) return;
+
+        const styles = `
+            .spinner-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                backdrop-filter: blur(2px);
+            }
+
+            .spinner-container {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .spinner-circle {
+                display: flex;
+                gap: 4px;
+                margin-bottom: 12px;
+            }
+
+            .spinner-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #5b1aff;
+                animation: spinner-bounce 1.4s ease-in-out infinite both;
+            }
+
+            .spinner-dot:nth-child(1) { animation-delay: -0.32s; }
+            .spinner-dot:nth-child(2) { animation-delay: -0.16s; }
+
+            /* Tailles */
+            .spinner-small .spinner-dot {
+                width: 6px;
+                height: 6px;
+            }
+
+            .spinner-large .spinner-dot {
+                width: 12px;
+                height: 12px;
+            }
+
+            /* Couleurs */
+            .spinner-primary .spinner-dot { background: #5b1aff; }
+            .spinner-white .spinner-dot { background: #ffffff; }
+            .spinner-gray .spinner-dot { background: #6b7280; }
+
+            /* Texte */
+            .spinner-text {
+                font-size: 0.875rem;
+                color: #6b7280;
+                font-weight: 500;
+                text-align: center;
+                margin-top: 8px;
+            }
+
+            /* Animations */
+            @keyframes spinner-bounce {
+                0%, 80%, 100% {
+                    transform: scale(0);
+                    opacity: 0.5;
+                }
+                40% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            /* États responsives */
+            @media (max-width: 768px) {
+                .spinner-overlay {
+                    background: rgba(255, 255, 255, 0.95);
+                }
+
+                .spinner-large .spinner-dot {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'spinner-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Affiche le spinner
+     * @param {string} text - Texte optionnel à afficher
+     */
+    show(text = null) {
+        if (this.isVisible) return;
+
+        if (text) {
+            this.setText(text);
+        }
+
+        if (!this.element.parentNode) {
+            this.container.appendChild(this.element);
+        }
+
+        // Animation d'entrée
+        setTimeout(() => {
+            DOMHelper.addClass(this.element, 'visible');
+        }, 10);
+
+        this.isVisible = true;
+
+        // Désactiver le scroll si c'est un overlay
+        if (this.overlay) {
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    /**
+     * Masque le spinner
+     */
+    hide() {
+        if (!this.isVisible) return;
+
+        DOMHelper.removeClass(this.element, 'visible');
+
+        // Animation de sortie
+        setTimeout(() => {
+            if (this.element.parentNode) {
+                this.element.parentNode.removeChild(this.element);
+            }
+
+            // Réactiver le scroll
+            if (this.overlay) {
+                document.body.style.overflow = 'auto';
+            }
+        }, 300);
+
+        this.isVisible = false;
+    }
+
+    /**
+     * Met à jour le texte du spinner
+     * @param {string} text
+     */
+    setText(text) {
+        this.text = text;
+        const textElement = this.element.querySelector('.spinner-text');
+
+        if (text) {
+            if (textElement) {
+                DOMHelper.setText(textElement, text);
+            } else {
+                // Créer l'élément texte s'il n'existe pas
+                const newTextElement = DOMHelper.createElement('div', {
+                    className: 'spinner-text'
+                }, text);
+                this.element.appendChild(newTextElement);
+            }
+        } else if (textElement) {
+            textElement.remove();
+        }
+    }
+
+    /**
+     * Change la taille du spinner
+     * @param {string} size
+     */
+    setSize(size) {
+        DOMHelper.removeClass(this.element, `spinner-${this.size}`);
+        this.size = size;
+        DOMHelper.addClass(this.element, `spinner-${this.size}`);
+    }
+
+    /**
+     * Change la couleur du spinner
+     * @param {string} color
+     */
+    setColor(color) {
+        DOMHelper.removeClass(this.element, `spinner-${this.color}`);
+        this.color = color;
+        DOMHelper.addClass(this.element, `spinner-${this.color}`);
+    }
+
+    /**
+     * Vérifie si le spinner est visible
+     * @returns {boolean}
+     */
+    isSpinnerVisible() {
+        return this.isVisible;
+    }
+
+    /**
+     * Obtient l'élément DOM du spinner
+     * @returns {Element}
+     */
+    getElement() {
+        return this.element;
+    }
+
+    /**
+     * Nettoie les ressources du spinner
+     */
+    destroy() {
+        this.hide();
+        this.element = null;
+    }
+}
+
+/**
+ * Gestionnaire de spinners - Pour gérer facilement les spinners dans l'app
+ * @class
+ */
+class SpinnerManager {
+    constructor() {
+        this.spinners = new Map();
+    }
+
+    /**
+     * Crée un nouveau spinner
+     * @param {string} id
+     * @param {Object} options
+     * @returns {LoadingSpinner}
+     */
+    create(id, options = {}) {
+        const spinner = new LoadingSpinner(options);
+        this.spinners.set(id, spinner);
+        return spinner;
+    }
+
+    /**
+     * Récupère un spinner par son ID
+     * @param {string} id
+     * @returns {LoadingSpinner|null}
+     */
+    get(id) {
+        return this.spinners.get(id) || null;
+    }
+
+    /**
+     * Affiche un spinner
+     * @param {string} id
+     * @param {string} text
+     */
+    show(id, text = null) {
+        const spinner = this.get(id);
+        if (spinner) {
+            spinner.show(text);
+        }
+    }
+
+    /**
+     * Masque un spinner
+     * @param {string} id
+     */
+    hide(id) {
+        const spinner = this.get(id);
+        if (spinner) {
+            spinner.hide();
+        }
+    }
+
+    /**
+     * Supprime un spinner
+     * @param {string} id
+     */
+    remove(id) {
+        const spinner = this.get(id);
+        if (spinner) {
+            spinner.destroy();
+            this.spinners.delete(id);
+        }
+    }
+
+    /**
+     * Masque tous les spinners
+     */
+    hideAll() {
+        this.spinners.forEach(spinner => {
+            if (spinner.isSpinnerVisible()) {
+                spinner.hide();
+            }
+        });
+    }
+
+    /**
+     * Nettoie tous les spinners
+     */
+    destroyAll() {
+        this.spinners.forEach((spinner, id) => {
+            spinner.destroy();
+            this.spinners.delete(id);
+        });
+    }
+}
+
+// Instance globale du gestionnaire de spinners
+const spinnerManager = new SpinnerManager();
+
+
+// ===== presentation/components/Modal.js =====
+// import { DOMHelper } from '../../infrastructure/ui/DOMHelper.js';
+// import { eventManager } from '../../infrastructure/ui/EventManager.js';
+// import { CUSTOM_EVENTS, CSS_CLASSES } from '../../shared/constants/index.js';
+
+/**
+ * Composant Modal réutilisable
+ * Gère l'affichage de modales avec contenu dynamique
+ * @class
+ */
+class Modal {
+    /**
+     * @param {Object} options
+     * @param {string} options.id - ID unique de la modal
+     * @param {string} options.title - Titre de la modal
+     * @param {string} options.content - Contenu HTML de la modal
+     * @param {Array} options.buttons - Boutons de la modal
+     * @param {boolean} options.closable - Si la modal peut être fermée
+     * @param {string} options.size - Taille (small, medium, large)
+     */
+    constructor(options = {}) {
+        this.id = options.id || `modal-${Date.now()}`;
+        this.title = options.title || '';
+        this.content = options.content || '';
+        this.buttons = options.buttons || [];
+        this.closable = options.closable !== false;
+        this.size = options.size || 'medium';
+        this.isOpen = false;
+
+        this.element = null;
+        this.overlay = null;
+
+        this.init();
+    }
+
+    /**
+     * Initialise la modal
+     */
+    init() {
+        this.createModalElement();
+        this.bindEvents();
+    }
+
+    /**
+     * Crée l'élément DOM de la modal
+     */
+    createModalElement() {
+        // Overlay
+        this.overlay = DOMHelper.createElement('div', {
+            className: 'modal-overlay',
+            id: `${this.id}-overlay`
+        });
+
+        // Container de la modal
+        const modalContainer = DOMHelper.createElement('div', {
+            className: `modal-container modal-${this.size}`,
+            id: this.id
+        });
+
+        // Header
+        if (this.title || this.closable) {
+            const header = DOMHelper.createElement('div', {
+                className: 'modal-header'
+            });
+
+            if (this.title) {
+                const titleElement = DOMHelper.createElement('h3', {
+                    className: 'modal-title'
+                }, this.title);
+                header.appendChild(titleElement);
+            }
+
+            if (this.closable) {
+                const closeButton = DOMHelper.createElement('button', {
+                    className: 'modal-close',
+                    type: 'button',
+                    'aria-label': 'Fermer'
+                }, '×');
+                header.appendChild(closeButton);
+            }
+
+            modalContainer.appendChild(header);
+        }
+
+        // Body
+        const body = DOMHelper.createElement('div', {
+            className: 'modal-body'
+        }, this.content);
+        modalContainer.appendChild(body);
+
+        // Footer (si il y a des boutons)
+        if (this.buttons.length > 0) {
+            const footer = DOMHelper.createElement('div', {
+                className: 'modal-footer'
+            });
+
+            this.buttons.forEach(buttonConfig => {
+                const button = DOMHelper.createElement('button', {
+                    className: `btn ${buttonConfig.class || 'btn-secondary'}`,
+                    type: 'button',
+                    'data-action': buttonConfig.action || ''
+                }, buttonConfig.text);
+
+                if (buttonConfig.handler) {
+                    DOMHelper.addEventListener(button, 'click', buttonConfig.handler);
+                }
+
+                footer.appendChild(button);
+            });
+
+            modalContainer.appendChild(footer);
+        }
+
+        this.overlay.appendChild(modalContainer);
+        this.element = modalContainer;
+    }
+
+    /**
+     * Lie les événements de la modal
+     */
+    bindEvents() {
+        if (!this.overlay) return;
+
+        // Fermeture par clic sur l'overlay
+        if (this.closable) {
+            DOMHelper.addEventListener(this.overlay, 'click', (e) => {
+                if (e.target === this.overlay) {
+                    this.close();
+                }
+            });
+        }
+
+        // Fermeture par le bouton X
+        const closeButton = this.element.querySelector('.modal-close');
+        if (closeButton && this.closable) {
+            DOMHelper.addEventListener(closeButton, 'click', () => this.close());
+        }
+
+        // Gestion des boutons personnalisés
+        const buttons = this.element.querySelectorAll('.modal-footer button[data-action]');
+        buttons.forEach(button => {
+            const action = button.dataset.action;
+            DOMHelper.addEventListener(button, 'click', () => {
+                eventManager.emit(CUSTOM_EVENTS.MODAL_BUTTON_CLICK, {
+                    modalId: this.id,
+                    action,
+                    modal: this
+                });
+            });
+        });
+
+        // Écoute des événements personnalisés
+        eventManager.on(CUSTOM_EVENTS.MODAL_CLOSE, (data) => {
+            if (data.modalId === this.id) {
+                this.close();
+            }
+        });
+    }
+
+    /**
+     * Ouvre la modal
+     * @param {Object} options - Options de contenu dynamique
+     */
+    open(options = {}) {
+        if (this.isOpen) return;
+
+        // Mise à jour du contenu si fourni
+        if (options.title) {
+            this.setTitle(options.title);
+        }
+        if (options.content) {
+            this.setContent(options.content);
+        }
+
+        // Ajout au DOM
+        if (!this.overlay.parentNode) {
+            document.body.appendChild(this.overlay);
+        }
+
+        // Animation d'ouverture
+        setTimeout(() => {
+            DOMHelper.addClass(this.overlay, 'open');
+            document.body.style.overflow = 'hidden';
+        }, 10);
+
+        this.isOpen = true;
+
+        // Focus sur la modal
+        this.element.focus();
+
+        // Événement
+        eventManager.emit(CUSTOM_EVENTS.MODAL_OPEN, {
+            modalId: this.id,
+            modal: this
+        });
+
+        // Gestion de l'échappement
+        this.escapeHandler = (e) => {
+            if (e.key === 'Escape' && this.closable) {
+                this.close();
+            }
+        };
+        document.addEventListener('keydown', this.escapeHandler);
+    }
+
+    /**
+     * Ferme la modal
+     */
+    close() {
+        if (!this.isOpen) return;
+
+        DOMHelper.removeClass(this.overlay, 'open');
+
+        // Animation de fermeture
+        setTimeout(() => {
+            if (this.overlay.parentNode) {
+                this.overlay.parentNode.removeChild(this.overlay);
+            }
+            document.body.style.overflow = 'auto';
+        }, 300);
+
+        this.isOpen = false;
+
+        // Nettoyage
+        if (this.escapeHandler) {
+            document.removeEventListener('keydown', this.escapeHandler);
+            this.escapeHandler = null;
+        }
+
+        // Événement
+        eventManager.emit(CUSTOM_EVENTS.MODAL_CLOSE, {
+            modalId: this.id,
+            modal: this
+        });
+    }
+
+    /**
+     * Met à jour le titre de la modal
+     * @param {string} title
+     */
+    setTitle(title) {
+        this.title = title;
+        const titleElement = this.element.querySelector('.modal-title');
+        if (titleElement) {
+            DOMHelper.setText(titleElement, title);
+        }
+    }
+
+    /**
+     * Met à jour le contenu de la modal
+     * @param {string} content
+     */
+    setContent(content) {
+        this.content = content;
+        const bodyElement = this.element.querySelector('.modal-body');
+        if (bodyElement) {
+            DOMHelper.setHTML(bodyElement, content);
+        }
+    }
+
+    /**
+     * Ajoute un bouton à la modal
+     * @param {Object} buttonConfig
+     */
+    addButton(buttonConfig) {
+        this.buttons.push(buttonConfig);
+        // Recréer la modal si elle est déjà affichée
+        if (this.isOpen) {
+            this.close();
+            setTimeout(() => this.open(), 350);
+        }
+    }
+
+    /**
+     * Vérifie si la modal est ouverte
+     * @returns {boolean}
+     */
+    isModalOpen() {
+        return this.isOpen;
+    }
+
+    /**
+     * Obtient l'élément DOM de la modal
+     * @returns {Element}
+     */
+    getElement() {
+        return this.element;
+    }
+
+    /**
+     * Nettoie les ressources de la modal
+     */
+    destroy() {
+        this.close();
+        this.overlay = null;
+        this.element = null;
+
+        // Supprimer les écouteurs d'événements
+        eventManager.removeAllListeners(CUSTOM_EVENTS.MODAL_CLOSE);
+    }
+}
+
+/**
+ * Gestionnaire de modales - Singleton pour gérer plusieurs modales
+ * @class
+ */
+class ModalManager {
+    constructor() {
+        this.modals = new Map();
+        this.init();
+    }
+
+    /**
+     * Initialise le gestionnaire
+     */
+    init() {
+        // Créer les styles CSS si nécessaire
+        this.injectStyles();
+    }
+
+    /**
+     * Injecte les styles CSS pour les modales
+     */
+    injectStyles() {
+        if (document.getElementById('modal-styles')) return;
+
+        const styles = `
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .modal-overlay.open {
+                opacity: 1;
+            }
+
+            .modal-container {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                max-width: 90vw;
+                max-height: 90vh;
+                overflow: hidden;
+                transform: scale(0.9);
+                transition: transform 0.3s ease;
+            }
+
+            .modal-overlay.open .modal-container {
+                transform: scale(1);
+            }
+
+            .modal-small { width: 300px; }
+            .modal-medium { width: 500px; }
+            .modal-large { width: 800px; }
+
+            .modal-header {
+                padding: 20px 24px;
+                border-bottom: 1px solid #e5e5e5;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .modal-title {
+                margin: 0;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #0f032b;
+            }
+
+            .modal-close {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: #666;
+                padding: 0;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: all 0.2s ease;
+            }
+
+            .modal-close:hover {
+                background: #f5f5f5;
+                color: #333;
+            }
+
+            .modal-body {
+                padding: 24px;
+                max-height: 60vh;
+                overflow-y: auto;
+            }
+
+            .modal-footer {
+                padding: 16px 24px;
+                border-top: 1px solid #e5e5e5;
+                display: flex;
+                justify-content: flex-end;
+                gap: 12px;
+            }
+
+            @media (max-width: 768px) {
+                .modal-container {
+                    width: 95vw;
+                    margin: 20px;
+                }
+
+                .modal-header,
+                .modal-body,
+                .modal-footer {
+                    padding: 16px 20px;
+                }
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'modal-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Crée une nouvelle modal
+     * @param {Object} options
+     * @returns {Modal}
+     */
+    create(options = {}) {
+        const modal = new Modal(options);
+        this.modals.set(options.id || modal.id, modal);
+        return modal;
+    }
+
+    /**
+     * Récupère une modal par son ID
+     * @param {string} id
+     * @returns {Modal|null}
+     */
+    get(id) {
+        return this.modals.get(id) || null;
+    }
+
+    /**
+     * Supprime une modal
+     * @param {string} id
+     */
+    remove(id) {
+        const modal = this.modals.get(id);
+        if (modal) {
+            modal.destroy();
+            this.modals.delete(id);
+        }
+    }
+
+    /**
+     * Ferme toutes les modales
+     */
+    closeAll() {
+        this.modals.forEach(modal => {
+            if (modal.isModalOpen()) {
+                modal.close();
+            }
+        });
+    }
+
+    /**
+     * Obtient toutes les modales
+     * @returns {Map}
+     */
+    getAll() {
+        return this.modals;
+    }
+}
+
+// Instance globale du gestionnaire de modales
+const modalManager = new ModalManager();
+
+
+// ===== presentation/components/Notification.js =====
+// import { DOMHelper } from '../../infrastructure/ui/DOMHelper.js';
+// import { eventManager } from '../../infrastructure/ui/EventManager.js';
+// import { CUSTOM_EVENTS } from '../../shared/constants/index.js';
+
+/**
+ * Composant Notification réutilisable
+ * Affiche des notifications toast avec différents types et durées
+ * @class
+ */
+class Notification {
+    /**
+     * @param {Object} options
+     * @param {string} options.type - Type (success, error, warning, info)
+     * @param {string} options.title - Titre de la notification
+     * @param {string} options.message - Message de la notification
+     * @param {number} options.duration - Durée en ms (0 = permanent)
+     * @param {boolean} options.closable - Si la notification peut être fermée
+     * @param {Function} options.onClose - Callback de fermeture
+     */
+    constructor(options = {}) {
+        this.type = options.type || 'info';
+        this.title = options.title || '';
+        this.message = options.message || '';
+        this.duration = options.duration || 5000;
+        this.closable = options.closable !== false;
+        this.onClose = options.onClose || null;
+
+        this.element = null;
+        this.timeoutId = null;
+        this.isVisible = false;
+
+        this.init();
+    }
+
+    /**
+     * Initialise la notification
+     */
+    init() {
+        this.createNotificationElement();
+        this.injectStyles();
+    }
+
+    /**
+     * Crée l'élément DOM de la notification
+     */
+    createNotificationElement() {
+        this.element = DOMHelper.createElement('div', {
+            className: `notification notification-${this.type}`
+        });
+
+        // Icône selon le type
+        const icon = this.getIconForType(this.type);
+        if (icon) {
+            const iconElement = DOMHelper.createElement('div', {
+                className: 'notification-icon'
+            }, icon);
+            this.element.appendChild(iconElement);
+        }
+
+        // Contenu
+        const content = DOMHelper.createElement('div', {
+            className: 'notification-content'
+        });
+
+        if (this.title) {
+            const titleElement = DOMHelper.createElement('div', {
+                className: 'notification-title'
+            }, this.title);
+            content.appendChild(titleElement);
+        }
+
+        if (this.message) {
+            const messageElement = DOMHelper.createElement('div', {
+                className: 'notification-message'
+            }, this.message);
+            content.appendChild(messageElement);
+        }
+
+        this.element.appendChild(content);
+
+        // Bouton de fermeture
+        if (this.closable) {
+            const closeButton = DOMHelper.createElement('button', {
+                className: 'notification-close',
+                type: 'button',
+                'aria-label': 'Fermer'
+            }, '×');
+            this.element.appendChild(closeButton);
+        }
+
+        // Barre de progression pour les notifications temporaires
+        if (this.duration > 0) {
+            const progressBar = DOMHelper.createElement('div', {
+                className: 'notification-progress'
+            });
+            const progressInner = DOMHelper.createElement('div', {
+                className: 'notification-progress-inner'
+            });
+            progressBar.appendChild(progressInner);
+            this.element.appendChild(progressBar);
+        }
+    }
+
+    /**
+     * Injecte les styles CSS si nécessaire
+     */
+    injectStyles() {
+        if (document.getElementById('notification-styles')) return;
+
+        const styles = `
+            .notification-container {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10001;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                max-width: 400px;
+                pointer-events: none;
+            }
+
+            .notification {
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                padding: 16px;
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                border-left: 4px solid #5b1aff;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                pointer-events: auto;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .notification.show {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .notification-icon {
+                font-size: 1.25rem;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+
+            .notification-content {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .notification-title {
+                font-weight: 600;
+                color: #0f032b;
+                margin-bottom: 4px;
+                font-size: 0.875rem;
+            }
+
+            .notification-message {
+                color: #6b7280;
+                font-size: 0.875rem;
+                line-height: 1.4;
+            }
+
+            .notification-close {
+                background: none;
+                border: none;
+                font-size: 1.25rem;
+                cursor: pointer;
+                color: #9ca3af;
+                padding: 0;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                transition: all 0.2s ease;
+                flex-shrink: 0;
+            }
+
+            .notification-close:hover {
+                background: #f3f4f6;
+                color: #6b7280;
+            }
+
+            /* Types de notification */
+            .notification-success { border-left-color: #10b981; }
+            .notification-success .notification-icon { color: #10b981; }
+
+            .notification-error { border-left-color: #ef4444; }
+            .notification-error .notification-icon { color: #ef4444; }
+
+            .notification-warning { border-left-color: #f59e0b; }
+            .notification-warning .notification-icon { color: #f59e0b; }
+
+            .notification-info { border-left-color: #5b1aff; }
+            .notification-info .notification-icon { color: #5b1aff; }
+
+            /* Barre de progression */
+            .notification-progress {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            .notification-progress-inner {
+                height: 100%;
+                background: currentColor;
+                transition: width linear;
+                width: 100%;
+            }
+
+            /* Animations */
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            @keyframes slideOut {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+
+            .notification.hide {
+                animation: slideOut 0.3s ease forwards;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .notification-container {
+                    top: 10px;
+                    right: 10px;
+                    left: 10px;
+                    max-width: none;
+                }
+
+                .notification {
+                    margin-bottom: 8px;
+                }
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'notification-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Obtient l'icône pour un type de notification
+     * @param {string} type
+     * @returns {string}
+     */
+    getIconForType(type) {
+        const icons = {
+            success: '✓',
+            error: '✕',
+            warning: '⚠',
+            info: 'ℹ'
+        };
+        return icons[type] || 'ℹ';
+    }
+
+    /**
+     * Affiche la notification
+     * @param {Element} container - Conteneur optionnel
+     */
+    show(container = null) {
+        if (this.isVisible) return;
+
+        const targetContainer = container || this.getOrCreateContainer();
+        targetContainer.appendChild(this.element);
+
+        // Animation d'entrée
+        setTimeout(() => {
+            DOMHelper.addClass(this.element, 'show');
+        }, 10);
+
+        this.isVisible = true;
+
+        // Liaison des événements
+        this.bindEvents();
+
+        // Auto-fermeture si durée définie
+        if (this.duration > 0) {
+            this.startAutoClose();
+        }
+
+        // Événement
+        eventManager.emit(CUSTOM_EVENTS.NOTIFICATION_SHOW, {
+            notification: this,
+            type: this.type
+        });
+    }
+
+    /**
+     * Masque la notification
+     */
+    hide() {
+        if (!this.isVisible) return;
+
+        DOMHelper.addClass(this.element, 'hide');
+
+        // Supprimer après l'animation
+        setTimeout(() => {
+            if (this.element.parentNode) {
+                this.element.parentNode.removeChild(this.element);
+            }
+
+            if (this.onClose) {
+                this.onClose(this);
+            }
+
+            // Événement
+            eventManager.emit(CUSTOM_EVENTS.NOTIFICATION_HIDE, {
+                notification: this,
+                type: this.type
+            });
+        }, 300);
+
+        this.isVisible = false;
+        this.clearAutoClose();
+    }
+
+    /**
+     * Lie les événements de la notification
+     */
+    bindEvents() {
+        // Bouton de fermeture
+        const closeButton = this.element.querySelector('.notification-close');
+        if (closeButton && this.closable) {
+            DOMHelper.addEventListener(closeButton, 'click', () => this.hide());
+        }
+
+        // Clic sur la notification
+        DOMHelper.addEventListener(this.element, 'click', (e) => {
+            if (e.target === this.element) {
+                this.hide();
+            }
+        });
+    }
+
+    /**
+     * Démarre l'auto-fermeture
+     */
+    startAutoClose() {
+        const progressBar = this.element.querySelector('.notification-progress-inner');
+        if (progressBar) {
+            progressBar.style.transition = `width ${this.duration}ms linear`;
+            setTimeout(() => {
+                progressBar.style.width = '0%';
+            }, 10);
+        }
+
+        this.timeoutId = setTimeout(() => {
+            this.hide();
+        }, this.duration);
+    }
+
+    /**
+     * Annule l'auto-fermeture
+     */
+    clearAutoClose() {
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+        }
+    }
+
+    /**
+     * Obtient ou crée le conteneur de notifications
+     * @returns {Element}
+     */
+    getOrCreateContainer() {
+        let container = document.querySelector('.notification-container');
+        if (!container) {
+            container = DOMHelper.createElement('div', {
+                className: 'notification-container'
+            });
+            document.body.appendChild(container);
+        }
+        return container;
+    }
+
+    /**
+     * Met à jour le message de la notification
+     * @param {string} message
+     */
+    setMessage(message) {
+        this.message = message;
+        const messageElement = this.element.querySelector('.notification-message');
+        if (messageElement) {
+            DOMHelper.setText(messageElement, message);
+        }
+    }
+
+    /**
+     * Met à jour le titre de la notification
+     * @param {string} title
+     */
+    setTitle(title) {
+        this.title = title;
+        const titleElement = this.element.querySelector('.notification-title');
+        if (titleElement) {
+            DOMHelper.setText(titleElement, title);
+        }
+    }
+
+    /**
+     * Vérifie si la notification est visible
+     * @returns {boolean}
+     */
+    isNotificationVisible() {
+        return this.isVisible;
+    }
+
+    /**
+     * Obtient l'élément DOM de la notification
+     * @returns {Element}
+     */
+    getElement() {
+        return this.element;
+    }
+
+    /**
+     * Nettoie les ressources de la notification
+     */
+    destroy() {
+        this.hide();
+        this.clearAutoClose();
+        this.element = null;
+    }
+}
+
+/**
+ * Gestionnaire de notifications - Pour gérer facilement les notifications dans l'app
+ * @class
+ */
+class NotificationManager {
+    constructor() {
+        this.notifications = new Map();
+        this.container = null;
+    }
+
+    /**
+     * Initialise le gestionnaire
+     */
+    init() {
+        this.container = this.createContainer();
+    }
+
+    /**
+     * Crée le conteneur de notifications
+     * @returns {Element}
+     */
+    createContainer() {
+        let container = document.querySelector('.notification-container');
+        if (!container) {
+            container = DOMHelper.createElement('div', {
+                className: 'notification-container'
+            });
+            document.body.appendChild(container);
+        }
+        return container;
+    }
+
+    /**
+     * Affiche une notification
+     * @param {Object} options
+     * @returns {Notification}
+     */
+    show(options = {}) {
+        const notification = new Notification(options);
+        const id = `notification-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        this.notifications.set(id, notification);
+        notification.show(this.container);
+
+        return notification;
+    }
+
+    /**
+     * Affiche une notification de succès
+     * @param {string} message
+     * @param {string} title
+     * @returns {Notification}
+     */
+    success(message, title = 'Succès') {
+        return this.show({
+            type: 'success',
+            title,
+            message,
+            duration: 4000
+        });
+    }
+
+    /**
+     * Affiche une notification d'erreur
+     * @param {string} message
+     * @param {string} title
+     * @returns {Notification}
+     */
+    error(message, title = 'Erreur') {
+        return this.show({
+            type: 'error',
+            title,
+            message,
+            duration: 6000
+        });
+    }
+
+    /**
+     * Affiche une notification d'avertissement
+     * @param {string} message
+     * @param {string} title
+     * @returns {Notification}
+     */
+    warning(message, title = 'Attention') {
+        return this.show({
+            type: 'warning',
+            title,
+            message,
+            duration: 5000
+        });
+    }
+
+    /**
+     * Affiche une notification d'information
+     * @param {string} message
+     * @param {string} title
+     * @returns {Notification}
+     */
+    info(message, title = 'Information') {
+        return this.show({
+            type: 'info',
+            title,
+            message,
+            duration: 4000
+        });
+    }
+
+    /**
+     * Masque toutes les notifications
+     */
+    hideAll() {
+        this.notifications.forEach(notification => {
+            if (notification.isNotificationVisible()) {
+                notification.hide();
+            }
+        });
+    }
+
+    /**
+     * Supprime toutes les notifications
+     */
+    clearAll() {
+        this.notifications.forEach((notification, id) => {
+            notification.destroy();
+            this.notifications.delete(id);
+        });
+    }
+
+    /**
+     * Obtient le nombre de notifications actives
+     * @returns {number}
+     */
+    getCount() {
+        return this.notifications.size;
+    }
+}
+
+// Instance globale du gestionnaire de notifications
+const notificationManager = new NotificationManager();
+
+
+// ===== presentation/pages/HomePage.js =====
+// import { ContactFormController } from '../controllers/ContactFormController.js';
+// import { FAQController } from '../controllers/FAQController.js';
+// import { NavigationController } from '../controllers/NavigationController.js';
+// import { SendContactEmail } from '../../application/useCases/SendContactEmail.js';
+// import { ValidateContactForm } from '../../application/useCases/ValidateContactForm.js';
+// import { ManageFAQ } from '../../application/useCases/ManageFAQ.js';
+// import { EmailJSAdapter } from '../../infrastructure/api/EmailJSAdapter.js';
+// import { FormValidationService } from '../../domain/services/FormValidationService.js';
+// import { FAQService } from '../../domain/services/FAQService.js';
+
+/**
+ * Page d'accueil - Orchestre tous les composants de la page principale
+ * @class
+ */
+class HomePage {
+    constructor() {
+        this.controllers = {};
+        this.services = {};
+        this.repositories = {};
+        this.isInitialized = false;
+    }
+
+    /**
+     * Initialise la page d'accueil
+     */
+    async init() {
+        try {
+            console.log('🏠 Initialisation de la page d\'accueil...');
+
+            // Initialiser les dépendances
+            this.initDependencies();
+
+            // Initialiser les contrôleurs
+            this.initControllers();
+
+            // Initialiser les composants spécifiques
+            this.initComponents();
+
+            this.isInitialized = true;
+            console.log('✅ Page d\'accueil initialisée');
+
+        } catch (error) {
+            console.error('❌ Erreur lors de l\'initialisation de la page d\'accueil:', error);
+        }
+    }
+
+    /**
+     * Initialise les dépendances
+     */
+    initDependencies() {
+        // Services du domaine
+        this.services.formValidation = new FormValidationService();
+        this.services.faq = new FAQService();
+
+        // Repositories
+        this.repositories.email = new EmailJSAdapter();
+
+        // Use cases
+        this.useCases = {
+            sendContactEmail: new SendContactEmail(
+                this.repositories.email,
+                this.services.formValidation
+            ),
+            validateContactForm: new ValidateContactForm(
+                this.services.formValidation
+            ),
+            manageFAQ: new ManageFAQ(
+                this.services.faq
+            )
+        };
+    }
+
+    /**
+     * Initialise les contrôleurs
+     */
+    initControllers() {
+        // Contrôleur du formulaire de contact
+        this.controllers.contactForm = new ContactFormController(
+            this.useCases.sendContactEmail,
+            this.useCases.validateContactForm
+        );
+
+        // Contrôleur des FAQ
+        this.controllers.faq = new FAQController(
+            this.useCases.manageFAQ
+        );
+
+        // Contrôleur de navigation
+        this.controllers.navigation = new NavigationController();
+    }
+
+    /**
+     * Initialise les composants spécifiques à la page d'accueil
+     */
+    initComponents() {
+        this.initHeroAnimation();
+        this.initScrollAnimations();
+        this.initCTAHandlers();
+    }
+
+    /**
+     * Initialise l'animation du hero
+     */
+    initHeroAnimation() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+
+        // Animation d'entrée du hero
+        setTimeout(() => {
+            hero.classList.add('animate-in');
+        }, 100);
+
+        // Animation du mockup téléphone
+        const phoneMockup = hero.querySelector('.phone-mockup');
+        if (phoneMockup) {
+            setTimeout(() => {
+                phoneMockup.classList.add('animate-in');
+            }, 500);
+        }
+    }
+
+    /**
+     * Initialise les animations au scroll
+     */
+    initScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Observer les cartes de fonctionnalités
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach(card => {
+            observer.observe(card);
+        });
+    }
+
+    /**
+     * Initialise les gestionnaires des boutons CTA
+     */
+    initCTAHandlers() {
+        // Boutons "Nous contacter"
+        const contactButtons = document.querySelectorAll('a[href="#contact"], .btn[href="#contact"]');
+        contactButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.scrollToContact();
+            });
+        });
+
+        // Boutons "Découvrir"
+        const discoverButtons = document.querySelectorAll('a[href="#how-it-works"]');
+        discoverButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.scrollToHowItWorks();
+            });
+        });
+    }
+
+    /**
+     * Fait défiler vers la section contact
+     */
+    scrollToContact() {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    /**
+     * Fait défiler vers la section "Comment ça marche"
+     */
+    scrollToHowItWorks() {
+        const howItWorksSection = document.getElementById('how-it-works');
+        if (howItWorksSection) {
+            howItWorksSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    /**
+     * Gère le changement de section active
+     * @param {string} sectionId
+     */
+    onSectionChange(sectionId) {
+        // Mettre à jour l'URL
+        history.replaceState(null, null, `#${sectionId}`);
+
+        // Analytics éventuel
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'section_view', {
+                section_id: sectionId
+            });
+        }
+    }
+
+    /**
+     * Vérifie si la page est visible
+     * @returns {boolean}
+     */
+    isVisible() {
+        return !document.hidden;
+    }
+
+    /**
+     * Gère la visibilité de la page
+     */
+    handleVisibilityChange() {
+        if (this.isVisible()) {
+            // Reprendre les animations si nécessaire
+            this.resumeAnimations();
+        } else {
+            // Mettre en pause les animations si nécessaire
+            this.pauseAnimations();
+        }
+    }
+
+    /**
+     * Reprend les animations
+     */
+    resumeAnimations() {
+        // Logique pour reprendre les animations
+        console.log('Animations reprises');
+    }
+
+    /**
+     * Met en pause les animations
+     */
+    pauseAnimations() {
+        // Logique pour mettre en pause les animations
+        console.log('Animations mises en pause');
+    }
+
+    /**
+     * Nettoie les ressources de la page
+     */
+    destroy() {
+        console.log('🧹 Nettoyage de la page d\'accueil...');
+
+        // Détruire les contrôleurs
+        Object.values(this.controllers).forEach(controller => {
+            if (typeof controller.destroy === 'function') {
+                controller.destroy();
+            }
+        });
+
+        // Supprimer les écouteurs d'événements
+        const contactButtons = document.querySelectorAll('a[href="#contact"]');
+        contactButtons.forEach(button => {
+            button.removeEventListener('click', this.scrollToContact);
+        });
+
+        this.isInitialized = false;
+        console.log('✅ Page d\'accueil nettoyée');
+    }
+
+    /**
+     * Vérifie si la page est initialisée
+     * @returns {boolean}
+     */
+    isPageInitialized() {
+        return this.isInitialized;
+    }
+
+    /**
+     * Récupère un contrôleur par son nom
+     * @param {string} name
+     * @returns {Object|null}
+     */
+    getController(name) {
+        return this.controllers[name] || null;
+    }
+
+    /**
+     * Récupère un service par son nom
+     * @param {string} name
+     * @returns {Object|null}
+     */
+    getService(name) {
+        return this.services[name] || null;
+    }
+}
+
+
+// ===== presentation/pages/index.js =====
+/**
+ * Export des pages de présentation
+ */
+
+// export {HomePage } from './HomePage.js';
+// export {LegalPage } from './LegalPage.js';
+
+
+// ===== presentation/pages/LegalPage.js =====
+// import { NavigationController } from '../controllers/NavigationController.js';
+// import { DOMHelper } from '../../infrastructure/ui/DOMHelper.js';
+// import { eventManager } from '../../infrastructure/ui/EventManager.js';
+// import { CUSTOM_EVENTS } from '../../shared/constants/index.js';
+
+/**
+ * Page légale - Gestion des pages Conditions d'utilisation et Politique de confidentialité
+ * @class
+ */
+class LegalPage {
+    /**
+     * @param {string} pageType - 'terms' ou 'privacy'
+     */
+    constructor(pageType = 'terms') {
+        this.pageType = pageType;
+        this.navigationController = null;
+        this.isInitialized = false;
+
+        this.init();
+    }
+
+    /**
+     * Initialise la page légale
+     */
+    async init() {
+        try {
+            console.log(`📄 Initialisation de la page ${this.pageType}...`);
+
+            // Initialiser la navigation
+            this.navigationController = new NavigationController();
+
+            // Initialiser les composants spécifiques
+            this.initPageComponents();
+
+            // Initialiser les interactions
+            this.initInteractions();
+
+            this.isInitialized = true;
+            console.log(`✅ Page ${this.pageType} initialisée`);
+
+        } catch (error) {
+            console.error(`❌ Erreur lors de l'initialisation de la page ${this.pageType}:`, error);
+        }
+    }
+
+    /**
+     * Initialise les composants spécifiques à la page
+     */
+    initPageComponents() {
+        this.initBackToTop();
+        this.initPrintButton();
+        this.initTableOfContents();
+        this.initLastUpdated();
+    }
+
+    /**
+     * Initialise le bouton "Retour en haut"
+     */
+    initBackToTop() {
+        const backToTopButton = DOMHelper.createElement('button', {
+            className: 'back-to-top',
+            'aria-label': 'Retour en haut'
+        }, '↑');
+
+        // Ajouter au DOM
+        document.body.appendChild(backToTopButton);
+
+        // Gestionnaire d'événements
+        DOMHelper.addEventListener(backToTopButton, 'click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Afficher/masquer selon le scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const threshold = 300;
+
+            if (scrolled > threshold) {
+                DOMHelper.show(backToTopButton);
+            } else {
+                DOMHelper.hide(backToTopButton);
+            }
+        });
+
+        // Injecter les styles
+        this.injectBackToTopStyles();
+    }
+
+    /**
+     * Injecte les styles pour le bouton "Retour en haut"
+     */
+    injectBackToTopStyles() {
+        if (document.getElementById('back-to-top-styles')) return;
+
+        const styles = `
+            .back-to-top {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                background: #5b1aff;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                font-size: 1.25rem;
+                cursor: pointer;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 12px rgba(91, 26, 255, 0.3);
+            }
+
+            .back-to-top:hover {
+                background: #4a15d1;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(91, 26, 255, 0.4);
+            }
+
+            .back-to-top.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            @media (max-width: 768px) {
+                .back-to-top {
+                    bottom: 15px;
+                    right: 15px;
+                    width: 45px;
+                    height: 45px;
+                    font-size: 1.125rem;
+                }
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'back-to-top-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Initialise le bouton d'impression
+     */
+    initPrintButton() {
+        const header = document.querySelector('.legal-header');
+        if (!header) return;
+
+        const printButton = DOMHelper.createElement('button', {
+            className: 'print-button',
+            type: 'button'
+        }, '🖨️ Imprimer');
+
+        // Insérer après le titre
+        const title = header.querySelector('h1');
+        if (title) {
+            title.insertAdjacentElement('afterend', printButton);
+        }
+
+        // Gestionnaire d'événements
+        DOMHelper.addEventListener(printButton, 'click', () => {
+            window.print();
+        });
+
+        // Injecter les styles
+        this.injectPrintButtonStyles();
+    }
+
+    /**
+     * Injecte les styles pour le bouton d'impression
+     */
+    injectPrintButtonStyles() {
+        if (document.getElementById('print-button-styles')) return;
+
+        const styles = `
+            .print-button {
+                background: #f3f4f6;
+                color: #374151;
+                border: 1px solid #d1d5db;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-size: 0.875rem;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                margin-top: 16px;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .print-button:hover {
+                background: #e5e7eb;
+                border-color: #9ca3af;
+            }
+
+            @media print {
+                .print-button {
+                    display: none;
+                }
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'print-button-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Initialise la table des matières
+     */
+    initTableOfContents() {
+        const content = document.querySelector('.legal-content');
+        if (!content) return;
+
+        const headings = content.querySelectorAll('h2');
+        if (headings.length < 3) return; // Pas besoin de TOC si peu de sections
+
+        const toc = this.createTableOfContents(headings);
+        const header = document.querySelector('.legal-header');
+
+        if (header) {
+            header.insertAdjacentElement('afterend', toc);
+        }
+    }
+
+    /**
+     * Crée la table des matières
+     * @param {NodeList} headings
+     * @returns {Element}
+     */
+    createTableOfContents(headings) {
+        const tocContainer = DOMHelper.createElement('div', {
+            className: 'table-of-contents'
+        });
+
+        const tocTitle = DOMHelper.createElement('h3', {}, 'Table des matières');
+        tocContainer.appendChild(tocTitle);
+
+        const tocList = DOMHelper.createElement('ul', {
+            className: 'toc-list'
+        });
+
+        headings.forEach((heading, index) => {
+            const listItem = DOMHelper.createElement('li', {
+                className: 'toc-item'
+            });
+
+            const link = DOMHelper.createElement('a', {
+                href: `#section-${index}`,
+                className: 'toc-link'
+            }, heading.textContent);
+
+            // Ajouter un ID à la section
+            heading.id = `section-${index}`;
+
+            listItem.appendChild(link);
+            tocList.appendChild(listItem);
+        });
+
+        tocContainer.appendChild(tocList);
+
+        // Injecter les styles
+        this.injectTOCStyles();
+
+        return tocContainer;
+    }
+
+    /**
+     * Injecte les styles pour la table des matières
+     */
+    injectTOCStyles() {
+        if (document.getElementById('toc-styles')) return;
+
+        const styles = `
+            .table-of-contents {
+                background: #f8f9fa;
+                border: 1px solid #e9ecef;
+                border-radius: 8px;
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .table-of-contents h3 {
+                margin: 0 0 16px 0;
+                color: #0f032b;
+                font-size: 1.125rem;
+                font-weight: 600;
+            }
+
+            .toc-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .toc-item {
+                margin-bottom: 8px;
+            }
+
+            .toc-link {
+                color: #5b1aff;
+                text-decoration: none;
+                font-size: 0.875rem;
+                transition: color 0.2s ease;
+            }
+
+            .toc-link:hover {
+                color: #4a15d1;
+                text-decoration: underline;
+            }
+
+            @media print {
+                .table-of-contents {
+                    display: none;
+                }
+            }
+        `;
+
+        const styleElement = DOMHelper.createElement('style', {
+            id: 'toc-styles'
+        }, styles);
+
+        document.head.appendChild(styleElement);
+    }
+
+    /**
+     * Initialise la date de dernière mise à jour
+     */
+    initLastUpdated() {
+        const metaElement = document.querySelector('.legal-header .meta time');
+        if (!metaElement) return;
+
+        const lastUpdated = new Date(metaElement.getAttribute('datetime'));
+
+        // Calculer le temps écoulé
+        const now = new Date();
+        const diffTime = Math.abs(now - lastUpdated);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        // Ajouter une indication visuelle
+        if (diffDays < 30) {
+            metaElement.style.color = '#10b981'; // Vert pour récent
+        } else if (diffDays < 90) {
+            metaElement.style.color = '#f59e0b'; // Orange pour moyennement récent
+        } else {
+            metaElement.style.color = '#ef4444'; // Rouge pour ancien
+        }
+    }
+
+    /**
+     * Initialise les interactions
+     */
+    initInteractions() {
+        this.initSmoothScrolling();
+        this.initKeyboardNavigation();
+    }
+
+    /**
+     * Initialise le scroll fluide pour les liens d'ancrage
+     */
+    initSmoothScrolling() {
+        const tocLinks = document.querySelectorAll('.toc-link');
+        tocLinks.forEach(link => {
+            DOMHelper.addEventListener(link, 'click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const offsetTop = targetElement.offsetTop - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    /**
+     * Initialise la navigation clavier
+     */
+    initKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + P pour imprimer
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+
+            // Échap pour fermer/aller en haut
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Home/End pour navigation
+            if (e.key === 'Home') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            if (e.key === 'End') {
+                e.preventDefault();
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        });
+    }
+
+    /**
+     * Met à jour le titre de la page selon le type
+     */
+    updatePageTitle() {
+        const titles = {
+            terms: 'Conditions d\'utilisation - Bien-Rentré',
+            privacy: 'Politique de confidentialité - Bien-Rentré'
+        };
+
+        const title = titles[this.pageType] || 'Page légale - Bien-Rentré';
+        document.title = title;
+    }
+
+    /**
+     * Gère les événements de visibilité
+     */
+    handleVisibilityChange() {
+        if (document.hidden) {
+            // Page masquée - pause des animations si nécessaire
+            this.pauseAnimations();
+        } else {
+            // Page visible - reprise des animations
+            this.resumeAnimations();
+        }
+    }
+
+    /**
+     * Met en pause les animations
+     */
+    pauseAnimations() {
+        // Logique pour mettre en pause les animations CSS si nécessaire
+        console.log('Animations de la page légale mises en pause');
+    }
+
+    /**
+     * Reprend les animations
+     */
+    resumeAnimations() {
+        // Logique pour reprendre les animations CSS
+        console.log('Animations de la page légale reprises');
+    }
+
+    /**
+     * Nettoie les ressources de la page
+     */
+    destroy() {
+        console.log(`🧹 Nettoyage de la page ${this.pageType}...`);
+
+        // Détruire le contrôleur de navigation
+        if (this.navigationController && typeof this.navigationController.destroy === 'function') {
+            this.navigationController.destroy();
+        }
+
+        // Supprimer les éléments ajoutés dynamiquement
+        const backToTop = document.querySelector('.back-to-top');
+        if (backToTop) {
+            backToTop.remove();
+        }
+
+        this.isInitialized = false;
+        console.log(`✅ Page ${this.pageType} nettoyée`);
+    }
+
+    /**
+     * Vérifie si la page est initialisée
+     * @returns {boolean}
+     */
+    isPageInitialized() {
+        return this.isInitialized;
+    }
+
+    /**
+     * Obtient le type de page
+     * @returns {string}
+     */
+    getPageType() {
+        return this.pageType;
+    }
+}
 
 
 // ===== main.js =====
