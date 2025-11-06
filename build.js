@@ -131,29 +131,10 @@ function convertES6Modules(content, filePath) {
         }
     );
 
-    // Convertir les exports
-    converted = converted.replace(
-        /export\s+(const|let|var|function|class)\s+(\w+)/g,
-        (match, type, name) => {
-            return `${type} ${name}`;
-        }
-    );
-
-    // Convertir les exports nommés
-    converted = converted.replace(
-        /export\s+{\s*([^}]+)\s*}/g,
-        (match, exports) => {
-            return `// export {${exports}}`;
-        }
-    );
-
-    // Convertir les exports par défaut
-    converted = converted.replace(
-        /export\s+default\s+(\w+)/g,
-        (match, name) => {
-            return `// export default ${name}`;
-        }
-    );
+    // Supprimer tous les types d'exports (plus robuste)
+    converted = converted.replace(/^export\s+.*/gm, (match) => {
+        return `// ${match}`;
+    });
 
     return converted;
 }

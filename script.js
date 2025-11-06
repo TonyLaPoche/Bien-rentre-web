@@ -1,6 +1,6 @@
 /**
  * Bundle Bien-Rentré - Généré automatiquement
- * Date: 2025-11-06T17:06:17.635Z
+ * Date: 2025-11-06T17:08:07.375Z
  */
 
 
@@ -59,21 +59,21 @@
  */
 
 // Configuration EmailJS (à remplacer par les vraies valeurs)
-const EMAILJS_CONFIG = {
+// export const EMAILJS_CONFIG = {
     PUBLIC_KEY: 'YOUR_PUBLIC_KEY',
     SERVICE_ID: 'YOUR_SERVICE_ID',
     TEMPLATE_ID: 'YOUR_TEMPLATE_ID'
 };
 
 // Configuration de l'application
-const APP_CONFIG = {
+// export const APP_CONFIG = {
     NAME: 'Bien-Rentré',
     EMAIL: 'contact@bienrentre.app',
     VERSION: '1.0.0'
 };
 
 // Limites de validation
-const VALIDATION_RULES = {
+// export const VALIDATION_RULES = {
     EMAIL: {
         MAX_LENGTH: 254,
         PATTERN: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -93,7 +93,7 @@ const VALIDATION_RULES = {
 };
 
 // Messages d'erreur
-const ERROR_MESSAGES = {
+// export const ERROR_MESSAGES = {
     REQUIRED: 'Ce champ est obligatoire',
     EMAIL_INVALID: 'Veuillez entrer un email valide',
     EMAIL_TOO_LONG: 'L\'email ne peut pas dépasser 254 caractères',
@@ -109,13 +109,13 @@ const ERROR_MESSAGES = {
 };
 
 // Messages de succès
-const SUCCESS_MESSAGES = {
+// export const SUCCESS_MESSAGES = {
     EMAIL_SENT: 'Message envoyé avec succès !',
     FORM_VALID: 'Formulaire valide'
 };
 
 // État des FAQ - IDs correspondent aux clés de traduction
-const FAQ_DATA = [
+// export const FAQ_DATA = [
     {
         id: 'emergency',
         question: 'Est-ce que Bien-Rentré est un système d\'alerte d\'urgence ?',
@@ -149,7 +149,7 @@ const FAQ_DATA = [
 ];
 
 // Classes CSS pour les états
-const CSS_CLASSES = {
+// export const CSS_CLASSES = {
     FORM: {
         GROUP: 'form-group',
         ERROR: 'error',
@@ -176,7 +176,7 @@ const CSS_CLASSES = {
 };
 
 // Événements personnalisés
-const CUSTOM_EVENTS = {
+// export const CUSTOM_EVENTS = {
     FORM_SUBMIT: 'form:submit',
     FORM_VALIDATION: 'form:validation',
     EMAIL_SENT: 'email:sent',
@@ -200,7 +200,7 @@ const CUSTOM_EVENTS = {
 /**
  * Utilitaires de formatage
  */
-const formatUtils = {
+// export const formatUtils = {
     /**
      * Formate une date en français
      * @param {Date|string} date
@@ -262,7 +262,7 @@ const formatUtils = {
 /**
  * Utilitaires de validation
  */
-const validationUtils = {
+// export const validationUtils = {
     /**
      * Valide une adresse email avec regex
      * @param {string} email
@@ -319,7 +319,7 @@ const validationUtils = {
 /**
  * Utilitaires de manipulation d'arrays
  */
-const arrayUtils = {
+// export const arrayUtils = {
     /**
      * Mélange un array (algorithme Fisher-Yates)
      * @param {Array} array
@@ -382,7 +382,7 @@ const arrayUtils = {
 /**
  * Utilitaires pour le DOM
  */
-const domUtils = {
+// export const domUtils = {
     /**
      * Attend que le DOM soit chargé
      * @returns {Promise<void>}
@@ -474,7 +474,7 @@ const domUtils = {
 /**
  * Utilitaires pour les événements
  */
-const eventUtils = {
+// export const eventUtils = {
     /**
      * Crée un événement personnalisé
      * @param {string} eventName
@@ -539,7 +539,7 @@ const eventUtils = {
 /**
  * Utilitaires pour les API et requêtes HTTP
  */
-const apiUtils = {
+// export const apiUtils = {
     /**
      * Effectue une requête HTTP avec gestion d'erreurs
      * @param {string} url
@@ -608,7 +608,7 @@ const apiUtils = {
 /**
  * Utilitaires pour le stockage local
  */
-const storageUtils = {
+// export const storageUtils = {
     /**
      * Sauvegarde dans localStorage avec gestion d'erreurs
      * @param {string} key
@@ -670,7 +670,7 @@ const storageUtils = {
 /**
  * Utilitaires pour les performances
  */
-const performanceUtils = {
+// export const performanceUtils = {
     /**
      * Mesure le temps d'exécution d'une fonction
      * @param {Function} fn
@@ -726,7 +726,7 @@ const performanceUtils = {
  * Entité ContactForm - Représente les données du formulaire de contact
  * @class
  */
-class ContactForm {
+// export class ContactForm {
     /**
      * @param {Object} data
      * @param {string} [data.name='']
@@ -790,7 +790,7 @@ class ContactForm {
  * Entité FAQItem - Élément de FAQ
  * @class
  */
-class FAQItem {
+// export class FAQItem {
     /**
      * @param {Object} data
      * @param {string} [data.id] - ID optionnel, sinon généré automatiquement
@@ -877,7 +877,7 @@ class FAQItem {
  * Entité ValidationResult - Résultat de validation d'un formulaire
  * @class
  */
-class ValidationResult {
+// export class ValidationResult {
     /**
      * @param {boolean} isValid
      * @param {Object.<string, string>} errors
@@ -963,9 +963,9 @@ class ValidationResult {
  * Export des entités du domaine
  */
 
-// export {ContactForm } from './ContactForm.js';
-// export {ValidationResult } from './ValidationResult.js';
-// export {FAQItem } from './FAQItem.js';
+// export { ContactForm } from './ContactForm.js';
+// export { ValidationResult } from './ValidationResult.js';
+// export { FAQItem } from './FAQItem.js';
 
 
 // ===== domain/services/FAQService.js =====
@@ -976,7 +976,7 @@ class ValidationResult {
  * Service de gestion des FAQ - Logique métier des questions fréquentes
  * @class
  */
-class FAQService {
+// export class FAQService {
     constructor() {
         this.faqItems = this.initializeFAQ();
     }
@@ -1082,7 +1082,7 @@ class FAQService {
  * Service de validation des formulaires - Logique métier de validation
  * @class
  */
-class FormValidationService {
+// export class FormValidationService {
     /**
      * Valide un formulaire de contact complet
      * @param {ContactForm} contactForm
@@ -1233,8 +1233,8 @@ class FormValidationService {
  * Export des services du domaine
  */
 
-// export {FormValidationService } from './FormValidationService.js';
-// export {FAQService } from './FAQService.js';
+// export { FormValidationService } from './FormValidationService.js';
+// export { FAQService } from './FAQService.js';
 
 
 // ===== domain/repositories/IEmailRepository.js =====
@@ -1242,7 +1242,7 @@ class FormValidationService {
  * Interface Repository pour les opérations email
  * Définit le contrat pour l'envoi d'emails
  */
-class IEmailRepository {
+// export class IEmailRepository {
     /**
      * Envoie un email
      * @param {EmailData} emailData
@@ -1267,7 +1267,7 @@ class IEmailRepository {
  * Interface Repository pour le stockage local
  * Définit le contrat pour la persistance des données locales
  */
-class ILocalStorageRepository {
+// export class ILocalStorageRepository {
     /**
      * Sauvegarde une valeur
      * @param {string} key
@@ -1320,7 +1320,7 @@ class ILocalStorageRepository {
  * Interface Repository pour les traductions
  * Définit le contrat pour l'accès aux traductions
  */
-class ITranslationRepository {
+// export class ITranslationRepository {
     /**
      * Définit la langue actuelle
      * @param {string} language
@@ -1390,9 +1390,9 @@ class ITranslationRepository {
  * Export des interfaces de repositories
  */
 
-// export {IEmailRepository } from './IEmailRepository.js';
-// export {ILocalStorageRepository } from './ILocalStorageRepository.js';
-// export {ITranslationRepository } from './ITranslationRepository.js';
+// export { IEmailRepository } from './IEmailRepository.js';
+// export { ILocalStorageRepository } from './ILocalStorageRepository.js';
+// export { ITranslationRepository } from './ITranslationRepository.js';
 
 
 // ===== domain/index.js =====
@@ -1400,9 +1400,9 @@ class ITranslationRepository {
  * Point d'entrée du domaine - Logique métier
  */
 
-export * from './entities/index.js';
-export * from './services/index.js';
-export * from './repositories/index.js';
+// export * from './entities/index.js';
+// export * from './services/index.js';
+// export * from './repositories/index.js';
 
 
 // ===== application/useCases/ManageFAQ.js =====
@@ -1410,7 +1410,7 @@ export * from './repositories/index.js';
  * Use Case - Gérer les FAQ
  * Orchestre les opérations sur les FAQ
  */
-class ManageFAQ {
+// export class ManageFAQ {
     /**
      * @param {FAQService} faqService
      */
@@ -1467,7 +1467,7 @@ class ManageFAQ {
  * Use Case - Gérer les traductions
  * Orchestre les opérations de traduction et changement de langue
  */
-class ManageTranslations {
+// export class ManageTranslations {
     /**
      * @param {ITranslationRepository} translationRepository
      * @param {ILocalStorageRepository} storageRepository
@@ -1684,7 +1684,7 @@ class ManageTranslations {
  * Use Case - Envoyer un email de contact
  * Orchestre la logique d'envoi d'email
  */
-class SendContactEmail {
+// export class SendContactEmail {
     /**
      * @param {IEmailRepository} emailRepository
      * @param {FormValidationService} validationService
@@ -1752,7 +1752,7 @@ class SendContactEmail {
  * Use Case - Valider un formulaire de contact
  * Orchestre la validation du formulaire
  */
-class ValidateContactForm {
+// export class ValidateContactForm {
     /**
      * @param {FormValidationService} validationService
      */
@@ -1791,10 +1791,10 @@ class ValidateContactForm {
  * Export des use cases
  */
 
-// export {SendContactEmail } from './SendContactEmail.js';
-// export {ValidateContactForm } from './ValidateContactForm.js';
-// export {ManageFAQ } from './ManageFAQ.js';
-// export {ManageTranslations } from './ManageTranslations.js';
+// export { SendContactEmail } from './SendContactEmail.js';
+// export { ValidateContactForm } from './ValidateContactForm.js';
+// export { ManageFAQ } from './ManageFAQ.js';
+// export { ManageTranslations } from './ManageTranslations.js';
 
 
 // ===== application/index.js =====
@@ -1802,7 +1802,7 @@ class ValidateContactForm {
  * Point d'entrée de la couche application - Use Cases
  */
 
-export * from './useCases/index.js';
+// export * from './useCases/index.js';
 
 
 // ===== infrastructure/api/EmailJSAdapter.js =====
@@ -1814,7 +1814,7 @@ export * from './useCases/index.js';
  * Gère la communication avec l'API EmailJS
  * @class
  */
-class EmailJSAdapter extends IEmailRepository {
+// export class EmailJSAdapter extends IEmailRepository {
     constructor() {
         super();
         this.isInitialized = false;
@@ -1976,7 +1976,7 @@ class EmailJSAdapter extends IEmailRepository {
  * Export des adaptateurs API
  */
 
-// export {EmailJSAdapter } from './EmailJSAdapter.js';
+// export { EmailJSAdapter } from './EmailJSAdapter.js';
 
 
 // ===== infrastructure/storage/LocalStorageAdapter.js =====
@@ -1987,7 +1987,7 @@ class EmailJSAdapter extends IEmailRepository {
  * Gère la persistance des données dans le localStorage du navigateur
  * @class
  */
-class LocalStorageAdapter extends ILocalStorageRepository {
+// export class LocalStorageAdapter extends ILocalStorageRepository {
     constructor() {
         super();
         this.prefix = 'bienrentre_';
@@ -2191,7 +2191,7 @@ class LocalStorageAdapter extends ILocalStorageRepository {
  * Export des adaptateurs de stockage
  */
 
-// export {LocalStorageAdapter } from './LocalStorageAdapter.js';
+// export { LocalStorageAdapter } from './LocalStorageAdapter.js';
 
 
 // ===== infrastructure/ui/DOMHelper.js =====
@@ -2200,7 +2200,7 @@ class LocalStorageAdapter extends ILocalStorageRepository {
  * Couche d'abstraction pour les opérations DOM
  * @class
  */
-class DOMHelper {
+// export class DOMHelper {
     /**
      * Récupère un élément par son sélecteur
      * @param {string} selector
@@ -2532,7 +2532,7 @@ class DOMHelper {
  * Permet la communication entre les composants
  * @class
  */
-class EventManager {
+// export class EventManager {
     constructor() {
         this.events = {};
         this.isInitialized = false;
@@ -2724,7 +2724,7 @@ class EventManager {
 }
 
 // Instance globale du gestionnaire d'événements
-const eventManager = new EventManager();
+// export const eventManager = new EventManager();
 
 
 // ===== infrastructure/ui/index.js =====
@@ -2732,8 +2732,8 @@ const eventManager = new EventManager();
  * Export des utilitaires UI
  */
 
-// export {DOMHelper } from './DOMHelper.js';
-// export {EventManager, eventManager } from './EventManager.js';
+// export { DOMHelper } from './DOMHelper.js';
+// export { EventManager, eventManager } from './EventManager.js';
 
 
 // ===== infrastructure/index.js =====
@@ -2741,9 +2741,9 @@ const eventManager = new EventManager();
  * Point d'entrée de l'infrastructure - Interfaces externes
  */
 
-export * from './api/index.js';
-export * from './storage/index.js';
-export * from './ui/index.js';
+// export * from './api/index.js';
+// export * from './storage/index.js';
+// export * from './ui/index.js';
 
 
 // ===== presentation/controllers/ContactFormController.js =====
@@ -2759,7 +2759,7 @@ export * from './ui/index.js';
  * Gère l'interaction utilisateur avec le formulaire
  * @class
  */
-class ContactFormController {
+// export class ContactFormController {
     /**
      * @param {SendContactEmail} sendContactEmailUseCase
      * @param {ValidateContactForm} validateContactFormUseCase
@@ -3076,7 +3076,7 @@ class ContactFormController {
  * Compatible avec le système i18n
  * @class
  */
-class FAQController {
+// export class FAQController {
     /**
      * @param {ManageFAQ} manageFAQUseCase
      * @param {TranslationService} translationService
@@ -3485,7 +3485,7 @@ class FAQController {
  * Gère la navigation mobile et le scroll fluide
  * @class
  */
-class NavigationController {
+// export class NavigationController {
     constructor() {
         this.navbar = null;
         this.mobileToggle = null;
@@ -3798,9 +3798,9 @@ class NavigationController {
  * Export des controllers de présentation
  */
 
-// export {ContactFormController } from './ContactFormController.js';
-// export {FAQController } from './FAQController.js';
-// export {NavigationController } from './NavigationController.js';
+// export { ContactFormController } from './ContactFormController.js';
+// export { FAQController } from './FAQController.js';
+// export { NavigationController } from './NavigationController.js';
 
 
 // ===== presentation/index.js =====
@@ -3808,7 +3808,7 @@ class NavigationController {
  * Point d'entrée de la présentation - Interface utilisateur
  */
 
-export * from './controllers/index.js';
+// export * from './controllers/index.js';
 
 
 // ===== infrastructure/i18n/index.js =====
@@ -3816,7 +3816,7 @@ export * from './controllers/index.js';
  * Export du service de traduction
  */
 
-// export {TranslationService } from './TranslationService.js';
+// export { TranslationService } from './TranslationService.js';
 
 
 // ===== infrastructure/i18n/TranslationService.js =====
@@ -3829,7 +3829,7 @@ export * from './controllers/index.js';
  * Gère le chargement et l'accès aux traductions
  * @class
  */
-class TranslationService extends ITranslationRepository {
+// export class TranslationService extends ITranslationRepository {
     constructor() {
         super();
         this.translations = {
@@ -4173,10 +4173,10 @@ class TranslationService extends ITranslationRepository {
  * Export des composants réutilisables
  */
 
-// export {Modal, ModalManager, modalManager } from './Modal.js';
-// export {LoadingSpinner, SpinnerManager, spinnerManager } from './LoadingSpinner.js';
-// export {Notification, NotificationManager, notificationManager } from './Notification.js';
-// export {LanguageSelector } from './LanguageSelector.js';
+// export { Modal, ModalManager, modalManager } from './Modal.js';
+// export { LoadingSpinner, SpinnerManager, spinnerManager } from './LoadingSpinner.js';
+// export { Notification, NotificationManager, notificationManager } from './Notification.js';
+// export { LanguageSelector } from './LanguageSelector.js';
 
 
 // ===== presentation/components/LanguageSelector.js =====
@@ -4189,7 +4189,7 @@ class TranslationService extends ITranslationRepository {
  * Permet à l'utilisateur de changer la langue de l'application
  * @class
  */
-class LanguageSelector {
+// export class LanguageSelector {
     /**
      * @param {ManageTranslations} manageTranslationsUseCase
      * @param {Object} options
@@ -4828,7 +4828,7 @@ class LanguageSelector {
  * Affiche un indicateur de chargement avec différentes tailles et styles
  * @class
  */
-class LoadingSpinner {
+// export class LoadingSpinner {
     /**
      * @param {Object} options
      * @param {string} options.size - Taille (small, medium, large)
@@ -5119,7 +5119,7 @@ class LoadingSpinner {
  * Gestionnaire de spinners - Pour gérer facilement les spinners dans l'app
  * @class
  */
-class SpinnerManager {
+// export class SpinnerManager {
     constructor() {
         this.spinners = new Map();
     }
@@ -5203,7 +5203,7 @@ class SpinnerManager {
 }
 
 // Instance globale du gestionnaire de spinners
-const spinnerManager = new SpinnerManager();
+// export const spinnerManager = new SpinnerManager();
 
 
 // ===== presentation/components/Modal.js =====
@@ -5216,7 +5216,7 @@ const spinnerManager = new SpinnerManager();
  * Gère l'affichage de modales avec contenu dynamique
  * @class
  */
-class Modal {
+// export class Modal {
     /**
      * @param {Object} options
      * @param {string} options.id - ID unique de la modal
@@ -5512,7 +5512,7 @@ class Modal {
  * Gestionnaire de modales - Singleton pour gérer plusieurs modales
  * @class
  */
-class ModalManager {
+// export class ModalManager {
     constructor() {
         this.modals = new Map();
         this.init();
@@ -5695,7 +5695,7 @@ class ModalManager {
 }
 
 // Instance globale du gestionnaire de modales
-const modalManager = new ModalManager();
+// export const modalManager = new ModalManager();
 
 
 // ===== presentation/components/Notification.js =====
@@ -5708,7 +5708,7 @@ const modalManager = new ModalManager();
  * Affiche des notifications toast avec différents types et durées
  * @class
  */
-class Notification {
+// export class Notification {
     /**
      * @param {Object} options
      * @param {string} options.type - Type (success, error, warning, info)
@@ -6158,7 +6158,7 @@ class Notification {
  * Gestionnaire de notifications - Pour gérer facilement les notifications dans l'app
  * @class
  */
-class NotificationManager {
+// export class NotificationManager {
     constructor() {
         this.notifications = new Map();
         this.container = null;
@@ -6292,7 +6292,7 @@ class NotificationManager {
 }
 
 // Instance globale du gestionnaire de notifications
-const notificationManager = new NotificationManager();
+// export const notificationManager = new NotificationManager();
 
 
 // ===== presentation/pages/HomePage.js =====
@@ -6310,7 +6310,7 @@ const notificationManager = new NotificationManager();
  * Page d'accueil - Orchestre tous les composants de la page principale
  * @class
  */
-class HomePage {
+// export class HomePage {
     constructor() {
         this.controllers = {};
         this.services = {};
@@ -6605,8 +6605,8 @@ class HomePage {
  * Export des pages de présentation
  */
 
-// export {HomePage } from './HomePage.js';
-// export {LegalPage } from './LegalPage.js';
+// export { HomePage } from './HomePage.js';
+// export { LegalPage } from './LegalPage.js';
 
 
 // ===== presentation/pages/LegalPage.js =====
@@ -6619,7 +6619,7 @@ class HomePage {
  * Page légale - Gestion des pages Conditions d'utilisation et Politique de confidentialité
  * @class
  */
-class LegalPage {
+// export class LegalPage {
     /**
      * @param {string} pageType - 'terms' ou 'privacy'
      */
