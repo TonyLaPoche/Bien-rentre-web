@@ -46,44 +46,54 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-const faqItems = ref({
+// État pour suivre quelles FAQ sont ouvertes
+const openStates = ref({
+  emergency: false,
+  dataProtection: false,
+  offline: false,
+  contacts: false,
+  accuracy: false
+})
+
+// FAQ items avec traductions réactives
+const faqItems = computed(() => ({
   emergency: {
     question: t('faq.questions.emergency.question'),
     answer: t('faq.questions.emergency.answer'),
-    isOpen: false
+    isOpen: openStates.value.emergency
   },
   dataProtection: {
     question: t('faq.questions.dataProtection.question'),
     answer: t('faq.questions.dataProtection.answer'),
-    isOpen: false
+    isOpen: openStates.value.dataProtection
   },
   offline: {
     question: t('faq.questions.offline.question'),
     answer: t('faq.questions.offline.answer'),
-    isOpen: false
+    isOpen: openStates.value.offline
   },
   contacts: {
     question: t('faq.questions.contacts.question'),
     answer: t('faq.questions.contacts.answer'),
-    isOpen: false
+    isOpen: openStates.value.contacts
   },
   accuracy: {
     question: t('faq.questions.accuracy.question'),
     answer: t('faq.questions.accuracy.answer'),
-    isOpen: false
+    isOpen: openStates.value.accuracy
   }
-})
+}))
 
 const toggleFAQ = (key) => {
   // Fermer toutes les autres FAQ
-  Object.keys(faqItems.value).forEach(faqKey => {
+  Object.keys(openStates.value).forEach(faqKey => {
     if (faqKey !== key) {
-      faqItems.value[faqKey].isOpen = false
+      openStates.value[faqKey] = false
     }
   })
 
   // Basculer l'état de la FAQ cliquée
-  faqItems.value[key].isOpen = !faqItems.value[key].isOpen
+  openStates.value[key] = !openStates.value[key]
 }
 </script>
 

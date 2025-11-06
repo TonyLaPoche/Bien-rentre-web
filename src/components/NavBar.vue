@@ -11,6 +11,8 @@
       <div class="nav-menu">
         <a href="#features" class="nav-link">{{ $t('nav.features') }}</a>
         <a href="#faq" class="nav-link">{{ $t('nav.contact') }}</a>
+        <a href="terms.html" class="nav-link">{{ $t('nav.terms') }}</a>
+        <a href="privacy.html" class="nav-link">{{ $t('nav.privacy') }}</a>
       </div>
 
       <!-- Sélecteur de langue -->
@@ -33,6 +35,8 @@
     <div class="nav-mobile" :class="{ 'nav-mobile--open': mobileMenuOpen }">
       <a href="#features" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.features') }}</a>
       <a href="#faq" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.contact') }}</a>
+      <a href="terms.html" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.terms') }}</a>
+      <a href="privacy.html" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.privacy') }}</a>
     </div>
   </nav>
 </template>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions d'utilisation - Bien-Rentré</title>
+    <meta name="description" content="Consultez les conditions d'utilisation de Bien-Rentré, l'application qui veille sur vos retours de soirée en toute sécurité.">
+    <link rel="icon" type="image/svg+xml" href="icon-br.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Conditions d'utilisation - Bien-Rentré">
+    <meta property="og:description" content="Consultez les conditions d'utilisation de Bien-Rentré">
+    <meta property="og:image" content="icon-br.svg">
+    <meta property="og:url" content="https://tonylapoche.github.io/Bien-rentre-web/terms.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+        }
+
+        .content {
+            padding: 40px 0;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #6366f1;
+        }
+
+        .section-content {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .highlight-box {
+            background: #f8fafc;
+            border-left: 4px solid #6366f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h3 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .contact-section {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .contact-text {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 2px solid #6366f1;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #6366f1;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+            }
+
+            .language-selector {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-selector">
+        <button class="lang-btn active" onclick="setLanguage('fr')">FR</button>
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <img src="icon-br.svg" alt="Bien-Rentré" class="logo">
+            <h1 class="title" data-i18n="terms.title">Conditions d'utilisation</h1>
+            <p class="subtitle" data-i18n="terms.subtitle">Dernière mise à jour : Décembre 2024</p>
+        </header>
+
+        <main class="content">
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.object.title">1. Objet du service</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.object.content">
+                        Bien-Rentré est une application mobile conçue pour améliorer la sécurité des déplacements nocturnes.
+                        L'application permet aux utilisateurs de partager leur position GPS en temps réel avec des contacts de confiance
+                        préalablement sélectionnés, offrant ainsi une tranquillité d'esprit lors des retours de soirée.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.usage.title">2. Conditions d'utilisation</h2>
+                <div class="section-content">
+                    <h3 data-i18n="terms.usage.age.title">Âge minimum</h3>
+                    <p data-i18n="terms.usage.age.content">
+                        Pour utiliser Bien-Rentré, vous devez avoir au moins 16 ans. Si vous avez moins de 16 ans,
+                        l'utilisation de l'application est strictement interdite.
+                    </p>
+
+                    <h3 data-i18n="terms.usage.responsibility.title">Usage responsable</h3>
+                    <p data-i18n="terms.usage.responsibility.content">
+                        Bien-Rentré n'est pas un système d'alerte d'urgence officiel. En cas de danger imminent,
+                        contactez immédiatement les services d'urgence appropriés (112, 911, etc.).
+                        L'application ne remplace pas les mesures de sécurité personnelles.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.features.title">3. Fonctionnalités et limitations</h2>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <h3 data-i18n="terms.features.sharing.title">Partage de position</h3>
+                        <p data-i18n="terms.features.sharing.content">
+                            L'application partage uniquement la géolocalisation GPS avec les contacts explicitement autorisés par l'utilisateur.
+                            Aucune autre donnée personnelle n'est transmise automatiquement.
+                        </p>
+                    </div>
+
+                    <p data-i18n="terms.features.limitations">
+                        L'application nécessite une connexion internet active et l'autorisation d'accès à la géolocalisation.
+                        En cas de perte de signal GPS ou de connexion, l'application notifiera automatiquement le contact désigné.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.property.title">4. Propriété intellectuelle</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.property.content">
+                        L'application Bien-Rentré, son nom, son logo, et tous les contenus associés sont la propriété exclusive
+                        de leurs développeurs. Toute reproduction, distribution ou utilisation commerciale sans autorisation
+                        préalable est strictement interdite.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.data.title">5. Protection des données</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.data.content">
+                        Nous nous engageons à protéger vos données personnelles conformément au RGPD.
+                        Pour plus de détails sur notre politique de confidentialité,
+                        <a href="privacy.html" style="color: #6366f1;">cliquez ici</a>.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.availability.title">6. Disponibilité du service</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.availability.content">
+                        Bien-Rentré s'efforce de maintenir un service fiable, mais ne peut garantir une disponibilité 100% du temps.
+                        L'application peut être temporairement indisponible pour maintenance ou en cas de problème technique.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.modifications.title">7. Modifications des conditions</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.modifications.content">
+                        Nous nous réservons le droit de modifier ces conditions d'utilisation à tout moment.
+                        Les utilisateurs seront informés des changements majeurs via l'application ou par email.
+                        L'utilisation continue de l'application après modification constitue l'acceptation des nouvelles conditions.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.resiliation.title">8. Résiliation</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.resiliation.content">
+                        Vous pouvez cesser d'utiliser Bien-Rentré à tout moment. La suppression de l'application
+                        entraînera automatiquement l'arrêt de tout partage de données.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.law.title">9. Droit applicable</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.law.content">
+                        Ces conditions d'utilisation sont régies par le droit français.
+                        Tout litige sera soumis aux tribunaux compétents français.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title" data-i18n="terms.contact.title">10. Contact</h2>
+                <div class="section-content">
+                    <p data-i18n="terms.contact.content">
+                        Pour toute question concernant ces conditions d'utilisation, contactez-nous via le formulaire
+                        de notre site web ou par email à l'adresse indiquée dans notre politique de confidentialité.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <div class="contact-section">
+            <h3 class="contact-title" data-i18n="terms.questions.title">Des questions ?</h3>
+            <p class="contact-text" data-i18n="terms.questions.content">
+                N'hésitez pas à nous contacter pour toute clarification concernant ces conditions d'utilisation.
+            </p>
+            <a href="index.html#contact" class="back-link" data-i18n="terms.back">Retour à l'accueil</a>
+        </div>
+
+        <footer class="footer">
+            <p data-i18n="terms.copyright">© 2024 Bien-Rentré. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Système de traduction simple pour les pages statiques
+        const translations = {
+            fr: {
+                "terms.title": "Conditions d'utilisation",
+                "terms.subtitle": "Dernière mise à jour : Décembre 2024",
+                "terms.object.title": "1. Objet du service",
+                "terms.object.content": "Bien-Rentré est une application mobile conçue pour améliorer la sécurité des déplacements nocturnes. L'application permet aux utilisateurs de partager leur position GPS en temps réel avec des contacts de confiance préalablement sélectionnés, offrant ainsi une tranquillité d'esprit lors des retours de soirée.",
+                "terms.usage.title": "2. Conditions d'utilisation",
+                "terms.usage.age.title": "Âge minimum",
+                "terms.usage.age.content": "Pour utiliser Bien-Rentré, vous devez avoir au moins 16 ans. Si vous avez moins de 16 ans, l'utilisation de l'application est strictement interdite.",
+                "terms.usage.responsibility.title": "Usage responsable",
+                "terms.usage.responsibility.content": "Bien-Rentré n'est pas un système d'alerte d'urgence officiel. En cas de danger imminent, contactez immédiatement les services d'urgence appropriés (112, 911, etc.). L'application ne remplace pas les mesures de sécurité personnelles.",
+                "terms.features.title": "3. Fonctionnalités et limitations",
+                "terms.features.sharing.title": "Partage de position",
+                "terms.features.sharing.content": "L'application partage uniquement la géolocalisation GPS avec les contacts explicitement autorisés par l'utilisateur. Aucune autre donnée personnelle n'est transmise automatiquement.",
+                "terms.features.limitations": "L'application nécessite une connexion internet active et l'autorisation d'accès à la géolocalisation. En cas de perte de signal GPS ou de connexion, l'application notifiera automatiquement le contact désigné.",
+                "terms.property.title": "4. Propriété intellectuelle",
+                "terms.property.content": "L'application Bien-Rentré, son nom, son logo, et tous les contenus associés sont la propriété exclusive de leurs développeurs. Toute reproduction, distribution ou utilisation commerciale sans autorisation préalable est strictement interdite.",
+                "terms.data.title": "5. Protection des données",
+                "terms.data.content": "Nous nous engageons à protéger vos données personnelles conformément au RGPD. Pour plus de détails sur notre politique de confidentialité, <a href='privacy.html' style='color: #6366f1;'>cliquez ici</a>.",
+                "terms.availability.title": "6. Disponibilité du service",
+                "terms.availability.content": "Bien-Rentré s'efforce de maintenir un service fiable, mais ne peut garantir une disponibilité 100% du temps. L'application peut être temporairement indisponible pour maintenance ou en cas de problème technique.",
+                "terms.modifications.title": "7. Modifications des conditions",
+                "terms.modifications.content": "Nous nous réservons le droit de modifier ces conditions d'utilisation à tout moment. Les utilisateurs seront informés des changements majeurs via l'application ou par email. L'utilisation continue de l'application après modification constitue l'acceptation des nouvelles conditions.",
+                "terms.resiliation.title": "8. Résiliation",
+                "terms.resiliation.content": "Vous pouvez cesser d'utiliser Bien-Rentré à tout moment. La suppression de l'application entraînera automatiquement l'arrêt de tout partage de données.",
+                "terms.law.title": "9. Droit applicable",
+                "terms.law.content": "Ces conditions d'utilisation sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents français.",
+                "terms.contact.title": "10. Contact",
+                "terms.contact.content": "Pour toute question concernant ces conditions d'utilisation, contactez-nous via le formulaire de notre site web ou par email à l'adresse indiquée dans notre politique de confidentialité.",
+                "terms.questions.title": "Des questions ?",
+                "terms.questions.content": "N'hésitez pas à nous contacter pour toute clarification concernant ces conditions d'utilisation.",
+                "terms.back": "Retour à l'accueil",
+                "terms.copyright": "© 2024 Bien-Rentré. Tous droits réservés."
+            },
+            en: {
+                "terms.title": "Terms of Use",
+                "terms.subtitle": "Last updated: December 2024",
+                "terms.object.title": "1. Service Purpose",
+                "terms.object.content": "Bien-Rentré is a mobile application designed to improve the safety of nighttime travel. The application allows users to share their GPS location in real-time with pre-selected trusted contacts, thus providing peace of mind during evening returns.",
+                "terms.usage.title": "2. Terms of Use",
+                "terms.usage.age.title": "Minimum Age",
+                "terms.usage.age.content": "To use Bien-Rentré, you must be at least 16 years old. If you are under 16, the use of the application is strictly prohibited.",
+                "terms.usage.responsibility.title": "Responsible Use",
+                "terms.usage.responsibility.content": "Bien-Rentré is not an official emergency alert system. In case of imminent danger, immediately contact the appropriate emergency services (112, 911, etc.). The application does not replace personal safety measures.",
+                "terms.features.title": "3. Features and Limitations",
+                "terms.features.sharing.title": "Location Sharing",
+                "terms.features.sharing.content": "The application only shares GPS location with contacts explicitly authorized by the user. No other personal data is transmitted automatically.",
+                "terms.features.limitations": "The application requires an active internet connection and authorization to access geolocation. In case of GPS signal or connection loss, the application will automatically notify the designated contact.",
+                "terms.property.title": "4. Intellectual Property",
+                "terms.property.content": "The Bien-Rentré application, its name, logo, and all associated content are the exclusive property of their developers. Any reproduction, distribution or commercial use without prior authorization is strictly prohibited.",
+                "terms.data.title": "5. Data Protection",
+                "terms.data.content": "We are committed to protecting your personal data in accordance with GDPR. For more details about our privacy policy, <a href='privacy.html' style='color: #6366f1;'>click here</a>.",
+                "terms.availability.title": "6. Service Availability",
+                "terms.availability.content": "Bien-Rentré strives to maintain a reliable service, but cannot guarantee 100% availability. The application may be temporarily unavailable for maintenance or in case of technical issues.",
+                "terms.modifications.title": "7. Terms Modifications",
+                "terms.modifications.content": "We reserve the right to modify these terms of use at any time. Users will be informed of major changes via the application or by email. Continued use of the application after modification constitutes acceptance of the new terms.",
+                "terms.resiliation.title": "8. Termination",
+                "terms.resiliation.content": "You can stop using Bien-Rentré at any time. Deleting the application will automatically stop all data sharing.",
+                "terms.law.title": "9. Applicable Law",
+                "terms.law.content": "These terms of use are governed by French law. Any dispute will be submitted to the competent French courts.",
+                "terms.contact.title": "10. Contact",
+                "terms.contact.content": "For any questions regarding these terms of use, contact us through the form on our website or by email at the address indicated in our privacy policy.",
+                "terms.questions.title": "Questions?",
+                "terms.questions.content": "Don't hesitate to contact us for any clarification regarding these terms of use.",
+                "terms.back": "Back to Home",
+                "terms.copyright": "© 2024 Bien-Rentré. All rights reserved."
+            }
+        };
+
+        function setLanguage(lang) {
+            // Sauvegarder la langue
+            localStorage.setItem('bien-rentre-language', lang);
+
+            // Mettre à jour les boutons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[onclick="setLanguage('${lang}')"]`).classList.add('active');
+
+            // Mettre à jour le contenu
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Mettre à jour la langue du document
+            document.documentElement.lang = lang;
+        }
+
+        // Initialiser avec la langue sauvegardée ou détectée
+        const savedLang = localStorage.getItem('bien-rentre-language') ||
+                         (navigator.language.startsWith('fr') ? 'fr' : 'en');
+        setLanguage(savedLang);
+    </script>
+</body>
+</html>
