@@ -15,6 +15,10 @@ export class FAQController {
      * @param {TranslationService} translationService
      */
     constructor(manageFAQUseCase, translationService) {
+        console.log('FAQController: Constructor called with services:', {
+            manageFAQUseCase: !!manageFAQUseCase,
+            translationService: !!translationService
+        });
         this.manageFAQUseCase = manageFAQUseCase;
         this.translationService = translationService;
         this.faqContainer = null;

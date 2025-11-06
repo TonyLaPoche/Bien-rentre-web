@@ -11,6 +11,7 @@ const config = {
     srcDir: './src',
     outputFile: './script.js',
     excludeFiles: ['main.js'], // Sera ajouté à la fin
+    excludePatterns: [/.*\/index\.js$/, /.*\/HomePage\.js$/], // Exclure tous les fichiers index.js et HomePage.js
     includeMain: true
 };
 
@@ -18,9 +19,10 @@ const config = {
  * Récupère récursivement tous les fichiers .js
  * @param {string} dir
  * @param {string[]} excludeFiles
+ * @param {RegExp[]} excludePatterns
  * @returns {string[]}
  */
-function getAllJSFiles(dir, excludeFiles = []) {
+function getAllJSFiles(dir, excludeFiles = [], excludePatterns = []) {
     const files = [];
 
     function scanDirectory(currentDir) {
@@ -33,7 +35,11 @@ function getAllJSFiles(dir, excludeFiles = []) {
             if (stat.isDirectory()) {
                 scanDirectory(fullPath);
             } else if (item.endsWith('.js') && !excludeFiles.includes(item)) {
-                files.push(fullPath);
+                // Vérifier les patterns d'exclusion
+                const shouldExclude = excludePatterns.some(pattern => pattern.test(fullPath));
+                if (!shouldExclude) {
+                    files.push(fullPath);
+                }
             }
         });
     }
@@ -147,12 +153,12 @@ function build() {
 
     try {
         // Récupérer tous les fichiers JS
-        const jsFiles = getAllJSFiles(config.srcDir, config.excludeFiles);
+        const jsFiles = getAllJSFiles(config.srcDir, config.excludeFiles, config.excludePatterns);
         console.log(`📁 ${jsFiles.length} fichiers JavaScript trouvés`);
 
         // Trier selon les dépendances
         const sortedFiles = sortFilesByDependencies(jsFiles);
-        console.log('📋 Fichiers triés par dépendances');
+        console.log('📋 Fichiers triés par dépendances:', sortedFiles.length);
 
         // Concaténer le contenu
         let bundleContent = `/**
@@ -160,8 +166,19 @@ function build() {
  * Date: ${new Date().toISOString()}
  */\n\n`;
 
+        const processedFiles = new Set();
+
         sortedFiles.forEach(filePath => {
             const relativePath = path.relative(config.srcDir, filePath);
+            console.log(`🔍 Traitement de: ${filePath} -> ${relativePath}`);
+
+            // Éviter les doublons
+            if (processedFiles.has(relativePath)) {
+                console.log(`⚠️  Doublon ignoré: ${relativePath}`);
+                return;
+            }
+            processedFiles.add(relativePath);
+
             console.log(`📄 Ajout de ${relativePath}`);
 
             const content = fs.readFileSync(filePath, 'utf8');
@@ -175,7 +192,10 @@ function build() {
         // Ajouter le fichier main.js à la fin si demandé
         if (config.includeMain) {
             const mainPath = path.join(config.srcDir, 'main.js');
-            if (fs.existsSync(mainPath)) {
+            const mainRelativePath = path.relative(config.srcDir, mainPath);
+
+            if (fs.existsSync(mainPath) && !processedFiles.has(mainRelativePath)) {
+                processedFiles.add(mainRelativePath);
                 console.log('📄 Ajout de main.js');
                 const mainContent = fs.readFileSync(mainPath, 'utf8');
                 bundleContent += `\n// ===== main.js =====\n`;
@@ -183,7 +203,10 @@ function build() {
             }
         }
 
-        // Écrire le fichier de sortie
+        // Supprimer l'ancien fichier s'il existe et écrire le nouveau
+        if (fs.existsSync(config.outputFile)) {
+            fs.unlinkSync(config.outputFile);
+        }
         fs.writeFileSync(config.outputFile, bundleContent);
         console.log(`✅ Bundle créé: ${config.outputFile}`);
         console.log(`📊 Taille: ${(bundleContent.length / 1024).toFixed(2)} KB`);
