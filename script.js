@@ -1,6 +1,6 @@
 /**
  * Bundle Bien-Rentré - Généré automatiquement
- * Date: 2025-11-06T16:53:11.366Z
+ * Date: 2025-11-06T17:00:45.286Z
  */
 
 
@@ -3067,6 +3067,7 @@ class ContactFormController {
 /**
  * Controller pour les FAQ
  * Gère l'interaction utilisateur avec l'accordéon FAQ
+ * Compatible avec le système i18n
  * @class
  */
 class FAQController {
@@ -3090,8 +3091,35 @@ class FAQController {
             return;
         }
 
+        // Attendre que les traductions soient chargées avant d'initialiser
+        this.waitForTranslationsAndInit();
+    }
+
+    /**
+     * Attend que les traductions soient chargées puis initialise les FAQ
+     */
+    waitForTranslationsAndInit() {
+        // Vérifier si les traductions sont déjà chargées
+        const hasTranslations = document.documentElement.hasAttribute('data-lang');
+
+        if (hasTranslations) {
+            // Les traductions sont déjà chargées, initialiser immédiatement
+            this.initializeFAQ();
+        } else {
+            // Attendre l'événement de chargement des traductions
+            eventManager.on(CUSTOM_EVENTS.TRANSLATION_LOADED, () => {
+                this.initializeFAQ();
+            }, true); // true pour un écouteur unique
+        }
+    }
+
+    /**
+     * Initialise réellement les FAQ une fois les traductions chargées
+     */
+    initializeFAQ() {
         this.loadFAQ();
         this.bindEvents();
+        console.log('FAQ Controller initialized with translations');
     }
 
     /**
@@ -3111,6 +3139,10 @@ class FAQController {
 
         // Écouter les événements personnalisés
         eventManager.on(CUSTOM_EVENTS.FAQ_TOGGLE, this.handleToggleEvent.bind(this));
+
+        // Écouter les changements de traduction pour se réinitialiser
+        eventManager.on(CUSTOM_EVENTS.TRANSLATION_LOADED, this.handleTranslationLoaded.bind(this));
+        eventManager.on(CUSTOM_EVENTS.LANGUAGE_CHANGED, this.handleLanguageChanged.bind(this));
     }
 
     /**
@@ -3151,6 +3183,55 @@ class FAQController {
         if (data && data.faqId) {
             this.updateFAQDisplay(data.faqId);
         }
+    }
+
+    /**
+     * Gère le chargement des traductions
+     * @param {Object} data
+     */
+    handleTranslationLoaded(data) {
+        // Les traductions ont été chargées, réattacher les événements
+        this.rebindFAQEvents();
+    }
+
+    /**
+     * Gère le changement de langue
+     * @param {Object} data
+     */
+    handleLanguageChanged(data) {
+        // La langue a changé, attendre que les traductions soient appliquées puis réattacher les événements
+        setTimeout(() => {
+            this.rebindFAQEvents();
+        }, 150); // Délai plus long pour s'assurer que les traductions sont appliquées
+    }
+
+    /**
+     * Réattache tous les événements FAQ après les traductions
+     */
+    rebindFAQEvents() {
+        if (!this.faqContainer) return;
+
+        console.log('Réattachement des événements FAQ après traduction');
+
+        // Supprimer tous les événements existants en reclonant les éléments
+        const faqQuestions = this.faqContainer.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            const faqItem = question.closest('.faq-item');
+            if (faqItem) {
+                const faqId = faqItem.dataset.faqId;
+                if (faqId) {
+                    // Cloner l'élément pour supprimer les anciens événements
+                    const newQuestion = question.cloneNode(true);
+                    question.parentNode.replaceChild(newQuestion, question);
+
+                    // Attacher le nouvel événement
+                    DOMHelper.addEventListener(newQuestion, 'click', (e) => {
+                        e.preventDefault();
+                        this.toggleFAQ(faqId);
+                    });
+                }
+            }
+        });
     }
 
     /**
@@ -3345,6 +3426,8 @@ class FAQController {
 
         // Supprimer les écouteurs d'événements personnalisés
         eventManager.removeAllListeners(CUSTOM_EVENTS.FAQ_TOGGLE);
+        eventManager.removeAllListeners(CUSTOM_EVENTS.TRANSLATION_LOADED);
+        eventManager.removeAllListeners(CUSTOM_EVENTS.LANGUAGE_CHANGED);
     }
 }
 
