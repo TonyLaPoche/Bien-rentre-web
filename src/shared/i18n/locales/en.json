@@ -137,6 +137,93 @@
     "lastUpdated": "Last updated",
     "backToHome": "Back to home"
   },
+  "legal": {
+    "terms": {
+      "title": "Terms of Use",
+      "meta": "Terms of Use for the Bien-Rentré application - Security app for your late-night returns",
+      "lastUpdated": "Last updated",
+      "welcome": "Welcome to <strong>Bien-Rentré</strong>, a mobile security app designed to accompany you during your nighttime travels. By using Bien-Rentré, you accept these terms of use. Please read them carefully.",
+      "sections": {
+        "1": {
+          "title": "Service Purpose",
+          "content": "Bien-Rentré is a mobile app that allows users to share their real-time location with trusted contacts during nighttime travel. The app provides additional protection against risks related to evening journeys.",
+          "important": "Important: Bien-Rentré is not an official emergency alert system. In case of real danger, immediately contact the appropriate emergency services (112, 911, etc.)."
+        },
+        "2": {
+          "title": "Terms of Use",
+          "age": {
+            "title": "Minimum Age",
+            "content": "Use of Bien-Rentré is reserved for persons aged 18 and over. Minors are not authorized to use the application."
+          },
+          "responsible": {
+            "title": "Responsible Use",
+            "content": "You agree to use Bien-Rentré responsibly and in accordance with its purpose. The app must exclusively serve personal security purposes during nighttime travel."
+          },
+          "accounts": {
+            "title": "User Accounts",
+            "content": "Creating an account requires accurate and up-to-date information. You are responsible for the confidentiality of your login credentials."
+          }
+        },
+        "3": {
+          "title": "Features and Limitations",
+          "location": {
+            "title": "Location Sharing",
+            "content": "The app uses your mobile device's geolocation services. You fully control the activation and deactivation of your position sharing."
+          },
+          "contacts": {
+            "title": "Trusted Contacts",
+            "content": "You can designate a limited number of authorized contacts to track your route. These contacts must have given their prior consent."
+          },
+          "responsibilities": {
+            "title": "Responsibilities",
+            "list": [
+              "Bien-Rentré does not guarantee absolute protection against all risks",
+              "The app depends on your device's network and GPS coverage",
+              "You are responsible for the appropriate use of the application",
+              "The Bien-Rentré team is not responsible for emergency situations"
+            ]
+          }
+        },
+        "4": {
+          "title": "Intellectual Property",
+          "content": "The Bien-Rentré application, its features, design, logos and all associated content are the exclusive property of their authors. Any reproduction, distribution or commercial use without prior authorization is prohibited."
+        },
+        "5": {
+          "title": "Data Protection",
+          "content": "The processing of your personal data is governed by our <a href=\"privacy.html\">Privacy Policy</a>, compliant with GDPR. Your location data is only shared with contacts you have explicitly authorized."
+        },
+        "6": {
+          "title": "Service Availability",
+          "content": "Bien-Rentré strives to maintain optimal service availability, but cannot guarantee uninterrupted operation. Interruptions may occur for maintenance or technical reasons."
+        },
+        "7": {
+          "title": "Terms Modifications",
+          "content": "Bien-Rentré reserves the right to modify these terms of use. Users will be informed of major changes by notification in the app or by email."
+        },
+        "8": {
+          "title": "Termination",
+          "content": "You can terminate your account at any time from the app settings. Bien-Rentré may suspend or terminate your access in case of violation of these terms."
+        },
+        "9": {
+          "title": "Applicable Law",
+          "content": "These terms of use are governed by French law. Any dispute will be subject to the jurisdiction of French courts."
+        },
+        "10": {
+          "title": "Contact",
+          "content": "For any questions regarding these terms of use, contact us:",
+          "email": "contact@bienrentre.app"
+        }
+      },
+      "acceptance": "By using Bien-Rentré, you acknowledge having read, understood and accepted these terms of use.",
+      "backLink": "Back to home"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "meta": "Privacy Policy for the Bien-Rentré application - Protection and processing of your personal data",
+      "lastUpdated": "Last updated",
+      "intro": "This privacy policy explains how <strong>Bien-Rentré</strong> collects, uses, protects and processes your personal data when you use our mobile application. We are committed to respecting your privacy and protecting your data in accordance with the General Data Protection Regulation (GDPR)."
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",

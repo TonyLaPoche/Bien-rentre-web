@@ -137,6 +137,93 @@
     "lastUpdated": "Dernière mise à jour",
     "backToHome": "Retour à l'accueil"
   },
+  "legal": {
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "meta": "Conditions d'utilisation de l'application Bien-Rentré - Application de sécurité pour vos retours de soirée",
+      "lastUpdated": "Dernière mise à jour",
+      "welcome": "Bienvenue sur <strong>Bien-Rentré</strong>, une application mobile de sécurité conçue pour vous accompagner lors de vos déplacements nocturnes. En utilisant Bien-Rentré, vous acceptez les présentes conditions d'utilisation. Veuillez les lire attentivement.",
+      "sections": {
+        "1": {
+          "title": "Objet du service",
+          "content": "Bien-Rentré est une application mobile qui permet à ses utilisateurs de partager leur géolocalisation en temps réel avec des contacts de confiance lors de déplacements nocturnes. L'application offre une protection supplémentaire contre les risques liés aux trajets en soirée.",
+          "important": "Important : Bien-Rentré n'est pas un système d'alerte d'urgence officiel. En cas de situation dangereuse réelle, contactez immédiatement les services d'urgence appropriés (112, 911, etc.)."
+        },
+        "2": {
+          "title": "Conditions d'utilisation",
+          "age": {
+            "title": "Âge minimum",
+            "content": "L'utilisation de Bien-Rentré est réservée aux personnes âgées de 18 ans et plus. Les mineurs ne sont pas autorisés à utiliser l'application."
+          },
+          "responsible": {
+            "title": "Utilisation responsable",
+            "content": "Vous vous engagez à utiliser Bien-Rentré de manière responsable et conforme à sa finalité. L'application doit exclusivement servir à des fins de sécurité personnelle lors de déplacements nocturnes."
+          },
+          "accounts": {
+            "title": "Comptes utilisateur",
+            "content": "La création d'un compte nécessite des informations exactes et à jour. Vous êtes responsable de la confidentialité de vos identifiants de connexion."
+          }
+        },
+        "3": {
+          "title": "Fonctionnalités et limitations",
+          "location": {
+            "title": "Partage de géolocalisation",
+            "content": "L'application utilise les services de géolocalisation de votre appareil mobile. Vous contrôlez entièrement l'activation et la désactivation du partage de votre position."
+          },
+          "contacts": {
+            "title": "Contacts de confiance",
+            "content": "Vous pouvez désigner un nombre limité de contacts autorisés à suivre votre trajet. Ces contacts doivent avoir donné leur accord préalable."
+          },
+          "responsibilities": {
+            "title": "Responsabilités",
+            "list": [
+              "Bien-Rentré ne garantit pas une protection absolue contre tous les risques",
+              "L'application dépend de la couverture réseau et GPS de votre appareil",
+              "Vous êtes responsable de l'utilisation appropriée de l'application",
+              "L'équipe de Bien-Rentré n'est pas responsable des situations d'urgence"
+            ]
+          }
+        },
+        "4": {
+          "title": "Propriété intellectuelle",
+          "content": "L'application Bien-Rentré, ses fonctionnalités, son design, ses logos et tout contenu associé sont la propriété exclusive de leurs auteurs. Toute reproduction, distribution ou utilisation commerciale sans autorisation préalable est interdite."
+        },
+        "5": {
+          "title": "Protection des données",
+          "content": "Le traitement de vos données personnelles est régi par notre <a href=\"privacy.html\">Politique de confidentialité</a>, conforme au RGPD. Vos données de géolocalisation ne sont partagées qu'avec les contacts que vous avez explicitement autorisés."
+        },
+        "6": {
+          "title": "Disponibilité du service",
+          "content": "Bien-Rentré s'efforce de maintenir une disponibilité optimale de ses services, mais ne peut garantir un fonctionnement ininterrompu. Des interruptions peuvent survenir pour maintenance ou raisons techniques."
+        },
+        "7": {
+          "title": "Modifications des conditions",
+          "content": "Bien-Rentré se réserve le droit de modifier ces conditions d'utilisation. Les utilisateurs seront informés des changements majeurs par notification dans l'application ou par email."
+        },
+        "8": {
+          "title": "Résiliation",
+          "content": "Vous pouvez résilier votre compte à tout moment depuis les paramètres de l'application. Bien-Rentré peut suspendre ou résilier votre accès en cas de violation des présentes conditions."
+        },
+        "9": {
+          "title": "Droit applicable",
+          "content": "Ces conditions d'utilisation sont régies par le droit français. Tout litige sera soumis à la compétence des tribunaux français."
+        },
+        "10": {
+          "title": "Contact",
+          "content": "Pour toute question concernant ces conditions d'utilisation, contactez-nous :",
+          "email": "contact@bienrentre.app"
+        }
+      },
+      "acceptance": "En utilisant Bien-Rentré, vous reconnaissez avoir lu, compris et accepté les présentes conditions d'utilisation.",
+      "backLink": "Retour à l'accueil"
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "meta": "Politique de confidentialité de l'application Bien-Rentré - Protection et traitement de vos données personnelles",
+      "lastUpdated": "Dernière mise à jour",
+      "intro": "Cette politique de confidentialité explique comment <strong>Bien-Rentré</strong> collecte, utilise, protège et traite vos données personnelles lorsque vous utilisez notre application mobile. Nous nous engageons à respecter votre vie privée et à protéger vos données conformément au Règlement Général sur la Protection des Données (RGPD)."
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Erreur",
