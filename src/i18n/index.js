@@ -120,6 +120,7 @@ export const messages = {
       },
       retention: {
         title: '6. Durée de conservation',
+        content: 'Données de géolocalisation : Supprimées automatiquement à la fin de chaque session de partage ou au maximum après 24 heures d\'inactivité. Données de contact : Conservées pendant 2 ans maximum après traitement de votre demande, puis supprimées automatiquement.',
         location: {
           title: 'Données de géolocalisation',
           content: 'Supprimées automatiquement à la fin de chaque session de partage ou au maximum après 24 heures d\'inactivité.'
