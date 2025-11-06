@@ -1,0 +1,28 @@
+# Configuration for GitHub Pages
+# This file tells GitHub Pages to treat this as a Jekyll site
+# But since we're using plain HTML, it will just serve static files
+
+# Site settings
+title: "Bien-Rentré - Sécurité pour vos retours de soirée"
+description: "Application mobile de sécurité qui vous permet de partager votre géolocalisation en temps réel avec un contact de confiance lors de vos déplacements nocturnes."
+url: "https://votre-username.github.io"  # Remplacer par votre URL GitHub Pages
+baseurl: "/bienrentre-vitrine"  # Remplacer par le nom de votre repo
+
+# Build settings (ignored for static HTML)
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from processing (keep all files)
+exclude: []
+
+# Include files that should be processed
+include: []
+
+# Plugins (none needed for static HTML)
+plugins: []
+
+# Collections (none needed)
+collections: {}
+
+# Permalinks
+permalink: pretty
