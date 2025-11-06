@@ -58,29 +58,34 @@ export const SUCCESS_MESSAGES = {
     FORM_VALID: 'Formulaire valide'
 };
 
-// État des FAQ
+// État des FAQ - IDs correspondent aux clés de traduction
 export const FAQ_DATA = [
     {
+        id: 'emergency',
         question: 'Est-ce que Bien-Rentré est un système d\'alerte d\'urgence ?',
         answer: 'Non, Bien-Rentré n\'est pas un système d\'alerte d\'urgence officiel. C\'est un outil de prévention qui permet de partager votre position avec des contacts de confiance pour des déplacements nocturnes. En cas d\'urgence réelle, contactez immédiatement les services d\'urgence appropriés (112, 911, etc.).',
         isOpen: false
     },
     {
+        id: 'dataProtection',
         question: 'Comment mes données de localisation sont-elles protégées ?',
         answer: 'Vos données de géolocalisation ne sont partagées qu\'avec les contacts que vous avez explicitement autorisés. Elles sont chiffrées et stockées temporairement pendant la session active. Nous respectons pleinement le RGPD et nos pratiques sont détaillées dans notre politique de confidentialité.',
         isOpen: false
     },
     {
+        id: 'offline',
         question: 'L\'application fonctionne-t-elle hors ligne ?',
         answer: 'Bien-Rentré nécessite une connexion internet pour partager la géolocalisation en temps réel. Cependant, l\'application peut détecter la perte de connexion et notifier votre contact en cas d\'interruption du signal GPS.',
         isOpen: false
     },
     {
+        id: 'contacts',
         question: 'Combien de contacts puis-je ajouter ?',
         answer: 'Dans la version gratuite, vous pouvez ajouter jusqu\'à 3 contacts de confiance. La version premium permet un nombre illimité de contacts simultanés.',
         isOpen: false
     },
     {
+        id: 'accuracy',
         question: 'Quelle est la précision de la géolocalisation ?',
         answer: 'L\'application utilise le GPS intégré de votre smartphone avec une précision généralement de 5 à 10 mètres. La précision peut varier selon les conditions météorologiques et la couverture réseau.',
         isOpen: false

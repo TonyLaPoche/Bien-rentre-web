@@ -5,6 +5,7 @@
 export class FAQItem {
     /**
      * @param {Object} data
+     * @param {string} [data.id] - ID optionnel, sinon généré automatiquement
      * @param {string} data.question
      * @param {string} data.answer
      * @param {boolean} [data.isOpen=false]
@@ -13,7 +14,7 @@ export class FAQItem {
         this.question = data.question;
         this.answer = data.answer;
         this.isOpen = data.isOpen || false;
-        this.id = this.generateId();
+        this.id = data.id || this.generateId();
     }
 
     /**

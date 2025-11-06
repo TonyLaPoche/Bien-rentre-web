@@ -150,8 +150,6 @@ export class FAQController {
     rebindFAQEvents() {
         if (!this.faqContainer) return;
 
-        console.log('Réattachement des événements FAQ après traduction');
-
         // Supprimer tous les événements existants en reclonant les éléments
         const faqQuestions = this.faqContainer.querySelectorAll('.faq-question');
         faqQuestions.forEach(question => {
@@ -246,7 +244,14 @@ export class FAQController {
             className: CSS_CLASSES.FAQ.QUESTION
         });
 
-        const questionH3 = DOMHelper.createElement('h3', {}, faqItem.question);
+        // Utiliser les clés de traduction au lieu des textes statiques
+        const questionKey = `faq.questions.${faqItem.id}.question`;
+        const answerKey = `faq.questions.${faqItem.id}.answer`;
+
+        const questionH3 = DOMHelper.createElement('h3', {
+            'data-i18n': questionKey
+        }, faqItem.question);
+
         const toggleElement = DOMHelper.createElement('span', {
             className: CSS_CLASSES.FAQ.TOGGLE
         }, faqItem.isOpen ? '−' : '+');
@@ -258,7 +263,9 @@ export class FAQController {
             className: CSS_CLASSES.FAQ.ANSWER
         });
 
-        const answerP = DOMHelper.createElement('p', {}, faqItem.answer);
+        const answerP = DOMHelper.createElement('p', {
+            'data-i18n': answerKey
+        }, faqItem.answer);
         answerElement.appendChild(answerP);
 
         faqItemElement.appendChild(questionElement);
