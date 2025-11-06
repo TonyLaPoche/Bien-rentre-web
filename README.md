@@ -60,8 +60,10 @@ src/
 - **Langues supportées** : Français 🇫🇷, Anglais 🇺🇸
 - **Détection automatique** : Basée sur la langue du navigateur
 - **Sauvegarde persistante** : Préférence utilisateur sauvegardée
-- **Sélecteur intégré** : Dans la barre de navigation
+- **Sélecteur intégré** : Dans la barre de navigation avec drapeaux
 - **Architecture complète** : Service, repository, use cases dédiés
+- **Attributs data-i18n** : Tous les textes statiques sont traduisibles
+- **Événements** : Changement de langue avec notifications utilisateur
 
 ### Construction du bundle :
 ```bash
