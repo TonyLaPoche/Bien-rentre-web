@@ -12,12 +12,25 @@ Ce projet suit les principes de **Clean Architecture** et **Clean Code** pour un
 
 ```
 src/
-├── domain/           # Règles métier (Entities, Services, Repositories)
-├── application/      # Use Cases - Orchestration métier
-├── infrastructure/   # Interfaces externes (API, DOM, Storage)
-├── presentation/     # Interface utilisateur (Controllers)
-├── shared/           # Utilitaires et constantes partagés
-└── main.js          # Point d'entrée avec injection de dépendances
+├── domain/                    # Règles métier
+│   ├── entities/             # Objets métier (ContactForm, FAQItem, ValidationResult)
+│   ├── services/             # Services métier (FormValidationService, FAQService)
+│   └── repositories/         # Interfaces de données (IEmailRepository, ILocalStorageRepository)
+├── application/              # Cas d'usage
+│   └── useCases/             # Orchestration métier (SendContactEmail, ManageFAQ)
+├── infrastructure/           # Interfaces externes
+│   ├── api/                  # Adaptateurs API (EmailJSAdapter)
+│   ├── storage/              # Stockage local (LocalStorageAdapter)
+│   └── ui/                   # Utilitaires UI (DOMHelper, EventManager)
+├── presentation/             # Interface utilisateur
+│   ├── components/           # Composants réutilisables (Modal, LoadingSpinner, Notification)
+│   ├── controllers/          # Contrôleurs (ContactFormController, FAQController)
+│   └── pages/                # Contrôleurs de pages (HomePage, LegalPage)
+├── shared/                   # Utilitaires partagés
+│   ├── constants/            # Constantes et configuration
+│   ├── types/                # Définitions de types
+│   └── utils/                # Utilitaires généraux (formatage, validation, DOM, etc.)
+└── main.js                   # Point d'entrée avec injection de dépendances
 ```
 
 ### Principes appliqués :
@@ -27,9 +40,24 @@ src/
 - **DRY (Don't Repeat Yourself)** : Pas de duplication de code
 - **Single Responsibility** : Une classe = une responsabilité
 
+### Composants disponibles :
+- **Modal** : Fenêtres modales réutilisables avec gestion d'événements
+- **LoadingSpinner** : Indicateurs de chargement personnalisables
+- **Notification** : Système de notifications toast (succès, erreur, avertissement, info)
+
+### Utilitaires fournis :
+- **formatUtils** : Formatage de dates, textes, URLs
+- **validationUtils** : Validation d'emails, téléphones, données
+- **arrayUtils** : Manipulation de tableaux (shuffle, groupBy, sortBy)
+- **domUtils** : Helpers DOM (query, events, animations)
+- **eventUtils** : Gestion d'événements personnalisés
+- **apiUtils** : Requêtes HTTP et gestion d'URLs
+- **storageUtils** : Stockage local sécurisé
+- **performanceUtils** : Mesure de performance et lazy loading
+
 ### Construction du bundle :
 ```bash
-node build.js  # Génère script.js à partir des modules ES6
+node build.js  # Génère script.js à partir des modules ES6 (156.70 KB)
 ```
 
 ## 🚀 Déploiement sur GitHub Pages
