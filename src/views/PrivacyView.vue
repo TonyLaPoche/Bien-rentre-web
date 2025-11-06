@@ -16,9 +16,20 @@
 
       <main class="page-content">
         <section class="legal-section">
-          <h2 class="section-title">1. Data Controller</h2>
+          <h2 class="section-title">{{ $t('privacy.controller.title') }}</h2>
           <div class="section-content">
-            <p>Privacy policy content coming soon...</p>
+            <p>{{ $t('privacy.controller.content') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.data.title') }}</h2>
+          <div class="section-content">
+            <div class="highlight-box">
+              <h3>{{ $t('privacy.data.location.title') }}</h3>
+              <p>{{ $t('privacy.data.location.content') }}</p>
+            </div>
+            <p>{{ $t('privacy.data.note') }}</p>
           </div>
         </section>
       </main>
