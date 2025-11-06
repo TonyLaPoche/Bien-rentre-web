@@ -62,6 +62,44 @@
             </ul>
           </div>
         </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.recipients.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('privacy.recipients.content') }}</p>
+            <p>{{ $t('privacy.recipients.support') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.retention.title') }}</h2>
+          <div class="section-content">
+            <div class="highlight-box">
+              <h3>{{ $t('privacy.retention.location.title') }}</h3>
+              <p>{{ $t('privacy.retention.location.content') }}</p>
+            </div>
+
+            <div class="highlight-box">
+              <h3>{{ $t('privacy.retention.contact.title') }}</h3>
+              <p>{{ $t('privacy.retention.contact.content') }}</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.rights.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('privacy.rights.content') }}</p>
+            <ul>
+              <li>{{ $t('privacy.rights.list1') }}</li>
+              <li>{{ $t('privacy.rights.list2') }}</li>
+              <li>{{ $t('privacy.rights.list3') }}</li>
+              <li>{{ $t('privacy.rights.list4') }}</li>
+              <li>{{ $t('privacy.rights.list5') }}</li>
+            </ul>
+            <p>{{ $t('privacy.rights.contact') }}</p>
+          </div>
+        </section>
       </main>
 
       <div class="contact-section">
