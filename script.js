@@ -1,6 +1,6 @@
 /**
  * Bundle Bien-Rentré - Généré automatiquement
- * Date: 2025-11-06T17:03:43.781Z
+ * Date: 2025-11-06T17:06:17.635Z
  */
 
 
@@ -3079,9 +3079,11 @@ class ContactFormController {
 class FAQController {
     /**
      * @param {ManageFAQ} manageFAQUseCase
+     * @param {TranslationService} translationService
      */
-    constructor(manageFAQUseCase) {
+    constructor(manageFAQUseCase, translationService) {
         this.manageFAQUseCase = manageFAQUseCase;
+        this.translationService = translationService;
         this.faqContainer = null;
         this.faqItems = [];
         this.init();
@@ -3124,8 +3126,13 @@ class FAQController {
      */
     initializeFAQ() {
         this.loadFAQ();
+        this.renderFAQ();
         this.bindEvents();
-        console.log('FAQ Controller initialized with translations');
+
+        // Déclencher la mise à jour des traductions pour les nouveaux éléments
+        setTimeout(() => {
+            this.updateTranslations();
+        }, 10);
     }
 
     /**
@@ -3272,6 +3279,28 @@ class FAQController {
     }
 
     /**
+     * Met à jour les traductions des éléments FAQ
+     */
+    updateTranslations() {
+        if (!this.faqContainer) return;
+
+        // Trouver tous les éléments avec data-i18n dans le conteneur FAQ
+        const elementsWithI18n = this.faqContainer.querySelectorAll('[data-i18n]');
+
+        elementsWithI18n.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+
+            // Utiliser le service de traduction pour obtenir la traduction
+            if (this.translationService && this.translationService.translate) {
+                const translation = this.translationService.translate(key);
+                if (translation && translation !== key) {
+                    element.textContent = translation;
+                }
+            }
+        });
+    }
+
+    /**
      * Recherche dans les FAQ
      * @param {string} query
      */
@@ -3302,6 +3331,7 @@ class FAQController {
      * @returns {Element}
      */
     createFAQElement(faqItem) {
+
         const faqItemElement = DOMHelper.createElement('div', {
             className: `faq-item ${faqItem.isOpen ? CSS_CLASSES.FAQ.ACTIVE : ''}`,
             'data-faq-id': faqItem.id
@@ -3317,7 +3347,7 @@ class FAQController {
 
         const questionH3 = DOMHelper.createElement('h3', {
             'data-i18n': questionKey
-        }, faqItem.question);
+        });
 
         const toggleElement = DOMHelper.createElement('span', {
             className: CSS_CLASSES.FAQ.TOGGLE
@@ -3332,7 +3362,7 @@ class FAQController {
 
         const answerP = DOMHelper.createElement('p', {
             'data-i18n': answerKey
-        }, faqItem.answer);
+        });
         answerElement.appendChild(answerP);
 
         faqItemElement.appendChild(questionElement);
@@ -7247,7 +7277,8 @@ class BienRentreApp {
 
         // Controller pour les FAQ
         this.controllers.faq = new FAQController(
-            this.useCases.manageFAQ
+            this.useCases.manageFAQ,
+            this.repositories.translation
         );
 
         // Controller pour la navigation

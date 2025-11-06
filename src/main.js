@@ -162,7 +162,8 @@ class BienRentreApp {
 
         // Controller pour les FAQ
         this.controllers.faq = new FAQController(
-            this.useCases.manageFAQ
+            this.useCases.manageFAQ,
+            this.repositories.translation
         );
 
         // Controller pour la navigation
