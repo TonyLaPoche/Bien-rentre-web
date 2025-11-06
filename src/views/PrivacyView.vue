@@ -29,7 +29,37 @@
               <h3>{{ $t('privacy.data.location.title') }}</h3>
               <p>{{ $t('privacy.data.location.content') }}</p>
             </div>
+
+            <div class="highlight-box">
+              <h3>{{ $t('privacy.data.contact.title') }}</h3>
+              <p>{{ $t('privacy.data.contact.content') }}</p>
+            </div>
+
             <p>{{ $t('privacy.data.note') }}</p>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.purpose.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('privacy.purpose.content') }}</p>
+            <ul>
+              <li>{{ $t('privacy.purpose.list1') }}</li>
+              <li>{{ $t('privacy.purpose.list2') }}</li>
+              <li>{{ $t('privacy.purpose.list3') }}</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="legal-section">
+          <h2 class="section-title">{{ $t('privacy.legal.title') }}</h2>
+          <div class="section-content">
+            <p>{{ $t('privacy.legal.content') }}</p>
+            <ul>
+              <li>{{ $t('privacy.legal.list1') }}</li>
+              <li>{{ $t('privacy.legal.list2') }}</li>
+              <li>{{ $t('privacy.legal.list3') }}</li>
+            </ul>
           </div>
         </section>
       </main>
