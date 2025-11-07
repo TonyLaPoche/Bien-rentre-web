@@ -10,6 +10,7 @@
       <!-- Menu desktop -->
       <div class="nav-menu">
         <a href="./#features" class="nav-link">{{ $t('nav.features') }}</a>
+        <router-link to="/soutenez-nous" class="nav-link">{{ $t('nav.support') }}</router-link>
         <a href="./#faq" class="nav-link">{{ $t('nav.contact') }}</a>
         <router-link to="/terms" class="nav-link">{{ $t('nav.terms') }}</router-link>
         <router-link to="/privacy" class="nav-link">{{ $t('nav.privacy') }}</router-link>
@@ -34,6 +35,7 @@
     <!-- Menu mobile -->
     <div class="nav-mobile" :class="{ 'nav-mobile--open': mobileMenuOpen }">
       <a href="#features" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.features') }}</a>
+      <router-link to="/soutenez-nous" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.support') }}</router-link>
       <a href="#faq" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.contact') }}</a>
       <router-link to="/terms" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.terms') }}</router-link>
       <router-link to="/privacy" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.privacy') }}</router-link>
@@ -184,7 +186,7 @@ const closeMobileMenu = () => {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .nav-menu {
     display: none;
   }

@@ -8,7 +8,7 @@
           <p class="hero-description">{{ $t('hero.description') }}</p>
 
           <div class="hero-buttons">
-            <button class="btn btn-primary">{{ $t('hero.download') }}</button>
+            <router-link to="/soutenez-nous" class="btn btn-primary">{{ $t('hero.support') }}</router-link>
             <button class="btn btn-secondary" @click="scrollToFeatures">{{ $t('hero.learnMore') }}</button>
           </div>
         </div>
