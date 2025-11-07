@@ -49,9 +49,16 @@ const { t } = useI18n()
 // État pour suivre quelles FAQ sont ouvertes
 const openStates = ref({
   emergency: false,
-  dataProtection: false,
   offline: false,
   contacts: false,
+  emergencyActivation: false,
+  networkLoss: false,
+  storageDuration: false,
+  compatibility: false,
+  dualRole: false,
+  sharingInitiation: false,
+  economic: false,
+  dataProtection: false,
   accuracy: false
 })
 
@@ -62,11 +69,6 @@ const faqItems = computed(() => ({
     answer: t('faq.questions.emergency.answer'),
     isOpen: openStates.value.emergency
   },
-  dataProtection: {
-    question: t('faq.questions.dataProtection.question'),
-    answer: t('faq.questions.dataProtection.answer'),
-    isOpen: openStates.value.dataProtection
-  },
   offline: {
     question: t('faq.questions.offline.question'),
     answer: t('faq.questions.offline.answer'),
@@ -76,6 +78,46 @@ const faqItems = computed(() => ({
     question: t('faq.questions.contacts.question'),
     answer: t('faq.questions.contacts.answer'),
     isOpen: openStates.value.contacts
+  },
+  emergencyActivation: {
+    question: t('faq.questions.emergencyActivation.question'),
+    answer: t('faq.questions.emergencyActivation.answer'),
+    isOpen: openStates.value.emergencyActivation
+  },
+  networkLoss: {
+    question: t('faq.questions.networkLoss.question'),
+    answer: t('faq.questions.networkLoss.answer'),
+    isOpen: openStates.value.networkLoss
+  },
+  storageDuration: {
+    question: t('faq.questions.storageDuration.question'),
+    answer: t('faq.questions.storageDuration.answer'),
+    isOpen: openStates.value.storageDuration
+  },
+  compatibility: {
+    question: t('faq.questions.compatibility.question'),
+    answer: t('faq.questions.compatibility.answer'),
+    isOpen: openStates.value.compatibility
+  },
+  dualRole: {
+    question: t('faq.questions.dualRole.question'),
+    answer: t('faq.questions.dualRole.answer'),
+    isOpen: openStates.value.dualRole
+  },
+  sharingInitiation: {
+    question: t('faq.questions.sharingInitiation.question'),
+    answer: t('faq.questions.sharingInitiation.answer'),
+    isOpen: openStates.value.sharingInitiation
+  },
+  economic: {
+    question: t('faq.questions.economic.question'),
+    answer: t('faq.questions.economic.answer'),
+    isOpen: openStates.value.economic
+  },
+  dataProtection: {
+    question: t('faq.questions.dataProtection.question'),
+    answer: t('faq.questions.dataProtection.answer'),
+    isOpen: openStates.value.dataProtection
   },
   accuracy: {
     question: t('faq.questions.accuracy.question'),
