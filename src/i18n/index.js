@@ -17,6 +17,7 @@ export const messages = {
       home: 'Accueil',
       features: 'Fonctionnalités',
       support: 'Soutenez-nous',
+      faq: 'FAQ',
       contact: 'Contact',
       terms: 'Conditions d\'utilisation',
       privacy: 'Politique de confidentialité'
@@ -340,6 +341,7 @@ export const messages = {
       home: 'Home',
       features: 'Features',
       support: 'Support Us',
+      faq: 'FAQ',
       contact: 'Contact',
       terms: 'Terms of Use',
       privacy: 'Privacy Policy'
