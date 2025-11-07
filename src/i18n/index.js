@@ -198,20 +198,24 @@ export const messages = {
       subtitle: 'Tout ce que vous devez savoir sur Bien-Rentré',
       questions: {
         emergency: {
-          question: 'Est-ce que Bien-Rentré est un système d\'alerte d\'urgence ?',
-          answer: 'Non, Bien-Rentré n\'est pas un système d\'alerte d\'urgence officiel. C\'est un outil de prévention qui permet de partager votre position avec des contacts de confiance pour des déplacements nocturnes. En cas d\'urgence réelle, contactez immédiatement les services d\'urgence appropriés (112, 911, etc.).'
+          question: 'Bien-Rentré est-il un système d\'alerte d\'urgence ?',
+          answer: 'Oui et non. Bien-Rentré n\'alerte pas directement les autorités compétentes, mais informe vos proches de votre position en temps réel, du pourcentage de batterie restant et de la qualité du réseau. Par exemple, en cas d\'accident de la route ou de panne, vous pouvez envoyer une alerte manuellement à votre entourage. Si vous rentrez à pied et pensez être suivi(e), un raccourci caché dans l\'app permet d\'alerter vos garants instantanément. L\'historique de votre trajet sera sauvegardé et pourra être transmis aux autorités si nécessaire. Le partage s\'arrête automatiquement à votre domicile (bientôt détecté via votre WiFi). Nous travaillons à améliorer ce principe de sécurité.'
+        },
+        offline: {
+          question: 'L\'application fonctionne-t-elle hors ligne ?',
+          answer: 'Non, Bien-Rentré nécessite une connexion internet. Cependant, si vous partagez votre position avec un garant, il verra en temps réel votre localisation, le pourcentage de batterie restant et la qualité de votre réseau. Nous ajouterons des fonctionnalités intelligentes qui enverront automatiquement des notifications au garant lorsque votre batterie est faible ou que la couverture réseau diminue.'
+        },
+        contacts: {
+          question: 'Combien de contacts puis-je ajouter ?',
+          answer: 'Dans la version gratuite, vous pouvez ajouter autant de personnes que vous souhaitez pour les contacts de confiance. Cependant, pour le suivi en temps réel lors d\'un retour, une seule personne peut vous suivre avec un rafraîchissement toutes les 30 secondes. Si le garant est premium, il peut ajouter autant de contacts qu\'il souhaite avec un rafraîchissement de 15 secondes. Si les deux (partant et garant) sont premium, le taux passe à 5 secondes de rafraîchissement.'
+        },
+        economic: {
+          question: 'Quel sera le modèle économique de Bien-Rentré ?',
+          answer: 'Nous estimons que ce service devrait être d\'utilité publique, c\'est pourquoi nous le fournirons même sans revenus. Cependant, nous prévoyons un système d\'abonnement premium offrant : suivi par plusieurs personnes simultanément, suppression des publicités, rafraîchissement plus fréquent des positions, alertes intelligentes, et notifications sur les zones de trajet (par exemple, alerter le garant du pourcentage de distance restante avant l\'arrivée).'
         },
         dataProtection: {
           question: 'Comment mes données de localisation sont-elles protégées ?',
           answer: 'Vos données de géolocalisation ne sont partagées qu\'avec les contacts que vous avez explicitement autorisés. Elles sont chiffrées et stockées temporairement pendant la session active. Nous respectons pleinement le RGPD et nos pratiques sont détaillées dans notre politique de confidentialité.'
-        },
-        offline: {
-          question: 'L\'application fonctionne-t-elle hors ligne ?',
-          answer: 'Bien-Rentré nécessite une connexion internet pour partager la géolocalisation en temps réel. Cependant, l\'application peut détecter la perte de connexion et notifier votre contact en cas d\'interruption du signal GPS.'
-        },
-        contacts: {
-          question: 'Combien de contacts puis-je ajouter ?',
-          answer: 'Dans la version gratuite, vous pouvez ajouter jusqu\'à 3 contacts de confiance. La version premium permet un nombre illimité de contacts simultanés.'
         },
         accuracy: {
           question: 'Quelle est la précision de la géolocalisation ?',
@@ -523,19 +527,23 @@ export const messages = {
       questions: {
         emergency: {
           question: 'Is Bien-Rentré an emergency alert system?',
-          answer: 'No, Bien-Rentré is not an official emergency alert system. It is a prevention tool that allows you to share your position with trusted contacts for nighttime travel. In case of real emergency, immediately contact the appropriate emergency services (112, 911, etc.).'
+          answer: 'Yes and no. Bien-Rentré does not directly alert competent authorities, but it informs your loved ones of your real-time position, remaining battery percentage, and network quality. For example, in case of a car accident or breakdown, you can manually send an alert to your entourage. If you\'re walking home and feel you\'re being followed, a hidden shortcut in the app allows you to instantly alert your guarantors. Your journey history will be saved and can be transmitted to authorities if needed. Location sharing automatically stops at your home (soon detected via your home WiFi). We are working to greatly improve this safety principle.'
+        },
+        offline: {
+          question: 'Does the app work offline?',
+          answer: 'No, Bien-Rentré requires an internet connection. However, if you share your location with a guarantor, they will see in real-time your location, remaining battery percentage, and network quality. We will add smart features that automatically send notifications to the guarantor when your battery is low or network coverage is poor.'
+        },
+        contacts: {
+          question: 'How many contacts can I add?',
+          answer: 'In the free version, you can add as many people as you want for trusted contacts. However, for real-time tracking during a return journey, only one person can follow you with a position refresh every 30 seconds. If the guarantor is premium, they can add as many contacts as they want with a 15-second refresh rate. If both (sender and guarantor) are premium, the refresh rate drops to 5 seconds.'
+        },
+        economic: {
+          question: 'What will be the economic model of Bien-Rentré?',
+          answer: 'We believe this service should be a public utility, which is why we will provide it even without revenue. However, we plan a premium subscription system offering: tracking by multiple people simultaneously, removal of ads, more frequent position updates, intelligent alerts, and route zone notifications (for example, alerting the guarantor of the remaining distance percentage before arrival).'
         },
         dataProtection: {
           question: 'How is my location data protected?',
           answer: 'Your location data is only shared with contacts you have explicitly authorized. It is encrypted and temporarily stored during the active session. We fully comply with GDPR and our practices are detailed in our privacy policy.'
-        },
-        offline: {
-          question: 'Does the app work offline?',
-          answer: 'Bien-Rentré requires an internet connection to share real-time geolocation. However, the app can detect connection loss and notify your contact in case of GPS signal interruption.'
-        },
-        contacts: {
-          question: 'How many contacts can I add?',
-          answer: 'In the free version, you can add up to 3 trusted contacts. The premium version allows unlimited simultaneous contacts.'
         },
         accuracy: {
           question: 'What is the geolocation accuracy?',
