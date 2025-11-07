@@ -9,8 +9,8 @@
 
       <!-- Menu desktop -->
       <div class="nav-menu">
-        <a href="#features" class="nav-link">{{ $t('nav.features') }}</a>
-        <a href="#faq" class="nav-link">{{ $t('nav.contact') }}</a>
+        <a href="./#features" class="nav-link">{{ $t('nav.features') }}</a>
+        <a href="./#faq" class="nav-link">{{ $t('nav.contact') }}</a>
         <router-link to="/terms" class="nav-link">{{ $t('nav.terms') }}</router-link>
         <router-link to="/privacy" class="nav-link">{{ $t('nav.privacy') }}</router-link>
       </div>
