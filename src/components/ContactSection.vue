@@ -65,7 +65,7 @@
             <div class="info-icon">📧</div>
             <div class="info-content">
               <h4>Email</h4>
-              <p>contact@bienrentre.app</p>
+              <p>contact@antoineterrade.com</p>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@ const handleSubmit = async () => {
       from_title: form.title,
       from_email: form.email,
       message: form.message,
-      to_email: 'contact@bienrentre.app'
+      to_email: 'contact@antoineterrade.com'
     }
 
     // Simulation d'envoi (remplacer par l'appel réel EmailJS)

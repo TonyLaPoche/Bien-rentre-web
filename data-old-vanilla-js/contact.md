@@ -24,7 +24,7 @@ Envoyer le message
 ## Service email
 - **API utilisée** : EmailJS
 - **Configuration** : Service ID, Template ID, Public Key
-- **Destinataire** : contact@bienrentre.app
+- **Destinataire** : contact@antoineterrade.com
 
 ## Style
 - Formulaire centré avec ombre
