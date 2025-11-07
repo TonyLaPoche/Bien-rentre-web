@@ -211,7 +211,7 @@ const closeMobileMenu = () => {
 
 @media (max-width: 420px) {
   .brand-name {
-  font-size: 1rem;
-}
+    font-size: 1rem;
+  }
 }
 </style>
