@@ -16,6 +16,7 @@ export const messages = {
     nav: {
       home: 'Accueil',
       features: 'Fonctionnalités',
+      support: 'Soutenez-nous',
       contact: 'Contact',
       terms: 'Conditions d\'utilisation',
       privacy: 'Politique de confidentialité'
@@ -162,7 +163,7 @@ export const messages = {
       title: 'Bien-Rentré',
       subtitle: 'L\'application qui veille sur vos retours de soirée',
       description: 'Partagez votre position en temps réel avec vos contacts de confiance. Sécurité et tranquillité d\'esprit garantie.',
-      download: 'Télécharger',
+      support: 'Soutenez-nous',
       learnMore: 'En savoir plus'
     },
     features: {
@@ -230,6 +231,106 @@ export const messages = {
         error: 'Erreur lors de l\'envoi. Veuillez réessayer.'
       }
     },
+    support: {
+      title: 'Soutenez Bien-Rentré',
+      subtitle: 'Rejoignez notre aventure',
+      description: 'Bien-Rentré est un projet indépendant développé avec passion. Votre soutien nous permet de continuer à créer une application qui améliore la sécurité de chacun lors des déplacements nocturnes.',
+      status: {
+        title: 'Application en production',
+        description: 'Notre application est actuellement en phase de production. Les tests internes sont en cours et nous préparons le lancement officiel.'
+      },
+      team: {
+        title: 'Équipe indépendante',
+        description: 'Développé par un créateur solo avec l\'aide précieuse de deux bénévoles. Chaque contribution compte pour nous permettre de continuer.'
+      },
+      vision: {
+        title: 'Vision communautaire',
+        description: 'Notre objectif est de créer un outil accessible à tous, gratuit dans ses fonctionnalités essentielles, financé par la communauté.'
+      },
+      economic: {
+        title: 'Pourquoi ce modèle économique ?',
+        subtitle: 'Financement communautaire pour un impact social durable',
+        description: 'Bien-Rentré choisit délibérément un modèle de financement participatif plutôt que les capitaux-risque traditionnels. Cette approche nous permet de construire une relation authentique avec notre communauté et de développer le projet selon nos valeurs.',
+        social: {
+          title: 'Impact social positif',
+          content: 'Chaque contribution finance directement le développement d\'une solution qui améliore la sécurité nocturne. Contrairement aux levées de fonds classiques, votre soutien crée un cercle vertueux où la communauté bénéficie directement des avancées du projet.'
+        },
+        community: {
+          title: 'Construction d\'une communauté engagée',
+          content: 'Au-delà du financement, nous bâtissons une communauté de personnes qui croient en notre vision. Les supporters deviennent des acteurs essentiels du développement, participant aux décisions et contribuant à façonner l\'avenir du projet.'
+        },
+        startup: {
+          title: 'Fondation d\'une startup inclusive',
+          content: 'Notre ambition est de transformer Bien-Rentré en une véritable entreprise sociale. En finançant le développement de manière communautaire, nous pourrons embaucher nos bénévoles actuels à temps plein et accélérer considérablement la production.'
+        },
+        acceleration: {
+          title: 'Accélération du développement',
+          content: 'Chaque palier de soutien représente une étape vers l\'autonomie financière. Avec une communauté solide, nous pourrons investir dans les ressources nécessaires pour livrer une application de qualité supérieure dans les délais prévus.'
+        }
+      },
+      tiers: {
+        title: 'Les paliers de soutien',
+        description: 'Choisissez le niveau d\'engagement qui vous convient. Tous les soutiens sont essentiels pour le développement continu du projet.',
+        period: '/ mois',
+        popular: 'Le plus populaire',
+        vip: 'VIP',
+        join: 'Rejoindre ce palier',
+        concept: {
+          name: 'Soutien du concept',
+          description: 'Le palier essentiel qui permet à Bien-Rentré d\'exister et de se développer.',
+          benefit1: 'Contribution directe au développement',
+          benefit2: 'Accès aux mises à jour du projet',
+          benefit3: 'Reconnaissance dans les remerciements'
+        },
+        founding: {
+          name: 'Membre fondateur',
+          description: 'Devenez un acteur essentiel de l\'écosystème Bien-Rentré et participez à son évolution.',
+          benefit1: 'Accès au Discord privé des développeurs',
+          benefit2: 'Participation aux phases de test internes',
+          benefit3: 'Accès anticipé aux nouvelles fonctionnalités'
+        },
+        premium: {
+          name: 'Membre Premium',
+          description: 'Bénéficiez d\'avantages exclusifs et soutenez durablement le projet.',
+          benefit1: 'Tous les avantages des paliers précédents',
+          benefit2: 'Votre nom dans les crédits de l\'application',
+          benefit3: 'Accès Premium temporaire (6 mois) lors du lancement'
+        },
+        ambassador: {
+          name: 'Ambassadeur',
+          description: 'Devenez le porte-parole de Bien-Rentré et contribuez à sa visibilité.',
+          benefit1: 'Tous les avantages des paliers précédents',
+          benefit2: 'Code de parrainage personnel exclusif',
+          benefit3: 'Partage officiel des avancées sur les réseaux sociaux'
+        },
+        pillar: {
+          name: 'Pilier de communauté',
+          description: 'Un engagement fort pour soutenir la croissance de Bien-Rentré.',
+          benefit1: 'Participation aux réunions de développement',
+          benefit2: 'Accès prioritaire aux phases de test',
+          benefit3: 'Accès aux tests en dehors des créneaux normaux'
+        },
+        gold: {
+          name: 'Mentor stratégique',
+          description: 'Participez activement à la stratégie et au développement du projet.',
+          benefit1: 'Tous les avantages des paliers précédents',
+          benefit2: 'Conseils stratégiques sur le développement',
+          benefit3: 'Accès direct aux décisions importantes'
+        },
+        platinum: {
+          name: 'Partenaire privilégié',
+          description: 'Soutien ultime pour les visionnaires qui croient au potentiel de Bien-Rentré.',
+          benefit1: 'Tous les avantages des paliers précédents',
+          benefit2: 'Accès direct au développeur principal',
+          benefit3: 'Récompenses et avantages personnalisés'
+        }
+      },
+      cta: {
+        title: 'Prêt à nous rejoindre ?',
+        description: 'Chaque contribution, même la plus modeste, nous aide à améliorer Bien-Rentré et à le rendre accessible au plus grand nombre.',
+        button: 'Devenir supporter sur Patreon'
+      }
+    },
     footer: {
       copyright: 'Tous droits réservés.'
     }
@@ -238,6 +339,7 @@ export const messages = {
     nav: {
       home: 'Home',
       features: 'Features',
+      support: 'Support Us',
       contact: 'Contact',
       terms: 'Terms of Use',
       privacy: 'Privacy Policy'
@@ -384,7 +486,7 @@ export const messages = {
       title: 'Bien-Rentré',
       subtitle: 'The app that watches over your late-night returns',
       description: 'Share your real-time location with your trusted contacts. Guaranteed security and peace of mind.',
-      download: 'Download',
+      support: 'Support Us',
       learnMore: 'Learn More'
     },
     features: {
@@ -450,6 +552,106 @@ export const messages = {
         sending: 'Sending...',
         success: 'Message sent successfully!',
         error: 'Error sending message. Please try again.'
+      }
+    },
+    support: {
+      title: 'Support Bien-Rentré',
+      subtitle: 'Join our adventure',
+      description: 'Bien-Rentré is an independent project developed with passion. Your support allows us to continue creating an application that improves everyone\'s safety during nighttime travel.',
+      status: {
+        title: 'App in production',
+        description: 'Our application is currently in production phase. Internal testing is underway and we are preparing for the official launch.'
+      },
+      team: {
+        title: 'Independent team',
+        description: 'Developed by a solo creator with the valuable help of two volunteers. Every contribution counts to allow us to continue.'
+      },
+      vision: {
+        title: 'Community vision',
+        description: 'Our goal is to create a tool accessible to everyone, free in its essential features, funded by the community.'
+      },
+      economic: {
+        title: 'Why this economic model?',
+        subtitle: 'Community funding for sustainable social impact',
+        description: 'Bien-Rentré deliberately chooses a participatory funding model rather than traditional venture capital. This approach allows us to build an authentic relationship with our community and develop the project according to our values.',
+        social: {
+          title: 'Positive social impact',
+          content: 'Every contribution directly funds the development of a solution that improves nighttime safety. Unlike traditional fundraising, your support creates a virtuous circle where the community directly benefits from project advances.'
+        },
+        community: {
+          title: 'Building an engaged community',
+          content: 'Beyond funding, we are building a community of people who believe in our vision. Supporters become essential actors in development, participating in decisions and contributing to shaping the project\'s future.'
+        },
+        startup: {
+          title: 'Founding an inclusive startup',
+          content: 'Our ambition is to transform Bien-Rentré into a real social enterprise. By funding development in a community way, we will be able to hire our current volunteers full-time and significantly accelerate production.'
+        },
+        acceleration: {
+          title: 'Accelerating development',
+          content: 'Each support tier represents a step toward financial autonomy. With a strong community, we will be able to invest in the necessary resources to deliver a superior quality application within the planned timelines.'
+        }
+      },
+      tiers: {
+        title: 'Support tiers',
+        description: 'Choose the level of commitment that suits you. All support is essential for the continuous development of the project.',
+        period: '/ month',
+        popular: 'Most popular',
+        vip: 'VIP',
+        join: 'Join this tier',
+        concept: {
+          name: 'Concept supporter',
+          description: 'The essential tier that allows Bien-Rentré to exist and grow.',
+          benefit1: 'Direct contribution to development',
+          benefit2: 'Access to project updates',
+          benefit3: 'Recognition in acknowledgments'
+        },
+        founding: {
+          name: 'Founding member',
+          description: 'Become an essential actor in the Bien-Rentré ecosystem and participate in its evolution.',
+          benefit1: 'Access to private developer Discord',
+          benefit2: 'Participation in internal testing phases',
+          benefit3: 'Early access to new features'
+        },
+        premium: {
+          name: 'Premium member',
+          description: 'Enjoy exclusive benefits and support the project sustainably.',
+          benefit1: 'All benefits from previous tiers',
+          benefit2: 'Your name in the app credits',
+          benefit3: 'Temporary Premium access (6 months) at launch'
+        },
+        ambassador: {
+          name: 'Ambassador',
+          description: 'Become Bien-Rentré\'s spokesperson and contribute to its visibility.',
+          benefit1: 'All benefits from previous tiers',
+          benefit2: 'Exclusive personal referral code',
+          benefit3: 'Official sharing of progress on social media'
+        },
+        pillar: {
+          name: 'Community pillar',
+          description: 'Strong commitment to support Bien-Rentré\'s growth.',
+          benefit1: 'Participation in development meetings',
+          benefit2: 'Priority access to testing phases',
+          benefit3: 'Access to testing outside normal slots'
+        },
+        gold: {
+          name: 'Strategic mentor',
+          description: 'Actively participate in the strategy and development of the project.',
+          benefit1: 'All benefits from previous tiers',
+          benefit2: 'Strategic advice on development',
+          benefit3: 'Direct access to important decisions'
+        },
+        platinum: {
+          name: 'Privileged partner',
+          description: 'Ultimate support for visionaries who believe in Bien-Rentré\'s potential.',
+          benefit1: 'All benefits from previous tiers',
+          benefit2: 'Direct access to the lead developer',
+          benefit3: 'Personalized rewards and benefits'
+        }
+      },
+      cta: {
+        title: 'Ready to join us?',
+        description: 'Every contribution, even the most modest, helps us improve Bien-Rentré and make it accessible to as many people as possible.',
+        button: 'Become a supporter on Patreon'
       }
     },
     footer: {
