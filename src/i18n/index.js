@@ -209,6 +209,30 @@ export const messages = {
           question: 'Combien de contacts puis-je ajouter ?',
           answer: 'Dans la version gratuite, vous pouvez ajouter autant de personnes que vous souhaitez pour les contacts de confiance. Cependant, pour le suivi en temps réel lors d\'un retour, une seule personne peut vous suivre avec un rafraîchissement toutes les 30 secondes. Si le garant est premium, il peut ajouter autant de contacts qu\'il souhaite avec un rafraîchissement de 15 secondes. Si les deux (partant et garant) sont premium, le taux passe à 5 secondes de rafraîchissement.'
         },
+        emergencyActivation: {
+          question: 'Comment activer une alerte d\'urgence ?',
+          answer: 'Vous pouvez activer une alerte d\'urgence de deux façons : soit via un code secret dans l\'app (combinaison "-" et "vérouillage" - fonctionnalité en développement), soit en secouant vigoureusement votre téléphone. L\'alerte informera immédiatement vos garants de la situation avec votre position actuelle.'
+        },
+        networkLoss: {
+          question: 'Que se passe-t-il en cas de perte de réseau pendant un trajet ?',
+          answer: 'Si vous perdez la connexion réseau, vos garants recevront automatiquement une notification indiquant la perte de réseau, accompagnée de votre dernière position connue. Cela leur permet de savoir que vous pourriez être dans une zone sans couverture.'
+        },
+        storageDuration: {
+          question: 'Combien de temps les historiques de trajet sont-ils conservés ?',
+          answer: 'Les historiques de trajet sont stockés 15 jours sur nos serveurs sécurisés, puis restent disponibles localement sur l\'appareil de vos garants. Cette approche garantit la confidentialité tout en permettant l\'accès aux données importantes si nécessaire.'
+        },
+        compatibility: {
+          question: 'L\'application est-elle compatible iOS et Android ?',
+          answer: 'Oui, nous développons Bien-Rentré pour être compatible avec les deux principaux systèmes d\'exploitation mobiles : iOS et Android. L\'objectif est d\'offrir la même expérience utilisateur sur toutes les plateformes.'
+        },
+        dualRole: {
+          question: 'Puis-je être à la fois garant et utilisateur de l\'app ?',
+          answer: 'Bien sûr ! Cependant, un avertissement s\'affichera avant de lancer un trajet si vous êtes déjà garant pour quelqu\'un d\'autre. Cela vous rappellera la double consommation de données et, si vous conduisez, l\'importance de ne pas utiliser votre téléphone au volant pour des raisons de sécurité.'
+        },
+        sharingInitiation: {
+          question: 'Comment initier un partage de position ?',
+          answer: 'Pour partager votre position : sélectionnez votre contact de confiance, définissez votre zone de retour et votre moyen de transport. L\'app génère alors un code unique que vous transmettez à votre contact. Ce dernier saisit le code dans son app, et une vérification par numéro de téléphone confirme la connexion sécurisée.'
+        },
         economic: {
           question: 'Quel sera le modèle économique de Bien-Rentré ?',
           answer: 'Nous estimons que ce service devrait être d\'utilité publique, c\'est pourquoi nous le fournirons même sans revenus. Cependant, nous prévoyons un système d\'abonnement premium offrant : suivi par plusieurs personnes simultanément, suppression des publicités, rafraîchissement plus fréquent des positions, alertes intelligentes, et notifications sur les zones de trajet (par exemple, alerter le garant du pourcentage de distance restante avant l\'arrivée).'
@@ -536,6 +560,30 @@ export const messages = {
         contacts: {
           question: 'How many contacts can I add?',
           answer: 'In the free version, you can add as many people as you want for trusted contacts. However, for real-time tracking during a return journey, only one person can follow you with a position refresh every 30 seconds. If the guarantor is premium, they can add as many contacts as they want with a 15-second refresh rate. If both (sender and guarantor) are premium, the refresh rate drops to 5 seconds.'
+        },
+        emergencyActivation: {
+          question: 'How to activate an emergency alert?',
+          answer: 'You can activate an emergency alert in two ways: either through a secret code in the app (combination of "-" and "lock" buttons - feature currently in development), or by shaking your phone vigorously. The alert will immediately inform your guarantors of the situation with your current position.'
+        },
+        networkLoss: {
+          question: 'What happens if network is lost during a journey?',
+          answer: 'If you lose network connection, your guarantors will automatically receive a notification indicating network loss, accompanied by your last known position. This allows them to know you might be in a coverage-free area.'
+        },
+        storageDuration: {
+          question: 'How long are journey histories stored?',
+          answer: 'Journey histories are stored for 15 days on our secure servers, then remain available locally on your guarantors\' devices. This approach ensures privacy while allowing access to important data when needed.'
+        },
+        compatibility: {
+          question: 'Is the app compatible with iOS and Android?',
+          answer: 'Yes, we are developing Bien-Rentré to be compatible with both major mobile operating systems: iOS and Android. The goal is to provide the same user experience across all platforms.'
+        },
+        dualRole: {
+          question: 'Can I be both a guarantor and user of the app?',
+          answer: 'Of course! However, a warning will appear before starting a journey if you are already a guarantor for someone else. This will remind you of the double data consumption and, if driving, the importance of not using your phone while driving for safety reasons.'
+        },
+        sharingInitiation: {
+          question: 'How to initiate location sharing?',
+          answer: 'To share your location: select your trusted contact, define your return zone and means of transportation. The app then generates a unique code that you transmit to your contact. They enter the code in their app, and a phone number verification confirms the secure connection.'
         },
         economic: {
           question: 'What will be the economic model of Bien-Rentré?',
