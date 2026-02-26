@@ -78,7 +78,7 @@
               <li>{{ $t('support.tiers.concept.benefit2') }}</li>
               <li>{{ $t('support.tiers.concept.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -99,7 +99,7 @@
               <li>{{ $t('support.tiers.founding.benefit2') }}</li>
               <li>{{ $t('support.tiers.founding.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button tier-button-primary">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button tier-button-primary">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -119,7 +119,7 @@
               <li>{{ $t('support.tiers.premium.benefit2') }}</li>
               <li>{{ $t('support.tiers.premium.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -139,7 +139,7 @@
               <li>{{ $t('support.tiers.ambassador.benefit2') }}</li>
               <li>{{ $t('support.tiers.ambassador.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -159,7 +159,7 @@
               <li>{{ $t('support.tiers.pillar.benefit2') }}</li>
               <li>{{ $t('support.tiers.pillar.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -179,7 +179,7 @@
               <li>{{ $t('support.tiers.gold.benefit2') }}</li>
               <li>{{ $t('support.tiers.gold.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -200,7 +200,7 @@
               <li>{{ $t('support.tiers.platinum.benefit2') }}</li>
               <li>{{ $t('support.tiers.platinum.benefit3') }}</li>
             </ul>
-            <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="tier-button">
+            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
               {{ $t('support.tiers.join') }}
             </a>
           </div>
@@ -211,7 +211,7 @@
       <section class="cta-section">
         <h2>{{ $t('support.cta.title') }}</h2>
         <p>{{ $t('support.cta.description') }}</p>
-        <a href="https://patreon.com/bien-rentre" target="_blank" rel="noopener" class="cta-button">
+        <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="cta-button">
           {{ $t('support.cta.button') }}
         </a>
       </section>
