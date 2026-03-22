@@ -13,7 +13,6 @@ export default defineConfig({
         manualChunks: {
           vue: ['vue'],
           i18n: ['vue-i18n'],
-          emailjs: ['@emailjs/browser']
         }
       }
     }

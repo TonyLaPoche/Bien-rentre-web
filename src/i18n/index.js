@@ -290,15 +290,21 @@ export const messages = {
     contact: {
       title: 'Contact',
       subtitle: 'Une question produit, test interne ou juridique ?',
-      form: {
-        title: 'Titre',
-        message: 'Message',
-        email: 'Adresse email',
-        send: 'Envoyer',
-        sending: 'Envoi en cours...',
-        success: 'Message envoyé avec succès.',
-        error: 'Erreur lors de l\'envoi. Veuillez réessayer.',
-      },
+      intro:
+        'Le formulaire de contact a été retiré. Pour participer aux tests, merci de m\'envoyer directement un email avec les informations demandées ci-dessous.',
+      requiredInfoTitle: 'Informations à indiquer dans votre mail',
+      requiredInfo1: 'Type de téléphone utilisé (marque + modèle + OS si possible)',
+      requiredInfo2: 'Cas de figure où Bien-Rentré vous semble pertinent',
+      emailTitle: 'Adresses email de contact',
+      volunteerTitle: 'Développement bénévole',
+      volunteerContent:
+        'Je développe actuellement seul cette application, sur mon temps libre, car ce projet me tient énormément à coeur. Les testeurs qui participent avant la mise en ligne publique sont des bénévoles.',
+      freeTitle: 'Aucune participation financière demandée',
+      freeContent:
+        'Important: avant l\'ouverture publique de l\'application, un testeur n\'aura jamais à débourser le moindre centime pour quoi que ce soit.',
+      sideTitle: 'Tests internes en cours',
+      sideDesc:
+        'Envoyez un email avec votre contexte de test et votre type de téléphone pour rejoindre la phase de test.',
     },
     support: {
       title: 'Modèle économique',
@@ -616,15 +622,21 @@ export const messages = {
     contact: {
       title: 'Contact',
       subtitle: 'Product, testing or legal question?',
-      form: {
-        title: 'Title',
-        message: 'Message',
-        email: 'Email address',
-        send: 'Send',
-        sending: 'Sending...',
-        success: 'Message sent successfully.',
-        error: 'Error while sending. Please try again.',
-      },
+      intro:
+        'The contact form has been removed. To join testing, please send me an email directly with the requested information below.',
+      requiredInfoTitle: 'Information to include in your email',
+      requiredInfo1: 'Phone type used (brand + model + OS if possible)',
+      requiredInfo2: 'Use case where Bien-Rentré seems relevant to you',
+      emailTitle: 'Contact email addresses',
+      volunteerTitle: 'Volunteer development',
+      volunteerContent:
+        'I am currently the only developer working on this app, in my free time, because this project matters deeply to me. Testers joining before public release are volunteers.',
+      freeTitle: 'No payment ever required',
+      freeContent:
+        'Important: before public launch, a tester will never have to pay anything for any reason.',
+      sideTitle: 'Internal testing in progress',
+      sideDesc:
+        'Send an email with your testing context and phone type to join the testing phase.',
     },
     support: {
       title: 'Business model',
