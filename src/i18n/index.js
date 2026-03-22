@@ -85,7 +85,7 @@ export const messages = {
         controller: {
           title: '1. Responsable du traitement',
           content:
-            'Le responsable du traitement est l\'éditeur de l\'application Bien-Rentré. Contact: contact@antoineterrade.com',
+            'Le responsable du traitement est l\'éditeur de l\'application Bien-Rentré. Contact: contact{\'@\'}antoineterrade.com',
         },
         data: {
           title: '2. Données traitées',
@@ -124,7 +124,7 @@ export const messages = {
         rights: {
           title: '7. Droits RGPD',
           content1:
-            'Vous pouvez exercer vos droits d\'accès, rectification, effacement, limitation, opposition et portabilité en écrivant à contact@antoineterrade.com.',
+            'Vous pouvez exercer vos droits d\'accès, rectification, effacement, limitation, opposition et portabilité en écrivant à contact{\'@\'}antoineterrade.com.',
           content2: 'Vous pouvez aussi introduire une réclamation auprès de la CNIL.',
         },
         security: {
@@ -178,7 +178,7 @@ export const messages = {
         },
         contact: {
           title: '7. Contact',
-          content: 'Pour toute question commerciale: contact@antoineterrade.com',
+          content: 'Pour toute question commerciale: contact{\'@\'}antoineterrade.com',
         },
         compliance: {
           title: '8. Clause de conformité',
@@ -426,7 +426,7 @@ export const messages = {
         controller: {
           title: '1. Data controller',
           content:
-            'The data controller is the publisher of the Bien-Rentré application. Contact: contact@antoineterrade.com',
+            'The data controller is the publisher of the Bien-Rentré application. Contact: contact{\'@\'}antoineterrade.com',
         },
         data: {
           title: '2. Processed data',
@@ -465,7 +465,7 @@ export const messages = {
         rights: {
           title: '7. GDPR rights',
           content1:
-            'You may exercise your rights of access, rectification, erasure, restriction, objection and portability by contacting contact@antoineterrade.com.',
+            'You may exercise your rights of access, rectification, erasure, restriction, objection and portability by contacting contact{\'@\'}antoineterrade.com.',
           content2: 'You may also lodge a complaint with your data protection authority.',
         },
         security: {
@@ -519,7 +519,7 @@ export const messages = {
         },
         contact: {
           title: '7. Contact',
-          content: 'For commercial questions: contact@antoineterrade.com',
+          content: 'For commercial questions: contact{\'@\'}antoineterrade.com',
         },
         compliance: {
           title: '8. Compliance clause',
