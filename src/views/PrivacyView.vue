@@ -2,91 +2,91 @@
   <div class="legal-page">
     <div class="container">
       <header class="page-header">
-        <router-link to="/" class="back-link">← {{ $t('legal.backHome') }}</router-link>
-        <h1 class="page-title">{{ $t('privacyPage.title') }}</h1>
-        <p class="page-subtitle">{{ $t('legal.updatedAt') }}</p>
+        <router-link to="/" class="back-link">← {{ t('legal.backHome') }}</router-link>
+        <h1 class="page-title">{{ t('privacyPage.title') }}</h1>
+        <p class="page-subtitle">{{ t('legal.updatedAt') }}</p>
       </header>
 
       <main class="page-content">
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.controller.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.controller.title') }}</h2>
           <p>
-            {{ $t('privacyPage.sections.controller.content') }}
+            {{ t('privacyPage.sections.controller.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.data.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.data.title') }}</h2>
           <ul>
-            <li>{{ $t('privacyPage.sections.data.list1') }}</li>
-            <li>{{ $t('privacyPage.sections.data.list2') }}</li>
-            <li>{{ $t('privacyPage.sections.data.list3') }}</li>
-            <li>{{ $t('privacyPage.sections.data.list4') }}</li>
+            <li>{{ t('privacyPage.sections.data.list1') }}</li>
+            <li>{{ t('privacyPage.sections.data.list2') }}</li>
+            <li>{{ t('privacyPage.sections.data.list3') }}</li>
+            <li>{{ t('privacyPage.sections.data.list4') }}</li>
           </ul>
           <p>
-            {{ $t('privacyPage.sections.data.note') }}
+            {{ t('privacyPage.sections.data.note') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.purposes.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.purposes.title') }}</h2>
           <ul>
-            <li>{{ $t('privacyPage.sections.purposes.list1') }}</li>
-            <li>{{ $t('privacyPage.sections.purposes.list2') }}</li>
-            <li>{{ $t('privacyPage.sections.purposes.list3') }}</li>
-            <li>{{ $t('privacyPage.sections.purposes.list4') }}</li>
-          </ul>
-        </section>
-
-        <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.legalBasis.title') }}</h2>
-          <ul>
-            <li>{{ $t('privacyPage.sections.legalBasis.list1') }}</li>
-            <li>{{ $t('privacyPage.sections.legalBasis.list2') }}</li>
-            <li>{{ $t('privacyPage.sections.legalBasis.list3') }}</li>
+            <li>{{ t('privacyPage.sections.purposes.list1') }}</li>
+            <li>{{ t('privacyPage.sections.purposes.list2') }}</li>
+            <li>{{ t('privacyPage.sections.purposes.list3') }}</li>
+            <li>{{ t('privacyPage.sections.purposes.list4') }}</li>
           </ul>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.recipients.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.legalBasis.title') }}</h2>
+          <ul>
+            <li>{{ t('privacyPage.sections.legalBasis.list1') }}</li>
+            <li>{{ t('privacyPage.sections.legalBasis.list2') }}</li>
+            <li>{{ t('privacyPage.sections.legalBasis.list3') }}</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>{{ t('privacyPage.sections.recipients.title') }}</h2>
           <p>
-            {{ $t('privacyPage.sections.recipients.content') }}
+            {{ t('privacyPage.sections.recipients.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.retention.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.retention.title') }}</h2>
           <ul>
-            <li>{{ $t('privacyPage.sections.retention.list1') }}</li>
-            <li>{{ $t('privacyPage.sections.retention.list2') }}</li>
-            <li>{{ $t('privacyPage.sections.retention.list3') }}</li>
+            <li>{{ t('privacyPage.sections.retention.list1') }}</li>
+            <li>{{ t('privacyPage.sections.retention.list2') }}</li>
+            <li>{{ t('privacyPage.sections.retention.list3') }}</li>
           </ul>
           <p>
-            {{ $t('privacyPage.sections.retention.note') }}
+            {{ t('privacyPage.sections.retention.note') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.rights.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.rights.title') }}</h2>
           <p>
-            {{ $t('privacyPage.sections.rights.content1') }}
+            {{ t('privacyPage.sections.rights.content1') }}
           </p>
           <p>
-            {{ $t('privacyPage.sections.rights.content2') }}
+            {{ t('privacyPage.sections.rights.content2') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('privacyPage.sections.security.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.security.title') }}</h2>
           <p>
-            {{ $t('privacyPage.sections.security.content') }}
+            {{ t('privacyPage.sections.security.content') }}
           </p>
         </section>
 
         <section class="legal-section legal-note">
-          <h2>{{ $t('privacyPage.sections.compliance.title') }}</h2>
+          <h2>{{ t('privacyPage.sections.compliance.title') }}</h2>
           <p>
-            {{ $t('privacyPage.sections.compliance.content') }}
+            {{ t('privacyPage.sections.compliance.content') }}
           </p>
         </section>
       </main>

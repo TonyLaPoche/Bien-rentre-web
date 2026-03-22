@@ -2,77 +2,77 @@
   <div class="legal-page">
     <div class="container">
       <header class="page-header">
-        <router-link to="/" class="back-link">← {{ $t('legal.backHome') }}</router-link>
-        <h1 class="page-title">{{ $t('termsPage.title') }}</h1>
-        <p class="page-subtitle">{{ $t('legal.updatedAt') }}</p>
+        <router-link to="/" class="back-link">← {{ t('legal.backHome') }}</router-link>
+        <h1 class="page-title">{{ t('termsPage.title') }}</h1>
+        <p class="page-subtitle">{{ t('legal.updatedAt') }}</p>
       </header>
 
       <main class="page-content">
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.object.title') }}</h2>
+          <h2>{{ t('termsPage.sections.object.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.object.content') }}
+            {{ t('termsPage.sections.object.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.access.title') }}</h2>
+          <h2>{{ t('termsPage.sections.access.title') }}</h2>
           <ul>
-            <li>{{ $t('termsPage.sections.access.list1') }}</li>
-            <li>{{ $t('termsPage.sections.access.list2') }}</li>
-            <li>{{ $t('termsPage.sections.access.list3') }}</li>
+            <li>{{ t('termsPage.sections.access.list1') }}</li>
+            <li>{{ t('termsPage.sections.access.list2') }}</li>
+            <li>{{ t('termsPage.sections.access.list3') }}</li>
           </ul>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.operation.title') }}</h2>
+          <h2>{{ t('termsPage.sections.operation.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.operation.content1') }}
+            {{ t('termsPage.sections.operation.content1') }}
           </p>
           <p>
-            {{ $t('termsPage.sections.operation.content2') }}
-          </p>
-        </section>
-
-        <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.limits.title') }}</h2>
-          <p>
-            {{ $t('termsPage.sections.limits.content') }}
+            {{ t('termsPage.sections.operation.content2') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.accounts.title') }}</h2>
+          <h2>{{ t('termsPage.sections.limits.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.accounts.content') }}
+            {{ t('termsPage.sections.limits.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.economics.title') }}</h2>
+          <h2>{{ t('termsPage.sections.accounts.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.economics.content') }}
+            {{ t('termsPage.sections.accounts.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.ip.title') }}</h2>
+          <h2>{{ t('termsPage.sections.economics.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.ip.content') }}
+            {{ t('termsPage.sections.economics.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('termsPage.sections.law.title') }}</h2>
+          <h2>{{ t('termsPage.sections.ip.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.law.content') }}
+            {{ t('termsPage.sections.ip.content') }}
+          </p>
+        </section>
+
+        <section class="legal-section">
+          <h2>{{ t('termsPage.sections.law.title') }}</h2>
+          <p>
+            {{ t('termsPage.sections.law.content') }}
           </p>
         </section>
 
         <section class="legal-section legal-note">
-          <h2>{{ $t('termsPage.sections.compliance.title') }}</h2>
+          <h2>{{ t('termsPage.sections.compliance.title') }}</h2>
           <p>
-            {{ $t('termsPage.sections.compliance.content') }}
+            {{ t('termsPage.sections.compliance.content') }}
           </p>
         </section>
       </main>

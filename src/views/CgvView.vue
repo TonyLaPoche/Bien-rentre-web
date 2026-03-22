@@ -2,73 +2,73 @@
   <div class="legal-page">
     <div class="container">
       <header class="page-header">
-        <router-link to="/" class="back-link">← {{ $t('legal.backHome') }}</router-link>
-        <h1 class="page-title">{{ $t('cgvPage.title') }}</h1>
-        <p class="page-subtitle">{{ $t('legal.updatedAt') }}</p>
+        <router-link to="/" class="back-link">← {{ t('legal.backHome') }}</router-link>
+        <h1 class="page-title">{{ t('cgvPage.title') }}</h1>
+        <p class="page-subtitle">{{ t('legal.updatedAt') }}</p>
       </header>
 
       <main class="page-content">
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.object.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.object.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.object.content') }}
+            {{ t('cgvPage.sections.object.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.products.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.products.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.products.intro') }}
+            {{ t('cgvPage.sections.products.intro') }}
           </p>
           <ul>
-            <li>{{ $t('cgvPage.sections.products.list1') }}</li>
-            <li>{{ $t('cgvPage.sections.products.list2') }}</li>
-            <li>{{ $t('cgvPage.sections.products.list3') }}</li>
+            <li>{{ t('cgvPage.sections.products.list1') }}</li>
+            <li>{{ t('cgvPage.sections.products.list2') }}</li>
+            <li>{{ t('cgvPage.sections.products.list3') }}</li>
           </ul>
           <p>
-            {{ $t('cgvPage.sections.products.note') }}
+            {{ t('cgvPage.sections.products.note') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.payment.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.payment.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.payment.content') }}
+            {{ t('cgvPage.sections.payment.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.withdrawal.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.withdrawal.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.withdrawal.content') }}
+            {{ t('cgvPage.sections.withdrawal.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.duration.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.duration.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.duration.content') }}
+            {{ t('cgvPage.sections.duration.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.liability.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.liability.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.liability.content') }}
+            {{ t('cgvPage.sections.liability.content') }}
           </p>
         </section>
 
         <section class="legal-section">
-          <h2>{{ $t('cgvPage.sections.contact.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.contact.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.contact.content') }}
+            {{ t('cgvPage.sections.contact.content') }}
           </p>
         </section>
 
         <section class="legal-section legal-note">
-          <h2>{{ $t('cgvPage.sections.compliance.title') }}</h2>
+          <h2>{{ t('cgvPage.sections.compliance.title') }}</h2>
           <p>
-            {{ $t('cgvPage.sections.compliance.content') }}
+            {{ t('cgvPage.sections.compliance.content') }}
           </p>
         </section>
       </main>
