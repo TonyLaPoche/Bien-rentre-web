@@ -9,11 +9,12 @@
 
       <!-- Menu desktop -->
       <div class="nav-menu">
-        <router-link to="/soutenez-nous" class="nav-link">{{ $t('nav.support') }}</router-link>
+        <router-link to="/modele-economique" class="nav-link">{{ $t('nav.support') }}</router-link>
         <a href="./#features" class="nav-link">{{ $t('nav.features') }}</a>
         <a href="./#faq" class="nav-link">{{ $t('nav.faq') }}</a>
         <router-link to="/terms" class="nav-link">{{ $t('nav.terms') }}</router-link>
         <router-link to="/privacy" class="nav-link">{{ $t('nav.privacy') }}</router-link>
+        <router-link to="/cgv" class="nav-link">{{ $t('nav.cgv') }}</router-link>
       </div>
 
       <!-- Sélecteur de langue -->
@@ -35,10 +36,11 @@
     <!-- Menu mobile -->
     <div class="nav-mobile" :class="{ 'nav-mobile--open': mobileMenuOpen }">
       <a href="#features" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.features') }}</a>
-      <router-link to="/soutenez-nous" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.support') }}</router-link>
+      <router-link to="/modele-economique" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.support') }}</router-link>
       <a href="#faq" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.faq') }}</a>
       <router-link to="/terms" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.terms') }}</router-link>
       <router-link to="/privacy" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.privacy') }}</router-link>
+      <router-link to="/cgv" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.cgv') }}</router-link>
     </div>
   </nav>
 </template>

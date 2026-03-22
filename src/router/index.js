@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import TermsView from '../views/TermsView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
 import SupportView from '../views/SupportView.vue'
+import CgvView from '../views/CgvView.vue'
 
 const routes = [
   {
@@ -23,6 +24,16 @@ const routes = [
     path: '/soutenez-nous',
     name: 'Support',
     component: SupportView
+  },
+  {
+    path: '/modele-economique',
+    name: 'BusinessModel',
+    component: SupportView
+  },
+  {
+    path: '/cgv',
+    name: 'Cgv',
+    component: CgvView
   }
 ]
 

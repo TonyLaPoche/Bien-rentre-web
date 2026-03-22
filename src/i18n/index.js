@@ -1,12 +1,10 @@
 import { createI18n } from 'vue-i18n'
 
-// Détection automatique de la langue
 const getBrowserLanguage = () => {
   const lang = navigator.language || navigator.userLanguage
   return lang.startsWith('fr') ? 'fr' : 'en'
 }
 
-// Récupération de la langue sauvegardée
 const getSavedLanguage = () => {
   return localStorage.getItem('bien-rentre-language') || getBrowserLanguage()
 }
@@ -16,711 +14,671 @@ export const messages = {
     nav: {
       home: 'Accueil',
       features: 'Fonctionnalités',
-      support: 'Soutenez-nous',
+      support: 'Modèle économique',
       faq: 'FAQ',
       contact: 'Contact',
-      terms: 'Conditions d\'utilisation',
-      privacy: 'Politique de confidentialité'
+      terms: 'CGU',
+      privacy: 'Confidentialité',
+      cgv: 'CGV',
     },
-    terms: {
-      title: 'Conditions d\'utilisation',
-      subtitle: 'Dernière mise à jour : Décembre 2024',
-      object: {
-        title: '1. Objet du service',
-        content: 'Bien-Rentré est une application mobile conçue pour améliorer la sécurité des déplacements nocturnes. L\'application permet aux utilisateurs de partager leur position GPS en temps réel avec des contacts de confiance préalablement sélectionnés, offrant ainsi une tranquillité d\'esprit lors des retours de soirée.'
-      },
-      usage: {
-        title: '2. Conditions d\'utilisation',
-        age: {
-          title: 'Âge minimum',
-          content: 'Pour utiliser Bien-Rentré, vous devez avoir au moins 16 ans. Si vous avez moins de 16 ans, l\'utilisation de l\'application est strictement interdite.'
-        },
-        responsibility: {
-          title: 'Usage responsable',
-          content: 'Bien-Rentré n\'est pas un système d\'alerte d\'urgence officiel. En cas de danger imminent, contactez immédiatement les services d\'urgence appropriés (112, 911, etc.). L\'application ne remplace pas les mesures de sécurité personnelles.'
-        }
-      },
-      features: {
-        title: '3. Fonctionnalités et limitations',
-        sharing: {
-          title: 'Partage de position',
-          content: 'L\'application partage uniquement la géolocalisation GPS avec les contacts explicitement autorisés par l\'utilisateur. Aucune autre donnée personnelle n\'est transmise automatiquement.'
-        },
-        limitations: 'L\'application nécessite une connexion internet active et l\'autorisation d\'accès à la géolocalisation. En cas de perte de signal GPS ou de connexion, l\'application notifiera automatiquement le contact désigné.'
-      },
-      property: {
-        title: '4. Propriété intellectuelle',
-        content: 'L\'application Bien-Rentré, son nom, son logo, et tous les contenus associés sont la propriété exclusive de leurs développeurs. Toute reproduction, distribution ou utilisation commerciale sans autorisation préalable est strictement interdite.'
-      },
-      data: {
-        title: '5. Protection des données',
-        content: 'Nous nous engageons à protéger vos données personnelles conformément au RGPD. Pour plus de détails sur notre politique de confidentialité, consultez la section dédiée ci-dessous.'
-      },
-      availability: {
-        title: '6. Disponibilité du service',
-        content: 'Bien-Rentré s\'efforce de maintenir un service fiable, mais ne peut garantir une disponibilité 100% du temps. L\'application peut être temporairement indisponible pour maintenance ou en cas de problème technique.'
-      },
-      modifications: {
-        title: '7. Modifications des conditions',
-        content: 'Nous nous réservons le droit de modifier ces conditions d\'utilisation à tout moment. Les utilisateurs seront informés des changements majeurs via l\'application ou par email. L\'utilisation continue de l\'application après modification constitue l\'acceptation des nouvelles conditions.'
-      },
-      resiliation: {
-        title: '8. Résiliation',
-        content: 'Vous pouvez cesser d\'utiliser Bien-Rentré à tout moment. La suppression de l\'application entraînera automatiquement l\'arrêt de tout partage de données.'
-      },
-      law: {
-        title: '9. Droit applicable',
-        content: 'Ces conditions d\'utilisation sont régies par le droit français. Tout litige sera soumis aux tribunaux compétents français.'
-      },
-      contact: {
-        title: '10. Contact',
-        content: 'Pour toute question concernant ces conditions d\'utilisation, contactez-nous via le formulaire de contact de notre site web ou par email à l\'adresse indiquée dans notre politique de confidentialité.'
-      },
-      questions: {
-        title: 'Des questions ?',
-        content: 'N\'hésitez pas à nous contacter pour toute clarification concernant ces conditions d\'utilisation.'
-      },
-      contactLink: 'Nous contacter'
+    legal: {
+      backHome: 'Retour à l\'accueil',
+      updatedAt: 'Dernière mise à jour: mars 2026',
+      complianceNote:
+        'Ce texte est une base opérationnelle. Une validation finale par un juriste est recommandée avant ouverture commerciale publique.',
     },
-    privacy: {
+    termsPage: {
+      title: 'Conditions générales d\'utilisation (CGU)',
+      sections: {
+        object: {
+          title: '1. Objet du service',
+          content:
+            'Bien-Rentré est une application mobile qui facilite le suivi de retour en sécurité via un code de partage, une carte en temps réel et une notification d\'arrivée.',
+        },
+        access: {
+          title: '2. Conditions d\'accès',
+          list1: 'Création d\'un compte par email/mot de passe',
+          list2: 'Acceptation des présentes CGU et de la politique de confidentialité',
+          list3: 'Activation des permissions nécessaires (localisation, notifications)',
+        },
+        operation: {
+          title: '3. Fonctionnement principal',
+          content1:
+            'Le partant crée un trajet (adresse de retour + mode de transport), génère un code et le partage. Le suiveur saisit ce code pour suivre le trajet en temps réel et recevoir une notification à l\'arrivée.',
+          content2:
+            'Bien-Rentré n\'est pas un service de secours et ne remplace pas l\'appel aux services d\'urgence en cas de danger.',
+        },
+        limits: {
+          title: '4. Disponibilité et limitations',
+          content:
+            'Le service dépend de la qualité du réseau, du GPS, de l\'état du téléphone et des autorisations système. Une interruption temporaire peut survenir (maintenance, indisponibilité tiers, etc.).',
+        },
+        accounts: {
+          title: '5. Comptes utilisateurs',
+          content:
+            'L\'utilisateur est responsable de la confidentialité de ses identifiants. Tout usage frauduleux peut entraîner la suspension du compte.',
+        },
+        economics: {
+          title: '6. Modèle économique',
+          content:
+            'Un système de points freemium/premium est prévu. Les modalités commerciales détaillées sont décrites dans la page CGV.',
+        },
+        ip: {
+          title: '7. Propriété intellectuelle',
+          content:
+            'Les éléments du service Bien-Rentré (marque, interface, contenus, code non open source) sont protégés.',
+        },
+        law: {
+          title: '8. Droit applicable',
+          content: 'Les présentes CGU sont régies par le droit français.',
+        },
+        compliance: {
+          title: '9. Mise en conformité',
+          content:
+            'Ce texte est une base opérationnelle. Une validation finale par un juriste est recommandée avant l\'ouverture commerciale publique.',
+        },
+      },
+    },
+    privacyPage: {
       title: 'Politique de confidentialité',
-      subtitle: 'Dernière mise à jour : Décembre 2024',
-      controller: {
-        title: '1. Responsable du traitement',
-        content: 'Bien-Rentré est développé et maintenu par nos équipes. Pour toute question concernant le traitement de vos données personnelles, vous pouvez nous contacter via le formulaire de contact de notre site web.'
+      sections: {
+        controller: {
+          title: '1. Responsable du traitement',
+          content:
+            'Le responsable du traitement est l\'éditeur de l\'application Bien-Rentré. Contact: contact@antoineterrade.com',
+        },
+        data: {
+          title: '2. Données traitées',
+          list1: 'Données de compte (email, identifiant utilisateur)',
+          list2: 'Données de profil (nom, téléphone, adresse si renseignés)',
+          list3: 'Données de trajet (code, statut, positions de suivi)',
+          list4: 'Données techniques (token de notifications, logs applicatifs minimaux)',
+          note: 'L\'application ne lit plus le carnet de contacts du téléphone.',
+        },
+        purposes: {
+          title: '3. Finalités',
+          list1: 'Fournir le suivi de trajet en temps réel',
+          list2: 'Notifier l\'arrivée du partant au suiveur',
+          list3: 'Sécuriser l\'accès au service et prévenir la fraude',
+          list4: 'Gérer la relation support utilisateur',
+        },
+        legalBasis: {
+          title: '4. Bases légales',
+          list1: 'Exécution du service demandé par l\'utilisateur',
+          list2: 'Consentement pour la localisation et les notifications',
+          list3: 'Intérêt légitime de sécurité et de prévention d\'abus',
+        },
+        recipients: {
+          title: '5. Destinataires',
+          content:
+            'Les données sont hébergées sur l\'infrastructure Firebase (Google Cloud) et partagées uniquement avec les utilisateurs concernés par un trajet (partant/suiveur) selon les règles d\'accès applicatives.',
+        },
+        retention: {
+          title: '6. Durées de conservation',
+          list1: 'Données de compte: pendant la durée du compte',
+          list2: 'Données de trajet: durée nécessaire au service et au support technique',
+          list3: 'Données de contact support: durée de traitement de la demande',
+          note:
+            'Les durées exactes pourront être affinées avant ouverture commerciale grand public.',
+        },
+        rights: {
+          title: '7. Droits RGPD',
+          content1:
+            'Vous pouvez exercer vos droits d\'accès, rectification, effacement, limitation, opposition et portabilité en écrivant à contact@antoineterrade.com.',
+          content2: 'Vous pouvez aussi introduire une réclamation auprès de la CNIL.',
+        },
+        security: {
+          title: '8. Sécurité',
+          content:
+            'Des mesures techniques et organisationnelles sont mises en place pour protéger les données: contrôle d\'accès, règles Firestore, authentification, chiffrement en transit.',
+        },
+        compliance: {
+          title: '9. Transparence et conformité',
+          content:
+            'Cette politique est alignée avec l\'état actuel de l\'application (test interne). Une revue juridique finale est recommandée avant lancement public.',
+        },
       },
-      data: {
-        title: '2. Données collectées',
-        location: {
-          title: 'Données de géolocalisation',
-          content: 'Nous collectons votre position GPS en temps réel uniquement lorsque vous activez le partage avec un contact de confiance. Ces données sont temporairement stockées pendant la durée de la session active.'
+    },
+    cgvPage: {
+      title: 'Conditions générales de vente (CGV)',
+      sections: {
+        object: {
+          title: '1. Objet',
+          content:
+            'Les présentes CGV encadrent les futures offres payantes de l\'application Bien-Rentré. A date, l\'application est en test interne et les fonctionnalités payantes ne sont pas encore ouvertes au public.',
+        },
+        products: {
+          title: '2. Produits et services concernés',
+          intro: 'Le modèle économique prévu repose sur des points de trajets:',
+          list1: 'Freemium: 3 trajets par mois',
+          list2: 'Premium: 10 trajets par mois (objectif 4,90 EUR/mois)',
+          list3: 'Packs de points additionnels (à venir)',
+          note:
+            'Les modalités définitives (prix finaux, taxes, durée d\'engagement) seront précisées au moment de l\'ouverture commerciale.',
+        },
+        payment: {
+          title: '3. Commande et paiement',
+          content:
+            'Les paiements seront réalisés via les stores mobiles (Google Play / App Store) selon leurs propres conditions générales et politiques de remboursement.',
+        },
+        withdrawal: {
+          title: '4. Droit de rétractation et remboursements',
+          content:
+            'Les achats numériques in-app sont régis par les politiques de remboursement des plateformes de distribution. Les demandes de remboursement seront traitées selon ces règles.',
+        },
+        duration: {
+          title: '5. Durée, résiliation, suspension',
+          content:
+            'Les abonnements, lorsqu\'ils seront activés, seront gérés via les stores. L\'utilisateur pourra les résilier depuis son compte store. L\'éditeur peut suspendre un compte en cas d\'usage frauduleux.',
+        },
+        liability: {
+          title: '6. Responsabilité',
+          content:
+            'Bien-Rentré est une solution d\'accompagnement et de réassurance. L\'application ne remplace pas les services d\'urgence officiels.',
         },
         contact: {
-          title: 'Informations de contact',
-          content: 'Lors de l\'utilisation du formulaire de contact de notre site web, nous collectons votre adresse email et le contenu de votre message. Ces données sont utilisées uniquement pour répondre à votre demande.'
+          title: '7. Contact',
+          content: 'Pour toute question commerciale: contact@antoineterrade.com',
         },
-        note: 'Nous ne collectons aucune autre donnée personnelle sans votre consentement explicite.'
-      },
-      purpose: {
-        title: '3. Finalités du traitement',
-        content: 'Vos données sont traitées uniquement dans le cadre suivant :',
-        list1: 'Fournir le service de partage de position en temps réel',
-        list2: 'Vous permettre de contacter notre équipe de support',
-        list3: 'Améliorer et maintenir la sécurité de notre application'
-      },
-      legal: {
-        title: '4. Base légale',
-        content: 'Le traitement de vos données repose sur :',
-        list1: 'Votre consentement explicite pour l\'utilisation de l\'application',
-        list2: 'L\'exécution du contrat de service que vous avez accepté',
-        list3: 'Notre intérêt légitime à assurer la sécurité de nos utilisateurs'
-      },
-      recipients: {
-        title: '5. Destinataires des données',
-        content: 'Vos données de géolocalisation sont partagées exclusivement avec les contacts que vous avez explicitement désignés dans l\'application. Aucun autre partage n\'est effectué sans votre autorisation préalable.',
-        support: 'Les informations de contact (email et message) sont accessibles uniquement à notre équipe de support pour traiter vos demandes.'
-      },
-      retention: {
-        title: '6. Durée de conservation',
-        content: 'Données de géolocalisation : Supprimées automatiquement à la fin de chaque session de partage ou au maximum après 24 heures d\'inactivité. Données de contact : Conservées pendant 2 ans maximum après traitement de votre demande, puis supprimées automatiquement.',
-        location: {
-          title: 'Données de géolocalisation',
-          content: 'Supprimées automatiquement à la fin de chaque session de partage ou au maximum après 24 heures d\'inactivité.'
+        compliance: {
+          title: '8. Clause de conformité',
+          content:
+            'Ce document constitue une base de travail opérationnelle. Une validation finale par un professionnel du droit est recommandée avant ouverture commerciale publique.',
         },
-        contact: {
-          title: 'Données de contact',
-          content: 'Conservées pendant 2 ans maximum après traitement de votre demande, puis supprimées automatiquement.'
-        }
       },
-      rights: {
-        title: '7. Droits des utilisateurs',
-        content: 'Conformément au RGPD, vous disposez des droits suivants :',
-        list1: 'Droit d\'accès : Connaître les données que nous détenons sur vous',
-        list2: 'Droit de rectification : Corriger des données inexactes',
-        list3: 'Droit à l\'effacement : Supprimer vos données personnelles',
-        list4: 'Droit à la portabilité : Récupérer vos données dans un format exploitable',
-        list5: 'Droit d\'opposition : Refuser certains traitements',
-        contact: 'Pour exercer ces droits, contactez-nous via notre formulaire de contact.'
-      },
-      security: {
-        title: '8. Sécurité des données',
-        content: 'Nous protégeons vos données personnelles.',
-        encryption: 'Données chiffrées.'
-      },
-      contact: {
-        title: '9. Contact',
-        content: 'Pour vos questions sur la politique.',
-        list1: 'Formulaire de contact',
-        list2: 'Email',
-        response: 'Réponse sous 30 jours.'
-      },
-      questions: {
-        title: 'Questions ?',
-        content: 'Contactez-nous pour vos questions.'
-      },
-      contactLink: 'Contact'
     },
     hero: {
       title: 'Bien-Rentré',
-      subtitle: 'L\'application qui veille sur vos retours de soirée',
-      description: 'Partagez votre position en temps réel avec vos contacts de confiance. Sécurité et tranquillité d\'esprit garantie.',
-      support: 'Soutenez-nous',
-      learnMore: 'En savoir plus'
+      subtitle: 'Le suivi de retour simple et rassurant',
+      description:
+        'Créez un trajet, partagez un code, suivez en direct et recevez une notification d\'arrivée. L\'application est actuellement testable en test interne.',
+      support: 'Voir le modèle économique',
+      learnMore: 'En savoir plus',
     },
     features: {
       title: 'Fonctionnalités',
-      subtitle: 'Tout ce dont vous avez besoin pour rentrer en sécurité',
+      subtitle: 'Un parcours fluide pour le partant et le suiveur',
       items: {
         download: {
-          title: 'Téléchargement',
-          description: 'Téléchargez Bien-Rentré sur votre smartphone depuis l\'App Store ou Google Play.'
+          title: 'Créer un trajet',
+          description:
+            'Le partant choisit son adresse de retour et son moyen de transport, puis génère un code de suivi.',
         },
         chooseContacts: {
-          title: 'Choisissez vos contacts',
-          description: 'Sélectionnez une personne de confiance qui pourra suivre votre trajet en temps réel.'
+          title: 'Partager un code',
+          description:
+            'Le code se partage simplement via SMS, WhatsApp ou copier-coller. Aucun carnet de contacts requis.',
         },
         activate: {
-          title: 'Activez le partage',
-          description: 'Générez un code unique et partagez-le avec votre contact pour commencer la session.'
+          title: 'Suivre en direct',
+          description:
+            'Le suiveur entre le code et visualise la progression sur la carte en temps réel.',
         },
         safeReturn: {
-          title: 'Rentrez en sécurité',
-          description: 'Votre contact suit votre trajet en temps réel et reçoit une notification à votre arrivée.'
-        }
-      }
-    },
-    howItWorks: {
-      title: 'Comment ça marche',
-      subtitle: 'Simple, rapide et efficace'
+          title: 'Notification d\'arrivée',
+          description:
+            'Le suiveur est automatiquement notifié quand le partant arrive dans sa zone de sécurité.',
+        },
+      },
     },
     faq: {
-      title: 'Questions fréquentes',
-      subtitle: 'Tout ce que vous devez savoir sur Bien-Rentré',
+      title: 'FAQ',
+      subtitle: 'Questions fréquentes sur l\'état actuel du projet',
       questions: {
         emergency: {
-          question: 'Bien-Rentré est-il un système d\'alerte d\'urgence ?',
-          answer: 'Oui et non. Bien-Rentré n\'alerte pas directement les autorités compétentes, mais informe vos proches de votre position en temps réel, du pourcentage de batterie restant et de la qualité du réseau. Par exemple, en cas d\'accident de la route ou de panne, vous pouvez envoyer une alerte manuellement à votre entourage. Si vous rentrez à pied et pensez être suivi(e), un raccourci caché dans l\'app permet d\'alerter vos garants instantanément. L\'historique de votre trajet sera sauvegardé et pourra être transmis aux autorités si nécessaire. Le partage s\'arrête automatiquement à votre domicile (bientôt détecté via votre WiFi). Nous travaillons à améliorer ce principe de sécurité.'
+          question: 'Bien-Rentré remplace-t-il les services d\'urgence ?',
+          answer:
+            'Non. Bien-Rentré est un service de réassurance et de suivi de trajet. En cas de danger immédiat, il faut contacter les services d\'urgence.',
         },
         offline: {
-          question: 'L\'application fonctionne-t-elle hors ligne ?',
-          answer: 'Non, Bien-Rentré nécessite une connexion internet. Cependant, si vous partagez votre position avec un garant, il verra en temps réel votre localisation, le pourcentage de batterie restant et la qualité de votre réseau. Nous ajouterons des fonctionnalités intelligentes qui enverront automatiquement des notifications au garant lorsque votre batterie est faible ou que la couverture réseau diminue.'
+          question: 'Le suivi fonctionne-t-il hors ligne ?',
+          answer:
+            'Le suivi en temps réel nécessite une connexion réseau côté partant et suiveur.',
         },
         contacts: {
-          question: 'Combien de contacts puis-je ajouter ?',
-          answer: 'Dans la version gratuite, vous pouvez ajouter autant de personnes que vous souhaitez pour les contacts de confiance. Cependant, pour le suivi en temps réel lors d\'un retour, une seule personne peut vous suivre avec un rafraîchissement toutes les 30 secondes. Si le garant est premium, il peut ajouter autant de contacts qu\'il souhaite avec un rafraîchissement de 15 secondes. Si les deux (partant et garant) sont premium, le taux passe à 5 secondes de rafraîchissement.'
+          question: 'Faut-il ajouter des contacts de confiance ?',
+          answer:
+            'Non. Le flux actuel est volontairement simplifié: code de suivi uniquement, sans gestion de contacts/favoris.',
         },
         emergencyActivation: {
-          question: 'Comment activer une alerte d\'urgence ?',
-          answer: 'Vous pouvez activer une alerte d\'urgence de deux façons : soit via un code secret dans l\'app (combinaison "-" et "vérouillage" - fonctionnalité en développement), soit en secouant vigoureusement votre téléphone. L\'alerte informera immédiatement vos garants de la situation avec votre position actuelle.'
+          question: 'La fonction "Tout va bien ?" est-elle active ?',
+          answer:
+            'Non, cette fonction a été retirée du POC pour concentrer l\'expérience sur le suivi et la notification d\'arrivée.',
         },
         networkLoss: {
-          question: 'Que se passe-t-il en cas de perte de réseau pendant un trajet ?',
-          answer: 'Si vous perdez la connexion réseau, vos garants recevront automatiquement une notification indiquant la perte de réseau, accompagnée de votre dernière position connue. Cela leur permet de savoir que vous pourriez être dans une zone sans couverture.'
+          question: 'Que se passe-t-il si le réseau est instable ?',
+          answer:
+            'La mise à jour de position peut ralentir. Dès que la connexion revient, les données de suivi reprennent.',
         },
         storageDuration: {
-          question: 'Combien de temps les historiques de trajet sont-ils conservés ?',
-          answer: 'Les historiques de trajet sont stockés 15 jours sur nos serveurs sécurisés, puis restent disponibles localement sur l\'appareil de vos garants. Cette approche garantit la confidentialité tout en permettant l\'accès aux données importantes si nécessaire.'
+          question: 'Combien de temps les données sont-elles conservées ?',
+          answer:
+            'Les données sont conservées pour faire fonctionner le service, avec une politique de minimisation en cours de finalisation avant ouverture publique.',
         },
         compatibility: {
-          question: 'L\'application est-elle compatible iOS et Android ?',
-          answer: 'Oui, nous développons Bien-Rentré pour être compatible avec les deux principaux systèmes d\'exploitation mobiles : iOS et Android. L\'objectif est d\'offrir la même expérience utilisateur sur toutes les plateformes.'
+          question: 'L\'application est-elle déjà publique ?',
+          answer:
+            'Pas encore. L\'application est actuellement testée en test interne.',
         },
         dualRole: {
-          question: 'Puis-je être à la fois garant et utilisateur de l\'app ?',
-          answer: 'Bien sûr ! Cependant, un avertissement s\'affichera avant de lancer un trajet si vous êtes déjà garant pour quelqu\'un d\'autre. Cela vous rappellera la double consommation de données et, si vous conduisez, l\'importance de ne pas utiliser votre téléphone au volant pour des raisons de sécurité.'
+          question: 'Peut-on être partant puis suiveur ?',
+          answer:
+            'Oui, un même compte peut lancer un trajet et également suivre un autre trajet via code.',
         },
         sharingInitiation: {
-          question: 'Comment initier un partage de position ?',
-          answer: 'Pour partager votre position : sélectionnez votre contact de confiance, définissez votre zone de retour et votre moyen de transport. L\'app génère alors un code unique que vous transmettez à votre contact. Ce dernier saisit le code dans son app, et une vérification par numéro de téléphone confirme la connexion sécurisée.'
+          question: 'Comment démarrer un partage ?',
+          answer:
+            'Depuis l\'écran Départ: adresse de retour + transport + génération du code + démarrage du trajet.',
         },
         economic: {
-          question: 'Quel sera le modèle économique de Bien-Rentré ?',
-          answer: 'Nous estimons que ce service devrait être d\'utilité publique, c\'est pourquoi nous le fournirons même sans revenus. Cependant, nous prévoyons un système d\'abonnement premium offrant : suivi par plusieurs personnes simultanément, suppression des publicités, rafraîchissement plus fréquent des positions, alertes intelligentes, et notifications sur les zones de trajet (par exemple, alerter le garant du pourcentage de distance restante avant l\'arrivée).'
+          question: 'Quel modèle économique est prévu ?',
+          answer:
+            'Freemium 3 trajets/mois, Premium 10 trajets/mois (objectif 4,90 EUR/mois), cap à 31 points et packs additionnels à venir.',
         },
         dataProtection: {
-          question: 'Comment mes données de localisation sont-elles protégées ?',
-          answer: 'Vos données de géolocalisation ne sont partagées qu\'avec les contacts que vous avez explicitement autorisés. Elles sont chiffrées et stockées temporairement pendant la session active. Nous respectons pleinement le RGPD et nos pratiques sont détaillées dans notre politique de confidentialité.'
+          question: 'Comment les données sont-elles protégées ?',
+          answer:
+            'Accès authentifié, règles Firestore, séparation des rôles partant/suiveur, et politique RGPD alignée sur l\'état actuel de l\'application.',
         },
         accuracy: {
-          question: 'Quelle est la précision de la géolocalisation ?',
-          answer: 'L\'application utilise le GPS intégré de votre smartphone avec une précision généralement de 5 à 10 mètres. La précision peut varier selon les conditions météorologiques et la couverture réseau.'
-        }
-      }
+          question: 'La position est-elle réellement mise à jour ?',
+          answer:
+            'Oui. Le suiveur reçoit des mises à jour en temps réel et peut aussi effectuer un rafraîchissement manuel.',
+        },
+      },
     },
     contact: {
-      title: 'Contactez-nous',
-      subtitle: 'Vous avez des questions ? N\'hésitez pas à nous contacter.',
+      title: 'Contact',
+      subtitle: 'Une question produit, test interne ou juridique ?',
       form: {
         title: 'Titre',
         message: 'Message',
         email: 'Adresse email',
         send: 'Envoyer',
         sending: 'Envoi en cours...',
-        success: 'Message envoyé avec succès !',
-        error: 'Erreur lors de l\'envoi. Veuillez réessayer.'
-      }
+        success: 'Message envoyé avec succès.',
+        error: 'Erreur lors de l\'envoi. Veuillez réessayer.',
+      },
     },
     support: {
-      title: 'Soutenez Bien-Rentré',
-      subtitle: 'Rejoignez notre aventure',
-      description: 'Bien-Rentré est un projet indépendant développé avec passion. Votre soutien nous permet de continuer à créer une application qui améliore la sécurité de chacun lors des déplacements nocturnes.',
+      title: 'Modèle économique',
+      subtitle: 'Feuille de route avant ouverture publique',
+      description:
+        'La page Patreon a été fermée. Le financement projeté est désormais intégré au produit via un modèle freemium/premium.',
       status: {
-        title: 'Application en production',
-        description: 'Notre application est actuellement en phase de production. Les tests internes sont en cours et nous préparons le lancement officiel.'
+        title: 'Etat du produit',
+        description: 'L\'application est actuellement en test interne.',
       },
-      team: {
-        title: 'Équipe indépendante',
-        description: 'Développé par un créateur solo avec l\'aide précieuse de deux bénévoles. Chaque contribution compte pour nous permettre de continuer.'
+      product: {
+        title: 'Fonctionnel aujourd\'hui',
+        description:
+          'Trajet par code, suivi en direct, notification d\'arrivée, authentification email et gestion quota déjà en place.',
       },
-      vision: {
-        title: 'Vision communautaire',
-        description: 'Notre objectif est de créer un outil accessible à tous, gratuit dans ses fonctionnalités essentielles, financé par la communauté.'
+      patreon: {
+        title: 'Fin du Patreon',
+        description:
+          'Le Patreon a été fermé. L\'énergie est concentrée sur un modèle in-app cohérent avec l\'usage réel.',
       },
       economic: {
-        title: 'Pourquoi ce modèle économique ?',
-        subtitle: 'Financement communautaire pour un impact social durable',
-        description: 'Bien-Rentré choisit délibérément un modèle de financement participatif plutôt que les capitaux-risque traditionnels. Cette approche nous permet de construire une relation authentique avec notre communauté et de développer le projet selon nos valeurs.',
-        social: {
-          title: 'Impact social positif',
-          content: 'Chaque contribution finance directement le développement d\'une solution qui améliore la sécurité nocturne. Contrairement aux levées de fonds classiques, votre soutien crée un cercle vertueux où la communauté bénéficie directement des avancées du projet.'
-        },
-        community: {
-          title: 'Construction d\'une communauté engagée',
-          content: 'Au-delà du financement, nous bâtissons une communauté de personnes qui croient en notre vision. Les supporters deviennent des acteurs essentiels du développement, participant aux décisions et contribuant à façonner l\'avenir du projet.'
-        },
-        startup: {
-          title: 'Fondation d\'une startup inclusive',
-          content: 'Notre ambition est de transformer Bien-Rentré en une véritable entreprise sociale. En finançant le développement de manière communautaire, nous pourrons embaucher nos bénévoles actuels à temps plein et accélérer considérablement la production.'
-        },
-        acceleration: {
-          title: 'Accélération du développement',
-          content: 'Chaque palier de soutien représente une étape vers l\'autonomie financière. Avec une communauté solide, nous pourrons investir dans les ressources nécessaires pour livrer une application de qualité supérieure dans les délais prévus.'
-        }
-      },
-      tiers: {
-        title: 'Les paliers de soutien',
-        description: 'Choisissez le niveau d\'engagement qui vous convient. Tous les soutiens sont essentiels pour le développement continu du projet.',
-        period: '/ mois',
-        popular: 'Le plus populaire',
-        vip: 'VIP',
-        join: 'Rejoindre ce palier',
-        concept: {
-          name: 'Soutien du concept',
-          description: 'Le palier essentiel qui permet à Bien-Rentré d\'exister et de se développer.',
-          benefit1: 'Contribution directe au développement',
-          benefit2: 'Accès aux mises à jour du projet',
-          benefit3: 'Reconnaissance dans les remerciements'
-        },
-        founding: {
-          name: 'Membre fondateur',
-          description: 'Devenez un acteur essentiel de l\'écosystème Bien-Rentré et participez à son évolution.',
-          benefit1: 'Accès au Discord privé des développeurs',
-          benefit2: 'Participation aux phases de test internes',
-          benefit3: 'Accès anticipé aux nouvelles fonctionnalités'
+        title: 'Monétisation projetée',
+        subtitle: 'Simple, lisible et alignée avec les coûts serveurs',
+        description:
+          'Le modèle repose sur des points de trajets cumulables, avec un plafond pour rester équitable.',
+        freemium: {
+          title: 'Freemium',
+          content: '3 trajets/mois ajoutés automatiquement, cumulables.',
         },
         premium: {
-          name: 'Membre Premium',
-          description: 'Bénéficiez d\'avantages exclusifs et soutenez durablement le projet.',
-          benefit1: 'Tous les avantages des paliers précédents',
-          benefit2: 'Votre nom dans les crédits de l\'application',
-          benefit3: 'Accès Premium temporaire (6 mois) lors du lancement'
+          title: 'Premium',
+          content: '10 trajets/mois, objectif tarifaire: 4,90 EUR / mois.',
         },
-        ambassador: {
-          name: 'Ambassadeur',
-          description: 'Devenez le porte-parole de Bien-Rentré et contribuez à sa visibilité.',
-          benefit1: 'Tous les avantages des paliers précédents',
-          benefit2: 'Code de parrainage personnel exclusif',
-          benefit3: 'Partage officiel des avancées sur les réseaux sociaux'
+        packs: {
+          title: 'Packs additionnels',
+          content: 'Achat ponctuel de points prévu via les stores mobiles.',
         },
-        pillar: {
-          name: 'Pilier de communauté',
-          description: 'Un engagement fort pour soutenir la croissance de Bien-Rentré.',
-          benefit1: 'Participation aux réunions de développement',
-          benefit2: 'Accès prioritaire aux phases de test',
-          benefit3: 'Accès aux tests en dehors des créneaux normaux'
+        fairness: {
+          title: 'Règles de cumul',
+          content: 'Cap à 31 points, reset après 6 mois d\'inactivité.',
         },
-        gold: {
-          name: 'Mentor stratégique',
-          description: 'Participez activement à la stratégie et au développement du projet.',
-          benefit1: 'Tous les avantages des paliers précédents',
-          benefit2: 'Conseils stratégiques sur le développement',
-          benefit3: 'Accès direct aux décisions importantes'
-        },
-        platinum: {
-          name: 'Partenaire privilégié',
-          description: 'Soutien ultime pour les visionnaires qui croient au potentiel de Bien-Rentré.',
-          benefit1: 'Tous les avantages des paliers précédents',
-          benefit2: 'Accès direct au développeur principal',
-          benefit3: 'Récompenses et avantages personnalisés'
-        }
       },
       cta: {
-        title: 'Prêt à nous rejoindre ?',
-        description: 'Chaque contribution, même la plus modeste, nous aide à améliorer Bien-Rentré et à le rendre accessible au plus grand nombre.',
-        button: 'Devenir supporter sur Patreon'
-      }
+        title: 'Participer à la phase de test',
+        description: 'Vous souhaitez suivre le projet ou remonter des retours terrain ?',
+        button: 'Nous contacter',
+      },
     },
     footer: {
-      copyright: 'Tous droits réservés.'
-    }
+      copyright: 'Tous droits réservés.',
+    },
   },
   en: {
     nav: {
       home: 'Home',
       features: 'Features',
-      support: 'Support Us',
+      support: 'Business model',
       faq: 'FAQ',
       contact: 'Contact',
-      terms: 'Terms of Use',
-      privacy: 'Privacy Policy'
+      terms: 'Terms',
+      privacy: 'Privacy',
+      cgv: 'Sales terms',
     },
-    terms: {
+    legal: {
+      backHome: 'Back to home',
+      updatedAt: 'Last update: March 2026',
+      complianceNote:
+        'This text is an operational draft. Final validation by a legal professional is recommended before public commercial launch.',
+    },
+    termsPage: {
       title: 'Terms of Use',
-      subtitle: 'Last updated: December 2024',
-      object: {
-        title: '1. Service Purpose',
-        content: 'Bien-Rentré is a mobile application designed to improve the safety of nighttime travel. The application allows users to share their GPS location in real-time with pre-selected trusted contacts, thus providing peace of mind during evening returns.'
-      },
-      usage: {
-        title: '2. Terms of Use',
-        age: {
-          title: 'Minimum Age',
-          content: 'To use Bien-Rentré, you must be at least 16 years old. If you are under 16, the use of the application is strictly prohibited.'
+      sections: {
+        object: {
+          title: '1. Service purpose',
+          content:
+            'Bien-Rentré is a mobile app designed to support safe return tracking through a share code, a live map and an arrival notification.',
         },
-        responsibility: {
-          title: 'Responsible Use',
-          content: 'Bien-Rentré is not an official emergency alert system. In case of imminent danger, immediately contact the appropriate emergency services (112, 911, etc.). The application does not replace personal safety measures.'
-        }
-      },
-      features: {
-        title: '3. Features and Limitations',
-        sharing: {
-          title: 'Location Sharing',
-          content: 'The application only shares GPS location with contacts explicitly authorized by the user. No other personal data is transmitted automatically.'
+        access: {
+          title: '2. Access conditions',
+          list1: 'Account creation with email/password',
+          list2: 'Acceptance of Terms of Use and Privacy Policy',
+          list3: 'Activation of required permissions (location, notifications)',
         },
-        limitations: 'The application requires an active internet connection and authorization to access geolocation. In case of GPS signal or connection loss, the application will automatically notify the designated contact.'
+        operation: {
+          title: '3. Core operation',
+          content1:
+            'The traveler creates a trip (return address + transport mode), generates a code and shares it. The follower enters the code to track the trip in real time and receive an arrival notification.',
+          content2:
+            'Bien-Rentré is not an emergency service and does not replace emergency calls in dangerous situations.',
+        },
+        limits: {
+          title: '4. Availability and limitations',
+          content:
+            'Service quality depends on network, GPS, phone state and system permissions. Temporary interruptions may occur (maintenance, third-party downtime, etc.).',
+        },
+        accounts: {
+          title: '5. User accounts',
+          content:
+            'Users are responsible for protecting their credentials. Fraudulent use may lead to account suspension.',
+        },
+        economics: {
+          title: '6. Business model',
+          content:
+            'A freemium/premium points model is planned. Commercial details are described in the Sales Terms page.',
+        },
+        ip: {
+          title: '7. Intellectual property',
+          content:
+            'Bien-Rentré service elements (brand, interface, content, non-open-source code) are protected.',
+        },
+        law: {
+          title: '8. Applicable law',
+          content: 'These Terms are governed by French law.',
+        },
+        compliance: {
+          title: '9. Compliance note',
+          content:
+            'This text is an operational draft. Final legal review is recommended before public commercial launch.',
+        },
       },
-      property: {
-        title: '4. Intellectual Property',
-        content: 'The Bien-Rentré application, its name, logo, and all associated content are the exclusive property of their developers. Any reproduction, distribution or commercial use without prior authorization is strictly prohibited.'
-      },
-      data: {
-        title: '5. Data Protection',
-        content: 'We are committed to protecting your personal data in accordance with GDPR. For more details about our privacy policy, see the dedicated section below.'
-      },
-      availability: {
-        title: '6. Service Availability',
-        content: 'Bien-Rentré strives to maintain a reliable service, but cannot guarantee 100% availability. The application may be temporarily unavailable for maintenance or in case of technical issues.'
-      },
-      modifications: {
-        title: '7. Terms Modifications',
-        content: 'We reserve the right to modify these terms of use at any time. Users will be informed of major changes via the application or by email. Continued use of the application after modification constitutes acceptance of the new terms.'
-      },
-      resiliation: {
-        title: '8. Termination',
-        content: 'You can stop using Bien-Rentré at any time. Deleting the application will automatically stop all data sharing.'
-      },
-      law: {
-        title: '9. Applicable Law',
-        content: 'These terms of use are governed by French law. Any dispute will be submitted to the competent French courts.'
-      },
-      contact: {
-        title: '10. Contact',
-        content: 'For any questions regarding these terms of use, contact us through the contact form on our website or by email at the address indicated in our privacy policy.'
-      },
-      questions: {
-        title: 'Questions?',
-        content: 'Don\'t hesitate to contact us for any clarification regarding these terms of use.'
-      },
-      contactLink: 'Contact Us'
     },
-    privacy: {
+    privacyPage: {
       title: 'Privacy Policy',
-      subtitle: 'Last updated: December 2024',
-      controller: {
-        title: '1. Data Controller',
-        content: 'Bien-Rentré is developed and maintained by our teams. For any questions regarding the processing of your personal data, you can contact us through the contact form on our website.'
+      sections: {
+        controller: {
+          title: '1. Data controller',
+          content:
+            'The data controller is the publisher of the Bien-Rentré application. Contact: contact@antoineterrade.com',
+        },
+        data: {
+          title: '2. Processed data',
+          list1: 'Account data (email, user id)',
+          list2: 'Profile data (name, phone, address if provided)',
+          list3: 'Trip data (code, status, tracking positions)',
+          list4: 'Technical data (notification token, minimal app logs)',
+          note: 'The application no longer reads the phone contact list.',
+        },
+        purposes: {
+          title: '3. Purposes',
+          list1: 'Provide real-time trip tracking',
+          list2: 'Notify follower when traveler arrives',
+          list3: 'Secure service access and prevent abuse',
+          list4: 'Handle user support requests',
+        },
+        legalBasis: {
+          title: '4. Legal basis',
+          list1: 'Performance of requested service',
+          list2: 'Consent for location and notifications',
+          list3: 'Legitimate interest for security and abuse prevention',
+        },
+        recipients: {
+          title: '5. Recipients',
+          content:
+            'Data is hosted on Firebase infrastructure (Google Cloud) and shared only with users involved in a trip (traveler/follower) according to access rules.',
+        },
+        retention: {
+          title: '6. Retention periods',
+          list1: 'Account data: while account exists',
+          list2: 'Trip data: as needed for service and technical support',
+          list3: 'Support contact data: for request processing duration',
+          note:
+            'Exact retention periods may be refined before public commercial launch.',
+        },
+        rights: {
+          title: '7. GDPR rights',
+          content1:
+            'You may exercise your rights of access, rectification, erasure, restriction, objection and portability by contacting contact@antoineterrade.com.',
+          content2: 'You may also lodge a complaint with your data protection authority.',
+        },
+        security: {
+          title: '8. Security',
+          content:
+            'Technical and organizational measures are implemented: access control, Firestore rules, authentication and encryption in transit.',
+        },
+        compliance: {
+          title: '9. Transparency and compliance',
+          content:
+            'This policy reflects the current app state (internal testing). A final legal review is recommended before public launch.',
+        },
       },
-      data: {
-        title: '2. Data Collected',
-        location: {
-          title: 'Geolocation Data',
-          content: 'We collect your GPS position in real-time only when you activate sharing with a trusted contact. This data is temporarily stored during the active session duration.'
+    },
+    cgvPage: {
+      title: 'Sales Terms (CGV)',
+      sections: {
+        object: {
+          title: '1. Scope',
+          content:
+            'These sales terms define future paid offers of the Bien-Rentré app. At present, the app is in internal testing and paid features are not publicly available yet.',
+        },
+        products: {
+          title: '2. Products and services',
+          intro: 'The planned model is based on trip points:',
+          list1: 'Freemium: 3 trips per month',
+          list2: 'Premium: 10 trips per month (target 4.90 EUR/month)',
+          list3: 'Additional point packs (coming later)',
+          note:
+            'Final terms (final prices, taxes, commitment duration) will be published at commercial launch.',
+        },
+        payment: {
+          title: '3. Order and payment',
+          content:
+            'Payments will be processed through mobile stores (Google Play / App Store), according to their own terms and refund policies.',
+        },
+        withdrawal: {
+          title: '4. Withdrawal and refunds',
+          content:
+            'In-app digital purchases are governed by the distribution platforms refund policies. Refund requests are handled under those policies.',
+        },
+        duration: {
+          title: '5. Duration, cancellation, suspension',
+          content:
+            'Subscriptions, when enabled, will be managed through stores. Users may cancel from their store account. The publisher may suspend accounts in case of fraudulent usage.',
+        },
+        liability: {
+          title: '6. Liability',
+          content:
+            'Bien-Rentré is a support and reassurance service and does not replace official emergency services.',
         },
         contact: {
-          title: 'Contact Information',
-          content: 'When using the contact form on our website, we collect your email address and message content. This data is used solely to respond to your request.'
+          title: '7. Contact',
+          content: 'For commercial questions: contact@antoineterrade.com',
         },
-        note: 'We do not collect any other personal data without your explicit consent.'
-      },
-      purpose: {
-        title: '3. Processing Purposes',
-        content: 'Your data is processed only within the following framework:',
-        list1: 'Provide real-time location sharing service',
-        list2: 'Allow you to contact our support team',
-        list3: 'Improve and maintain application security'
-      },
-      legal: {
-        title: '4. Legal Basis',
-        content: 'The processing of your data is based on:',
-        list1: 'Your explicit consent for application use',
-        list2: 'The execution of the service contract you accepted',
-        list3: 'Our legitimate interest in ensuring user safety'
-      },
-      recipients: {
-        title: '5. Data Recipients',
-        content: 'Your geolocation data is shared exclusively with contacts you have explicitly designated in the application. No other sharing is performed without your prior authorization.',
-        support: 'Contact information (email and message) is accessible only to our support team to process your requests.'
-      },
-      retention: {
-        title: '6. Retention Period',
-        content: 'Geolocation Data: Automatically deleted at the end of each sharing session or at most after 24 hours of inactivity. Contact Data: Kept for a maximum of 2 years after processing your request, then automatically deleted.',
-        location: {
-          title: 'Geolocation Data',
-          content: 'Automatically deleted at the end of each sharing session or at most after 24 hours of inactivity.'
+        compliance: {
+          title: '8. Compliance clause',
+          content:
+            'This document is an operational draft. Final validation by a legal professional is recommended before public commercial launch.',
         },
-        contact: {
-          title: 'Contact Data',
-          content: 'Kept for a maximum of 2 years after processing your request, then automatically deleted.'
-        }
       },
-      rights: {
-        title: '7. User Rights',
-        content: 'In accordance with GDPR, you have the following rights:',
-        list1: 'Right of access: Know what data we hold about you',
-        list2: 'Right of rectification: Correct inaccurate data',
-        list3: 'Right to erasure: Delete your personal data',
-        list4: 'Right to portability: Retrieve your data in a usable format',
-        list5: 'Right to object: Refuse certain processing',
-        contact: 'To exercise these rights, contact us through our contact form.'
-      },
-      security: {
-        title: '8. Data Security',
-        content: 'We protect your personal data.',
-        encryption: 'Data is encrypted.'
-      },
-      contact: {
-        title: '9. Contact',
-        content: 'For questions about privacy policy.',
-        list1: 'Use contact form',
-        list2: 'Send email',
-        response: 'Response within 30 days.'
-      },
-      questions: {
-        title: 'Questions?',
-        content: 'Contact us for privacy questions.'
-      },
-      contactLink: 'Contact'
     },
     hero: {
       title: 'Bien-Rentré',
-      subtitle: 'The app that watches over your late-night returns',
-      description: 'Share your real-time location with your trusted contacts. Guaranteed security and peace of mind.',
-      support: 'Support Us',
-      learnMore: 'Learn More'
+      subtitle: 'Simple and reassuring return tracking',
+      description:
+        'Create a trip, share a code, track live and receive an arrival notification. The app is currently available in internal testing.',
+      support: 'View business model',
+      learnMore: 'Learn more',
     },
     features: {
       title: 'Features',
-      subtitle: 'Everything you need to return safely',
+      subtitle: 'A smooth flow for both traveler and follower',
       items: {
         download: {
-          title: 'Download',
-          description: 'Download Bien-Rentré on your smartphone from the App Store or Google Play.'
+          title: 'Create a trip',
+          description: 'The traveler chooses a destination and transport mode, then generates a tracking code.',
         },
         chooseContacts: {
-          title: 'Choose your contacts',
-          description: 'Select a trusted person who can follow your route in real time.'
+          title: 'Share a code',
+          description: 'Share through SMS, WhatsApp or copy/paste. No contact list management required.',
         },
         activate: {
-          title: 'Activate sharing',
-          description: 'Generate a unique code and share it with your contact to start the session.'
+          title: 'Track live',
+          description: 'The follower enters the code and watches live progress on the map.',
         },
         safeReturn: {
-          title: 'Return safely',
-          description: 'Your contact follows your route in real time and receives a notification upon your arrival.'
-        }
-      }
-    },
-    howItWorks: {
-      title: 'How it works',
-      subtitle: 'Simple, fast and effective'
+          title: 'Arrival notification',
+          description: 'The follower is automatically notified when the traveler reaches the safety zone.',
+        },
+      },
     },
     faq: {
-      title: 'Frequently Asked Questions',
-      subtitle: 'Everything you need to know about Bien-Rentré',
+      title: 'FAQ',
+      subtitle: 'Frequently asked questions',
       questions: {
         emergency: {
-          question: 'Is Bien-Rentré an emergency alert system?',
-          answer: 'Yes and no. Bien-Rentré does not directly alert competent authorities, but it informs your loved ones of your real-time position, remaining battery percentage, and network quality. For example, in case of a car accident or breakdown, you can manually send an alert to your entourage. If you\'re walking home and feel you\'re being followed, a hidden shortcut in the app allows you to instantly alert your guarantors. Your journey history will be saved and can be transmitted to authorities if needed. Location sharing automatically stops at your home (soon detected via your home WiFi). We are working to greatly improve this safety principle.'
+          question: 'Does Bien-Rentré replace emergency services?',
+          answer: 'No. It is a reassurance and tracking service, not an emergency service replacement.',
         },
         offline: {
-          question: 'Does the app work offline?',
-          answer: 'No, Bien-Rentré requires an internet connection. However, if you share your location with a guarantor, they will see in real-time your location, remaining battery percentage, and network quality. We will add smart features that automatically send notifications to the guarantor when your battery is low or network coverage is poor.'
+          question: 'Does tracking work offline?',
+          answer: 'Live tracking requires an internet connection for both traveler and follower.',
         },
         contacts: {
-          question: 'How many contacts can I add?',
-          answer: 'In the free version, you can add as many people as you want for trusted contacts. However, for real-time tracking during a return journey, only one person can follow you with a position refresh every 30 seconds. If the guarantor is premium, they can add as many contacts as they want with a 15-second refresh rate. If both (sender and guarantor) are premium, the refresh rate drops to 5 seconds.'
+          question: 'Do I need trusted contacts?',
+          answer: 'No. The current flow is code-based and does not rely on contact/favorite management.',
         },
         emergencyActivation: {
-          question: 'How to activate an emergency alert?',
-          answer: 'You can activate an emergency alert in two ways: either through a secret code in the app (combination of "-" and "lock" buttons - feature currently in development), or by shaking your phone vigorously. The alert will immediately inform your guarantors of the situation with your current position.'
+          question: 'Is the "Are you okay?" feature available?',
+          answer: 'No. It was removed from the current POC scope.',
         },
         networkLoss: {
-          question: 'What happens if network is lost during a journey?',
-          answer: 'If you lose network connection, your guarantors will automatically receive a notification indicating network loss, accompanied by your last known position. This allows them to know you might be in a coverage-free area.'
+          question: 'What if network quality drops?',
+          answer: 'Position updates may slow down and resume as soon as connection is restored.',
         },
         storageDuration: {
-          question: 'How long are journey histories stored?',
-          answer: 'Journey histories are stored for 15 days on our secure servers, then remain available locally on your guarantors\' devices. This approach ensures privacy while allowing access to important data when needed.'
+          question: 'How long is data stored?',
+          answer: 'Data retention is minimized for service operation and being finalized before public launch.',
         },
         compatibility: {
-          question: 'Is the app compatible with iOS and Android?',
-          answer: 'Yes, we are developing Bien-Rentré to be compatible with both major mobile operating systems: iOS and Android. The goal is to provide the same user experience across all platforms.'
+          question: 'Is the app public already?',
+          answer: 'Not yet. The app is currently in internal testing.',
         },
         dualRole: {
-          question: 'Can I be both a guarantor and user of the app?',
-          answer: 'Of course! However, a warning will appear before starting a journey if you are already a guarantor for someone else. This will remind you of the double data consumption and, if driving, the importance of not using your phone while driving for safety reasons.'
+          question: 'Can one account be both traveler and follower?',
+          answer: 'Yes. The same account can start a trip and follow another one.',
         },
         sharingInitiation: {
-          question: 'How to initiate location sharing?',
-          answer: 'To share your location: select your trusted contact, define your return zone and means of transportation. The app then generates a unique code that you transmit to your contact. They enter the code in their app, and a phone number verification confirms the secure connection.'
+          question: 'How do I start sharing?',
+          answer: 'On the Start screen: choose return address, transport mode, generate code, then start trip.',
         },
         economic: {
-          question: 'What will be the economic model of Bien-Rentré?',
-          answer: 'We believe this service should be a public utility, which is why we will provide it even without revenue. However, we plan a premium subscription system offering: tracking by multiple people simultaneously, removal of ads, more frequent position updates, intelligent alerts, and route zone notifications (for example, alerting the guarantor of the remaining distance percentage before arrival).'
+          question: 'What business model is planned?',
+          answer:
+            'Freemium 3 trips/month, Premium 10 trips/month (target 4.90 EUR/month), 31-point cap and optional packs.',
         },
         dataProtection: {
-          question: 'How is my location data protected?',
-          answer: 'Your location data is only shared with contacts you have explicitly authorized. It is encrypted and temporarily stored during the active session. We fully comply with GDPR and our practices are detailed in our privacy policy.'
+          question: 'How is data protected?',
+          answer: 'Authenticated access, Firestore rules, and GDPR-aligned legal pages.',
         },
         accuracy: {
-          question: 'What is the geolocation accuracy?',
-          answer: 'The app uses your smartphone\'s built-in GPS with accuracy generally between 5 to 10 meters. Accuracy may vary depending on weather conditions and network coverage.'
-        }
-      }
+          question: 'Is location really updated in real time?',
+          answer: 'Yes, and the follower can also trigger a manual refresh.',
+        },
+      },
     },
     contact: {
-      title: 'Contact Us',
-      subtitle: 'Do you have questions? Don\'t hesitate to contact us.',
+      title: 'Contact',
+      subtitle: 'Product, testing or legal question?',
       form: {
         title: 'Title',
         message: 'Message',
         email: 'Email address',
         send: 'Send',
         sending: 'Sending...',
-        success: 'Message sent successfully!',
-        error: 'Error sending message. Please try again.'
-      }
+        success: 'Message sent successfully.',
+        error: 'Error while sending. Please try again.',
+      },
     },
     support: {
-      title: 'Support Bien-Rentré',
-      subtitle: 'Join our adventure',
-      description: 'Bien-Rentré is an independent project developed with passion. Your support allows us to continue creating an application that improves everyone\'s safety during nighttime travel.',
+      title: 'Business model',
+      subtitle: 'Roadmap before public launch',
+      description:
+        'The Patreon page has been closed. The projected funding model is now integrated in-app through freemium/premium.',
       status: {
-        title: 'App in production',
-        description: 'Our application is currently in production phase. Internal testing is underway and we are preparing for the official launch.'
+        title: 'Product status',
+        description: 'The app is currently in internal testing.',
       },
-      team: {
-        title: 'Independent team',
-        description: 'Developed by a solo creator with the valuable help of two volunteers. Every contribution counts to allow us to continue.'
+      product: {
+        title: 'Already implemented',
+        description: 'Code-based sharing, live tracking, arrival notification, email auth and quota management.',
       },
-      vision: {
-        title: 'Community vision',
-        description: 'Our goal is to create a tool accessible to everyone, free in its essential features, funded by the community.'
+      patreon: {
+        title: 'Patreon closure',
+        description: 'Patreon was closed to focus on a clear in-app monetization strategy.',
       },
       economic: {
-        title: 'Why this economic model?',
-        subtitle: 'Community funding for sustainable social impact',
-        description: 'Bien-Rentré deliberately chooses a participatory funding model rather than traditional venture capital. This approach allows us to build an authentic relationship with our community and develop the project according to our values.',
-        social: {
-          title: 'Positive social impact',
-          content: 'Every contribution directly funds the development of a solution that improves nighttime safety. Unlike traditional fundraising, your support creates a virtuous circle where the community directly benefits from project advances.'
-        },
-        community: {
-          title: 'Building an engaged community',
-          content: 'Beyond funding, we are building a community of people who believe in our vision. Supporters become essential actors in development, participating in decisions and contributing to shaping the project\'s future.'
-        },
-        startup: {
-          title: 'Founding an inclusive startup',
-          content: 'Our ambition is to transform Bien-Rentré into a real social enterprise. By funding development in a community way, we will be able to hire our current volunteers full-time and significantly accelerate production.'
-        },
-        acceleration: {
-          title: 'Accelerating development',
-          content: 'Each support tier represents a step toward financial autonomy. With a strong community, we will be able to invest in the necessary resources to deliver a superior quality application within the planned timelines.'
-        }
-      },
-      tiers: {
-        title: 'Support tiers',
-        description: 'Choose the level of commitment that suits you. All support is essential for the continuous development of the project.',
-        period: '/ month',
-        popular: 'Most popular',
-        vip: 'VIP',
-        join: 'Join this tier',
-        concept: {
-          name: 'Concept supporter',
-          description: 'The essential tier that allows Bien-Rentré to exist and grow.',
-          benefit1: 'Direct contribution to development',
-          benefit2: 'Access to project updates',
-          benefit3: 'Recognition in acknowledgments'
-        },
-        founding: {
-          name: 'Founding member',
-          description: 'Become an essential actor in the Bien-Rentré ecosystem and participate in its evolution.',
-          benefit1: 'Access to private developer Discord',
-          benefit2: 'Participation in internal testing phases',
-          benefit3: 'Early access to new features'
+        title: 'Projected monetization',
+        subtitle: 'Simple and aligned with infrastructure costs',
+        description: 'The model is based on cumulative trip points with a fairness cap.',
+        freemium: {
+          title: 'Freemium',
+          content: '3 trips/month added automatically, cumulative.',
         },
         premium: {
-          name: 'Premium member',
-          description: 'Enjoy exclusive benefits and support the project sustainably.',
-          benefit1: 'All benefits from previous tiers',
-          benefit2: 'Your name in the app credits',
-          benefit3: 'Temporary Premium access (6 months) at launch'
+          title: 'Premium',
+          content: '10 trips/month, target pricing: 4.90 EUR / month.',
         },
-        ambassador: {
-          name: 'Ambassador',
-          description: 'Become Bien-Rentré\'s spokesperson and contribute to its visibility.',
-          benefit1: 'All benefits from previous tiers',
-          benefit2: 'Exclusive personal referral code',
-          benefit3: 'Official sharing of progress on social media'
+        packs: {
+          title: 'Additional packs',
+          content: 'One-shot point packs planned via mobile stores.',
         },
-        pillar: {
-          name: 'Community pillar',
-          description: 'Strong commitment to support Bien-Rentré\'s growth.',
-          benefit1: 'Participation in development meetings',
-          benefit2: 'Priority access to testing phases',
-          benefit3: 'Access to testing outside normal slots'
+        fairness: {
+          title: 'Accumulation rules',
+          content: '31-point cap, reset after 6 months of inactivity.',
         },
-        gold: {
-          name: 'Strategic mentor',
-          description: 'Actively participate in the strategy and development of the project.',
-          benefit1: 'All benefits from previous tiers',
-          benefit2: 'Strategic advice on development',
-          benefit3: 'Direct access to important decisions'
-        },
-        platinum: {
-          name: 'Privileged partner',
-          description: 'Ultimate support for visionaries who believe in Bien-Rentré\'s potential.',
-          benefit1: 'All benefits from previous tiers',
-          benefit2: 'Direct access to the lead developer',
-          benefit3: 'Personalized rewards and benefits'
-        }
       },
       cta: {
-        title: 'Ready to join us?',
-        description: 'Every contribution, even the most modest, helps us improve Bien-Rentré and make it accessible to as many people as possible.',
-        button: 'Become a supporter on Patreon'
-      }
+        title: 'Join the test phase',
+        description: 'Want to follow progress or share field feedback?',
+        button: 'Contact us',
+      },
     },
     footer: {
-      copyright: 'All rights reserved.'
-    }
-  }
+      copyright: 'All rights reserved.',
+    },
+  },
 }
 
 export const i18n = createI18n({
   legacy: false,
   locale: getSavedLanguage(),
   fallbackLocale: 'fr',
-  messages
+  messages,
 })

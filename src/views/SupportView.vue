@@ -1,33 +1,30 @@
 <template>
   <div class="support-page">
     <div class="container">
-      <!-- Header Section -->
       <section class="support-header">
         <h1 class="support-title">{{ $t('support.title') }}</h1>
         <p class="support-subtitle">{{ $t('support.subtitle') }}</p>
         <p class="support-description">{{ $t('support.description') }}</p>
       </section>
 
-      <!-- Project Status -->
       <section class="project-status">
         <div class="status-card">
-          <div class="status-icon">🚀</div>
+          <div class="status-icon">🧪</div>
           <h3>{{ $t('support.status.title') }}</h3>
           <p>{{ $t('support.status.description') }}</p>
         </div>
         <div class="status-card">
-          <div class="status-icon">👥</div>
-          <h3>{{ $t('support.team.title') }}</h3>
-          <p>{{ $t('support.team.description') }}</p>
+          <div class="status-icon">📱</div>
+          <h3>{{ $t('support.product.title') }}</h3>
+          <p>{{ $t('support.product.description') }}</p>
         </div>
         <div class="status-card">
-          <div class="status-icon">🎯</div>
-          <h3>{{ $t('support.vision.title') }}</h3>
-          <p>{{ $t('support.vision.description') }}</p>
+          <div class="status-icon">📉</div>
+          <h3>{{ $t('support.patreon.title') }}</h3>
+          <p>{{ $t('support.patreon.description') }}</p>
         </div>
       </section>
 
-      <!-- Economic Model Section -->
       <section class="economic-section">
         <h2 class="section-title">{{ $t('support.economic.title') }}</h2>
         <p class="section-subtitle">{{ $t('support.economic.subtitle') }}</p>
@@ -35,185 +32,34 @@
 
         <div class="economic-grid">
           <div class="economic-card">
-            <div class="economic-icon">🌍</div>
-            <h3>{{ $t('support.economic.social.title') }}</h3>
-            <p>{{ $t('support.economic.social.content') }}</p>
+            <div class="economic-icon">🆓</div>
+            <h3>{{ $t('support.economic.freemium.title') }}</h3>
+            <p>{{ $t('support.economic.freemium.content') }}</p>
           </div>
           <div class="economic-card">
-            <div class="economic-icon">🤝</div>
-            <h3>{{ $t('support.economic.community.title') }}</h3>
-            <p>{{ $t('support.economic.community.content') }}</p>
+            <div class="economic-icon">⭐</div>
+            <h3>{{ $t('support.economic.premium.title') }}</h3>
+            <p>{{ $t('support.economic.premium.content') }}</p>
           </div>
           <div class="economic-card">
-            <div class="economic-icon">🚀</div>
-            <h3>{{ $t('support.economic.startup.title') }}</h3>
-            <p>{{ $t('support.economic.startup.content') }}</p>
+            <div class="economic-icon">🎟️</div>
+            <h3>{{ $t('support.economic.packs.title') }}</h3>
+            <p>{{ $t('support.economic.packs.content') }}</p>
           </div>
           <div class="economic-card">
-            <div class="economic-icon">⚡</div>
-            <h3>{{ $t('support.economic.acceleration.title') }}</h3>
-            <p>{{ $t('support.economic.acceleration.content') }}</p>
+            <div class="economic-icon">⚖️</div>
+            <h3>{{ $t('support.economic.fairness.title') }}</h3>
+            <p>{{ $t('support.economic.fairness.content') }}</p>
           </div>
         </div>
       </section>
 
-      <!-- Patreon Tiers -->
-      <section class="patreon-section">
-        <h2 class="section-title">{{ $t('support.tiers.title') }}</h2>
-        <p class="section-description">{{ $t('support.tiers.description') }}</p>
-
-        <div class="tiers-grid">
-          <!-- Tier 1: Concept Supporter -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.concept.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">2,90 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.concept.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.concept.benefit1') }}</li>
-              <li>{{ $t('support.tiers.concept.benefit2') }}</li>
-              <li>{{ $t('support.tiers.concept.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-
-          <!-- Tier 2: Founding Member -->
-          <div class="tier-card tier-featured">
-            <div class="tier-badge">{{ $t('support.tiers.popular') }}</div>
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.founding.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">8,90 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.founding.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.founding.benefit1') }}</li>
-              <li>{{ $t('support.tiers.founding.benefit2') }}</li>
-              <li>{{ $t('support.tiers.founding.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button tier-button-primary">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-
-          <!-- Tier 3: Premium Member -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.premium.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">14,90 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.premium.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.premium.benefit1') }}</li>
-              <li>{{ $t('support.tiers.premium.benefit2') }}</li>
-              <li>{{ $t('support.tiers.premium.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-
-          <!-- Tier 4: Ambassador -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.ambassador.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">19,90 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.ambassador.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.ambassador.benefit1') }}</li>
-              <li>{{ $t('support.tiers.ambassador.benefit2') }}</li>
-              <li>{{ $t('support.tiers.ambassador.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-
-          <!-- Tier 5: Community Pillar -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.pillar.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">29,80 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.pillar.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.pillar.benefit1') }}</li>
-              <li>{{ $t('support.tiers.pillar.benefit2') }}</li>
-              <li>{{ $t('support.tiers.pillar.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-
-          <!-- Tier 6: Strategic Mentor -->
-          <div class="tier-card">
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.gold.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">48,90 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.gold.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.gold.benefit1') }}</li>
-              <li>{{ $t('support.tiers.gold.benefit2') }}</li>
-              <li>{{ $t('support.tiers.gold.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-
-          <!-- Tier 7: Privileged Partner -->
-          <div class="tier-card tier-premium">
-            <div class="tier-badge">{{ $t('support.tiers.vip') }}</div>
-            <div class="tier-header">
-              <h3 class="tier-name">{{ $t('support.tiers.platinum.name') }}</h3>
-              <div class="tier-price">
-                <span class="price">99,80 €</span>
-                <span class="period">{{ $t('support.tiers.period') }}</span>
-              </div>
-            </div>
-            <p class="tier-description">{{ $t('support.tiers.platinum.description') }}</p>
-            <ul class="tier-benefits">
-              <li>{{ $t('support.tiers.platinum.benefit1') }}</li>
-              <li>{{ $t('support.tiers.platinum.benefit2') }}</li>
-              <li>{{ $t('support.tiers.platinum.benefit3') }}</li>
-            </ul>
-            <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="tier-button">
-              {{ $t('support.tiers.join') }}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Call to Action -->
       <section class="cta-section">
         <h2>{{ $t('support.cta.title') }}</h2>
         <p>{{ $t('support.cta.description') }}</p>
-        <a href="https://www.patreon.com/cw/bien_rentre/membership" target="_blank" rel="noopener" class="cta-button">
+        <router-link to="/#contact" class="cta-button">
           {{ $t('support.cta.button') }}
-        </a>
+        </router-link>
       </section>
     </div>
   </div>

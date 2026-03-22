@@ -12,10 +12,11 @@
           <a href="#faq">{{ $t('nav.contact') }}</a>
           <router-link to="/terms">{{ $t('nav.terms') }}</router-link>
           <router-link to="/privacy">{{ $t('nav.privacy') }}</router-link>
+          <router-link to="/cgv">{{ $t('nav.cgv') }}</router-link>
         </div>
 
         <div class="footer-copyright">
-          <p>&copy; 2025 {{ $t('hero.title') }}. {{ $t('footer.copyright') }}</p>
+          <p>&copy; 2026 {{ $t('hero.title') }}. {{ $t('footer.copyright') }}</p>
         </div>
       </div>
     </div>

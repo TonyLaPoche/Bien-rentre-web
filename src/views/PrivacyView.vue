@@ -2,138 +2,100 @@
   <div class="legal-page">
     <div class="container">
       <header class="page-header">
-        <div class="header-content">
-          <router-link to="/" class="back-link">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            {{ $t('nav.home') }}
-          </router-link>
-          <h1 class="page-title">{{ $t('privacy.title') }}</h1>
-          <p class="page-subtitle">{{ $t('privacy.subtitle') }}</p>
-        </div>
+        <router-link to="/" class="back-link">← {{ $t('legal.backHome') }}</router-link>
+        <h1 class="page-title">{{ $t('privacyPage.title') }}</h1>
+        <p class="page-subtitle">{{ $t('legal.updatedAt') }}</p>
       </header>
 
       <main class="page-content">
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.controller.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.controller.content') }}</p>
-          </div>
+          <h2>{{ $t('privacyPage.sections.controller.title') }}</h2>
+          <p>
+            {{ $t('privacyPage.sections.controller.content') }}
+          </p>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.data.title') }}</h2>
-          <div class="section-content">
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.data.location.title') }}</h3>
-              <p>{{ $t('privacy.data.location.content') }}</p>
-            </div>
-
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.data.contact.title') }}</h3>
-              <p>{{ $t('privacy.data.contact.content') }}</p>
-            </div>
-
-            <p>{{ $t('privacy.data.note') }}</p>
-          </div>
+          <h2>{{ $t('privacyPage.sections.data.title') }}</h2>
+          <ul>
+            <li>{{ $t('privacyPage.sections.data.list1') }}</li>
+            <li>{{ $t('privacyPage.sections.data.list2') }}</li>
+            <li>{{ $t('privacyPage.sections.data.list3') }}</li>
+            <li>{{ $t('privacyPage.sections.data.list4') }}</li>
+          </ul>
+          <p>
+            {{ $t('privacyPage.sections.data.note') }}
+          </p>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.purpose.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.purpose.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.purpose.list1') }}</li>
-              <li>{{ $t('privacy.purpose.list2') }}</li>
-              <li>{{ $t('privacy.purpose.list3') }}</li>
-            </ul>
-          </div>
+          <h2>{{ $t('privacyPage.sections.purposes.title') }}</h2>
+          <ul>
+            <li>{{ $t('privacyPage.sections.purposes.list1') }}</li>
+            <li>{{ $t('privacyPage.sections.purposes.list2') }}</li>
+            <li>{{ $t('privacyPage.sections.purposes.list3') }}</li>
+            <li>{{ $t('privacyPage.sections.purposes.list4') }}</li>
+          </ul>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.legal.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.legal.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.legal.list1') }}</li>
-              <li>{{ $t('privacy.legal.list2') }}</li>
-              <li>{{ $t('privacy.legal.list3') }}</li>
-            </ul>
-          </div>
+          <h2>{{ $t('privacyPage.sections.legalBasis.title') }}</h2>
+          <ul>
+            <li>{{ $t('privacyPage.sections.legalBasis.list1') }}</li>
+            <li>{{ $t('privacyPage.sections.legalBasis.list2') }}</li>
+            <li>{{ $t('privacyPage.sections.legalBasis.list3') }}</li>
+          </ul>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.recipients.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.recipients.content') }}</p>
-            <p>{{ $t('privacy.recipients.support') }}</p>
-          </div>
+          <h2>{{ $t('privacyPage.sections.recipients.title') }}</h2>
+          <p>
+            {{ $t('privacyPage.sections.recipients.content') }}
+          </p>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.retention.title') }}</h2>
-          <div class="section-content">
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.retention.location.title') }}</h3>
-              <p>{{ $t('privacy.retention.location.content') }}</p>
-            </div>
-
-            <div class="highlight-box">
-              <h3>{{ $t('privacy.retention.contact.title') }}</h3>
-              <p>{{ $t('privacy.retention.contact.content') }}</p>
-            </div>
-          </div>
+          <h2>{{ $t('privacyPage.sections.retention.title') }}</h2>
+          <ul>
+            <li>{{ $t('privacyPage.sections.retention.list1') }}</li>
+            <li>{{ $t('privacyPage.sections.retention.list2') }}</li>
+            <li>{{ $t('privacyPage.sections.retention.list3') }}</li>
+          </ul>
+          <p>
+            {{ $t('privacyPage.sections.retention.note') }}
+          </p>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.rights.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.rights.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.rights.list1') }}</li>
-              <li>{{ $t('privacy.rights.list2') }}</li>
-              <li>{{ $t('privacy.rights.list3') }}</li>
-              <li>{{ $t('privacy.rights.list4') }}</li>
-              <li>{{ $t('privacy.rights.list5') }}</li>
-            </ul>
-            <p>{{ $t('privacy.rights.contact') }}</p>
-          </div>
+          <h2>{{ $t('privacyPage.sections.rights.title') }}</h2>
+          <p>
+            {{ $t('privacyPage.sections.rights.content1') }}
+          </p>
+          <p>
+            {{ $t('privacyPage.sections.rights.content2') }}
+          </p>
         </section>
 
         <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.security.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.security.content') }}</p>
-            <p>{{ $t('privacy.security.encryption') }}</p>
-          </div>
+          <h2>{{ $t('privacyPage.sections.security.title') }}</h2>
+          <p>
+            {{ $t('privacyPage.sections.security.content') }}
+          </p>
         </section>
 
-        <section class="legal-section">
-          <h2 class="section-title">{{ $t('privacy.contact.title') }}</h2>
-          <div class="section-content">
-            <p>{{ $t('privacy.contact.content') }}</p>
-            <ul>
-              <li>{{ $t('privacy.contact.list1') }}</li>
-              <li>{{ $t('privacy.contact.list2') }}</li>
-            </ul>
-            <p>{{ $t('privacy.contact.response') }}</p>
-          </div>
+        <section class="legal-section legal-note">
+          <h2>{{ $t('privacyPage.sections.compliance.title') }}</h2>
+          <p>
+            {{ $t('privacyPage.sections.compliance.content') }}
+          </p>
         </section>
       </main>
-
-      <div class="contact-section">
-        <h3 class="contact-title">{{ $t('privacy.questions.title') }}</h3>
-        <p class="contact-text">{{ $t('privacy.questions.content') }}</p>
-        <router-link to="/#contact" class="action-link">{{ $t('privacy.contactLink') }}</router-link>
-      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-
 const { t } = useI18n()
 </script>
 
@@ -141,158 +103,54 @@ const { t } = useI18n()
 .legal-page {
   min-height: 100vh;
   background: var(--background);
-  padding: 80px 0 40px;
+  padding: 100px 0 40px;
 }
 
 .page-header {
-  text-align: center;
-  margin-bottom: 60px;
-  padding: 40px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.header-content {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 840px;
+  margin: 0 auto 32px;
 }
 
 .back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
-  margin-bottom: 20px;
-  transition: var(--transition);
-}
-
-.back-link:hover {
-  color: var(--primary-dark);
 }
 
 .page-title {
-  font-size: 2.5rem;
-  font-weight: 800;
+  margin-top: 12px;
+  font-size: 2.25rem;
   color: var(--text-primary);
-  margin-bottom: 10px;
 }
 
 .page-subtitle {
-  font-size: 1.125rem;
   color: var(--text-secondary);
 }
 
 .page-content {
-  max-width: 800px;
-  margin: 0 auto 60px;
+  max-width: 840px;
+  margin: 0 auto;
 }
 
 .legal-section {
-  margin-bottom: 40px;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--primary-color);
-}
-
-.section-content {
-  margin-bottom: 20px;
-  line-height: 1.7;
-}
-
-.section-content h3 {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 24px 0 12px 0;
-}
-
-.section-content p {
-  margin-bottom: 16px;
-  color: var(--text-secondary);
-}
-
-.section-content ul {
-  margin-left: 20px;
-  margin-bottom: 16px;
-}
-
-.section-content li {
-  margin-bottom: 8px;
-  color: var(--text-secondary);
-}
-
-.highlight-box {
-  background: var(--background-light);
-  border-left: 4px solid var(--primary-color);
+  margin-bottom: 24px;
   padding: 20px;
-  margin: 20px 0;
-  border-radius: 8px;
-}
-
-.highlight-box h3 {
-  color: var(--text-primary);
-  margin-bottom: 10px;
-}
-
-.contact-section {
-  background: var(--background-light);
-  padding: 30px;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  text-align: center;
-  margin-top: 40px;
+  background: var(--background-light);
 }
 
-.contact-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
+.legal-section h2 {
   margin-bottom: 10px;
+  color: var(--text-primary);
 }
 
-.contact-text {
+.legal-section p,
+.legal-section li {
   color: var(--text-secondary);
-  margin-bottom: 20px;
 }
 
-.action-link {
-  display: inline-block;
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 12px 24px;
-  border: 2px solid var(--primary-color);
-  border-radius: 8px;
-  transition: var(--transition);
-}
-
-.action-link:hover {
-  background: var(--primary-color);
-  color: white;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .legal-page {
-    padding: 60px 0 20px;
-  }
-
-  .page-title {
-    font-size: 2rem;
-  }
-
-  .section-title {
-    font-size: 1.25rem;
-  }
-
-  .contact-section {
-    padding: 20px;
-  }
+.legal-note {
+  border-left: 4px solid var(--primary-color);
 }
 </style>
