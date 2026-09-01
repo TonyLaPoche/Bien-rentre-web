@@ -1,3 +1,8 @@
+# Archive — ancien site vanilla JS
+
+> **Production actuelle :** [https://bien-rentre.fr](https://bien-rentre.fr/) (Vue.js, hébergement IONOS).  
+> Ce dossier conserve les specs markdown de l'ancien site statique, avant migration Vue.
+
 # Bien-Rentré - Application de sécurité nocturne
 
 Site vitrine pour l'application mobile Bien-Rentré, qui permet de partager sa position GPS en temps réel avec des contacts de confiance lors de déplacements nocturnes.
@@ -35,4 +40,4 @@ Site vitrine pour l'application mobile Bien-Rentré, qui permet de partager sa p
 
 ## Déploiement
 
-Le site est optimisé pour GitHub Pages avec un build statique.
+Le site est optimisé pour un hébergement statique (historiquement GitHub Pages ; production actuelle : IONOS sur `bien-rentre.fr`).

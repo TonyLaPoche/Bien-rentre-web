@@ -1,4 +1,6 @@
-# Spécifications techniques
+# Spécifications techniques — archive
+
+> **Obsolète.** Production actuelle : [https://bien-rentre.fr](https://bien-rentre.fr/) (Vue.js, IONOS).
 
 ## Application mobile
 - **Framework** : Flutter
