@@ -1,50 +1,54 @@
 <template>
   <nav class="navbar">
     <div class="nav-container">
-      <!-- Logo -->
-      <router-link to="/" class="nav-logo">
+      <router-link to="/" class="nav-logo" @click="closeMobileMenu">
         <img src="/icon-br.svg" alt="Bien-Rentré" class="logo">
         <span class="brand-name">{{ $t('hero.title') }}</span>
       </router-link>
 
-      <!-- Menu desktop -->
       <div class="nav-menu">
-        <router-link to="/modele-economique" class="nav-link">{{ $t('nav.support') }}</router-link>
         <a href="./#features" class="nav-link">{{ $t('nav.features') }}</a>
         <a href="./#about" class="nav-link">{{ $t('nav.about') }}</a>
         <a href="./#roadmap" class="nav-link">{{ $t('nav.roadmap') }}</a>
         <a href="./#faq" class="nav-link">{{ $t('nav.faq') }}</a>
-        <router-link to="/terms" class="nav-link">{{ $t('nav.terms') }}</router-link>
-        <router-link to="/privacy" class="nav-link">{{ $t('nav.privacy') }}</router-link>
-        <router-link to="/cgv" class="nav-link">{{ $t('nav.cgv') }}</router-link>
+        <router-link to="/modele-economique" class="nav-cta">{{ $t('nav.support') }}</router-link>
       </div>
 
-      <!-- Sélecteur de langue -->
-      <LanguageSelector />
-
-      <!-- Menu burger mobile -->
-      <button
-        class="nav-toggle"
-        @click="toggleMobileMenu"
-        :aria-expanded="mobileMenuOpen"
-        aria-label="Toggle navigation menu"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="nav-actions">
+        <LanguageSelector />
+        <button
+          class="nav-toggle"
+          @click="toggleMobileMenu"
+          :aria-expanded="mobileMenuOpen"
+          aria-label="Toggle navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
 
-    <!-- Menu mobile -->
     <div class="nav-mobile" :class="{ 'nav-mobile--open': mobileMenuOpen }">
-      <a href="#features" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.features') }}</a>
-      <a href="#about" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.about') }}</a>
-      <a href="#roadmap" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.roadmap') }}</a>
-      <router-link to="/modele-economique" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.support') }}</router-link>
-      <a href="#faq" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.faq') }}</a>
-      <router-link to="/terms" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.terms') }}</router-link>
-      <router-link to="/privacy" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.privacy') }}</router-link>
-      <router-link to="/cgv" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.cgv') }}</router-link>
+      <div class="nav-mobile-primary">
+        <a href="#features" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.features') }}</a>
+        <a href="#about" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.about') }}</a>
+        <a href="#roadmap" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.roadmap') }}</a>
+        <a href="#faq" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.faq') }}</a>
+        <a href="#contact" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.contact') }}</a>
+        <router-link to="/modele-economique" class="nav-mobile-cta" @click="closeMobileMenu">
+          {{ $t('nav.support') }}
+        </router-link>
+      </div>
+
+      <div class="nav-mobile-legal">
+        <p class="nav-mobile-legal-label">{{ $t('nav.legal') }}</p>
+        <div class="nav-mobile-legal-links">
+          <router-link to="/terms" @click="closeMobileMenu">{{ $t('nav.terms') }}</router-link>
+          <router-link to="/privacy" @click="closeMobileMenu">{{ $t('nav.privacy') }}</router-link>
+          <router-link to="/cgv" @click="closeMobileMenu">{{ $t('nav.cgv') }}</router-link>
+        </div>
+      </div>
     </div>
   </nav>
 </template>
@@ -70,10 +74,10 @@ const closeMobileMenu = () => {
   top: 0;
   left: 0;
   right: 0;
-  background: var(--background);
-  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  padding: 0;
 }
 
 .nav-container {
@@ -83,7 +87,8 @@ const closeMobileMenu = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  gap: 24px;
+  height: 72px;
 }
 
 .nav-logo {
@@ -92,50 +97,64 @@ const closeMobileMenu = () => {
   gap: 12px;
   text-decoration: none;
   color: var(--text-primary);
-  font-weight: 800;
-  font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
 }
 
 .brand-name {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 800;
 }
 
 .nav-menu {
   display: flex;
-  gap: 32px;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
 }
 
 .nav-link {
-  color: var(--text-primary);
+  color: var(--text-secondary);
   text-decoration: none;
   font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 12px;
+  border-radius: 8px;
   transition: var(--transition);
-  position: relative;
 }
 
 .nav-link:hover {
   color: var(--primary-color);
+  background: var(--primary-light);
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
+.nav-cta {
+  margin-left: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--text-primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
   transition: var(--transition);
+  white-space: nowrap;
 }
 
-.nav-link:hover::after {
-  width: 100%;
+.nav-cta:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -149,7 +168,7 @@ const closeMobileMenu = () => {
 }
 
 .nav-toggle span {
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: var(--text-primary);
   transition: var(--transition);
@@ -163,8 +182,9 @@ const closeMobileMenu = () => {
   left: 0;
   right: 0;
   background: var(--background);
-  border-top: 1px solid var(--border-color);
-  transform: translateY(-100%);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+  transform: translateY(-8px);
   opacity: 0;
   visibility: hidden;
   transition: var(--transition);
@@ -176,13 +196,16 @@ const closeMobileMenu = () => {
   visibility: visible;
 }
 
+.nav-mobile-primary {
+  padding: 8px 0 16px;
+}
+
 .nav-mobile-link {
   display: block;
-  padding: 16px 20px;
+  padding: 14px 20px;
   color: var(--text-primary);
   text-decoration: none;
   font-weight: 600;
-  border-bottom: 1px solid var(--border-color);
   transition: var(--transition);
 }
 
@@ -191,8 +214,51 @@ const closeMobileMenu = () => {
   color: var(--primary-color);
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+.nav-mobile-cta {
+  display: block;
+  margin: 8px 20px 0;
+  padding: 14px 18px;
+  text-align: center;
+  border-radius: 12px;
+  background: var(--text-primary);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-mobile-legal {
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--border-color);
+  background: var(--background-light);
+}
+
+.nav-mobile-legal-label {
+  margin: 0 0 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.nav-mobile-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.nav-mobile-legal-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.nav-mobile-legal-links a:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 900px) {
   .nav-menu {
     display: none;
   }
@@ -207,11 +273,11 @@ const closeMobileMenu = () => {
 
   .nav-container {
     padding: 0 16px;
-    height: 70px;
+    height: 68px;
   }
 
   .brand-name {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 }
 

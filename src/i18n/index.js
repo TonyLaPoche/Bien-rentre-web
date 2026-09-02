@@ -19,6 +19,7 @@ export const messages = {
       support: 'Modèle économique',
       faq: 'FAQ',
       contact: 'Contact',
+      legal: 'Légal',
       terms: 'CGU',
       privacy: 'Confidentialité',
       cgv: 'CGV',
@@ -486,6 +487,8 @@ export const messages = {
     },
     footer: {
       copyright: 'Tous droits réservés.',
+      tagline: 'Le suivi de retour simple et rassurant.',
+      product: 'Produit',
     },
   },
   en: {
@@ -497,6 +500,7 @@ export const messages = {
       support: 'Business model',
       faq: 'FAQ',
       contact: 'Contact',
+      legal: 'Legal',
       terms: 'Terms',
       privacy: 'Privacy',
       cgv: 'Sales terms',
@@ -946,6 +950,8 @@ export const messages = {
     },
     footer: {
       copyright: 'All rights reserved.',
+      tagline: 'Simple and reassuring return tracking.',
+      product: 'Product',
     },
   },
 }
