@@ -61,7 +61,7 @@ export const messages = {
         economics: {
           title: '6. Modèle économique',
           content:
-            'Un système de points freemium/premium est prévu. Les modalités commerciales détaillées sont décrites dans la page CGV.',
+            'Un modèle freemium/premium est en place. Détails sur la page modèle économique et les CGV.',
         },
         ip: {
           title: '7. Propriété intellectuelle',
@@ -149,10 +149,10 @@ export const messages = {
         },
         products: {
           title: '2. Produits et services concernés',
-          intro: 'Le modèle économique prévu repose sur des points de trajets:',
-          list1: 'Freemium: 3 trajets par mois',
-          list2: 'Premium: 10 trajets par mois (objectif 4,90 EUR/mois)',
-          list3: 'Packs de points additionnels (à venir)',
+          intro: 'Le modèle repose sur des trajets mensuels et le partage de code :',
+          list1: 'Freemium : 5 trajets par mois (suivre reste illimité)',
+          list2: 'Premium : trajets illimités, code partageable 1 à 5 personnes (~4,90 €/mois)',
+          list3: 'Historique étendu pour les comptes Premium (90 jours vs 7 jours)',
           note:
             'Les modalités définitives (prix finaux, taxes, durée d\'engagement) seront précisées au moment de l\'ouverture commerciale.',
         },
@@ -273,7 +273,7 @@ export const messages = {
         economic: {
           question: 'Quel modèle économique est prévu ?',
           answer:
-            'Freemium 3 trajets/mois, Premium 10 trajets/mois (objectif 4,90 EUR/mois), cap à 31 points et packs additionnels à venir.',
+            'Freemium : 5 trajets/mois, code usage unique (1 suiveur). Premium : illimité, code multi-personnes (jusqu\'à 5), historique 90 jours.',
         },
         dataProtection: {
           question: 'Comment les données sont-elles protégées ?',
@@ -329,22 +329,22 @@ export const messages = {
         title: 'Monétisation projetée',
         subtitle: 'Simple, lisible et alignée avec les coûts serveurs',
         description:
-          'Le modèle repose sur des points de trajets cumulables, avec un plafond pour rester équitable.',
+          'La sécurité de base reste gratuite. Le Premium finance le partage multi-personnes et l\'historique étendu.',
         freemium: {
           title: 'Freemium',
-          content: '3 trajets/mois ajoutés automatiquement, cumulables.',
+          content: '5 trajets/mois, code à usage unique (1 personne). Suivre : illimité.',
         },
         premium: {
           title: 'Premium',
-          content: '10 trajets/mois, objectif tarifaire: 4,90 EUR / mois.',
+          content: 'Trajets illimités, code 1 à 5 personnes, historique 90 jours (~4,90 €/mois).',
         },
         packs: {
-          title: 'Packs additionnels',
-          content: 'Achat ponctuel de points prévu via les stores mobiles.',
+          title: 'Multi-suiveurs',
+          content: 'Le partant Premium règle le nombre d\'utilisations du code (1 à 5).',
         },
         fairness: {
-          title: 'Règles de cumul',
-          content: 'Cap à 31 points, reset après 6 mois d\'inactivité.',
+          title: 'Équité',
+          content: '1 proche rassuré gratuitement. Au-delà : Premium.',
         },
       },
       cta: {
@@ -497,9 +497,9 @@ export const messages = {
         products: {
           title: '2. Products and services',
           intro: 'The planned model is based on trip points:',
-          list1: 'Freemium: 3 trips per month',
-          list2: 'Premium: 10 trips per month (target 4.90 EUR/month)',
-          list3: 'Additional point packs (coming later)',
+          list1: 'Freemium: 5 trips per month (following stays unlimited)',
+          list2: 'Premium: unlimited trips, code shareable with 1 to 5 people (~€4.90/month)',
+          list3: 'Extended history for Premium accounts (90 days vs 7 days)',
           note:
             'Final terms (final prices, taxes, commitment duration) will be published at commercial launch.',
         },
@@ -658,22 +658,22 @@ export const messages = {
       economic: {
         title: 'Projected monetization',
         subtitle: 'Simple and aligned with infrastructure costs',
-        description: 'The model is based on cumulative trip points with a fairness cap.',
+        description: 'Core safety stays free. Premium unlocks multi-follower sharing and extended history.',
         freemium: {
           title: 'Freemium',
-          content: '3 trips/month added automatically, cumulative.',
+          content: '5 trips/month, single-use code (1 person). Following: unlimited.',
         },
         premium: {
           title: 'Premium',
-          content: '10 trips/month, target pricing: 4.90 EUR / month.',
+          content: 'Unlimited trips, code for 1 to 5 people, 90-day history (~€4.90/month).',
         },
         packs: {
-          title: 'Additional packs',
-          content: 'One-shot point packs planned via mobile stores.',
+          title: 'Multi-follower',
+          content: 'Premium travelers set how many people can use the code (1 to 5).',
         },
         fairness: {
-          title: 'Accumulation rules',
-          content: '31-point cap, reset after 6 months of inactivity.',
+          title: 'Fairness',
+          content: 'One trusted follower stays free. Beyond that: Premium.',
         },
       },
       cta: {
