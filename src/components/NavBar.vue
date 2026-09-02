@@ -11,6 +11,7 @@
       <div class="nav-menu">
         <router-link to="/modele-economique" class="nav-link">{{ $t('nav.support') }}</router-link>
         <a href="./#features" class="nav-link">{{ $t('nav.features') }}</a>
+        <a href="./#about" class="nav-link">{{ $t('nav.about') }}</a>
         <a href="./#roadmap" class="nav-link">{{ $t('nav.roadmap') }}</a>
         <a href="./#faq" class="nav-link">{{ $t('nav.faq') }}</a>
         <router-link to="/terms" class="nav-link">{{ $t('nav.terms') }}</router-link>
@@ -37,6 +38,7 @@
     <!-- Menu mobile -->
     <div class="nav-mobile" :class="{ 'nav-mobile--open': mobileMenuOpen }">
       <a href="#features" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.features') }}</a>
+      <a href="#about" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.about') }}</a>
       <a href="#roadmap" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.roadmap') }}</a>
       <router-link to="/modele-economique" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.support') }}</router-link>
       <a href="#faq" class="nav-mobile-link" @click="closeMobileMenu">{{ $t('nav.faq') }}</a>

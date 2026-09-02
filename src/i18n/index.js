@@ -14,6 +14,7 @@ export const messages = {
     nav: {
       home: 'Accueil',
       features: 'Fonctionnalités',
+      about: 'À propos',
       roadmap: 'Roadmap',
       support: 'Modèle économique',
       faq: 'FAQ',
@@ -222,6 +223,88 @@ export const messages = {
         },
       },
     },
+    about: {
+      eyebrow: 'L\'origine',
+      title: 'À propos — pourquoi Bien-Rentré existe',
+      lead:
+        'Ce n\'est pas né d\'un brainstorming. C\'est né de nuits trop longues, de messages sans réponse, de proches qu\'on aime et qu\'on a parfois failli perdre — ou qu\'on a déjà perdus. Une histoire personnelle, trop réelle, et un outil pour que moins de familles vivent la même chose.',
+      quote:
+        '« Je pars. Suis-moi si tu veux. » Puis, plus tard : « Hey, bien rentré ;) ». Deux phrases. Toute la différence.',
+      stories: {
+        s1: {
+          title: 'Des retours qui ne se terminent pas',
+          text:
+            'Après une soirée arrosée, un proche reprend la route. On se dit que ça ira. Que ce n\'est qu\'un trajet. Jusqu\'au jour où ce n\'est plus un trajet — c\'est un appel, une nouvelle, un silence définitif. L\'alcool, la fatigue, la vitesse : des drames banals, jusqu\'au moment où ils touchent les vôtres.',
+        },
+        s2: {
+          title: 'Rentrer seul·e le soir',
+          text:
+            'Des proches, souvent des femmes, qui rentrent à pied ou en transports après minuit. Une rue trop calme. Une présence trop proche. Une agression qui aurait pu ne jamais arriver — ou qui est arrivée. Ce n\'est pas une leçon de genre. C\'est une leçon de vulnérabilité : quand on est seul·e, le monde peut basculer en quelques secondes.',
+        },
+        s3: {
+          title: 'Une date qui tourne mal',
+          text:
+            'On part confiant·e. On partage une adresse approximative. Puis plus rien. Le téléphone qui sonne dans le vide. L\'angoisse de ceux qui attendent chez eux. Une mauvaise rencontre, un malaise, une situation qui dérape — et personne pour voir, en direct, que le trajet n\'est plus normal.',
+        },
+        s4: {
+          title: 'La pastille WhatsApp qui ment un peu',
+          text:
+            '« Je suis là »… à trois rues près. Une localisation floue sur une app de messagerie, un pin qui saute, une carte trop approximative pour rassurer vraiment. On veut juste savoir : est-ce que tu avances ? Est-ce que tu es arrivé·e ? Est-ce que tout va bien ?',
+        },
+      },
+      prevention: {
+        title: 'La prévention, c\'est concret',
+        subtitle:
+          'Rassurer ses proches quand on rentre, ce n\'est pas de la paranoïa. C\'est de la responsabilité — envers soi, et envers ceux qui aiment.',
+        items: {
+          i1: {
+            title: 'Dire « je rentre » et le prouver',
+            text:
+              'Un suivi volontaire pour que quelqu\'un de confiance voie le trajet jusqu\'à la zone d\'arrivée — sans harceler, sans dramatiser.',
+          },
+          i2: {
+            title: 'Empêcher un ami de prendre le volant',
+            text:
+              'Bu, fatigué, sous l\'effet de quoi que ce soit : la meilleure chose qu\'on puisse faire, c\'est parfois de ne pas le laisser partir seul au volant — et de suivre autrement.',
+          },
+          i3: {
+            title: 'Garder un œil sur le trajet taxi / VTC',
+            text:
+              'S\'assurer que le véhicule qui ramène un proche suit bien la route prévue. Un détour bizarre, un arrêt prolongé : autant le savoir tôt.',
+          },
+          i4: {
+            title: 'Armer les plus jeunes de bons réflexes',
+            text:
+              'Scooter, voiture, trottinette en ville : le monde est imprévisible. Les bons outils et les bonnes habitudes protègent — seul·e ou accompagné·e de quelqu\'un qui a votre vie entre les mains.',
+          },
+        },
+      },
+      messages: {
+        outLabel: 'Au départ',
+        out: 'Je pars — suis-moi si tu veux.',
+        inLabel: 'À l\'arrivée',
+        in: 'Hey, bien rentré ! ;)',
+        note:
+          'Pas besoin d\'un discours. Juste un geste simple, et une alerte automatique quand la zone de sécurité est atteinte. Assez pour respirer. Assez pour agir si quelque chose cloche.',
+      },
+      future: {
+        title: 'Et demain ?',
+        lead:
+          'Suivre un trajet, c\'est le début. Ensuite vient la capacité à comprendre si tout se passe bien — et à s\'entourer des bons partenaires.',
+        items: [
+          'Analyser le trajet : écart de route, arrêt intempestif sur une nationale sans bouchon déclaré, comportements qui sortent de l\'ordinaire.',
+          'Partager l\'état de batterie du partant, pour ne pas perdre le fil au pire moment.',
+          'Affiner les positions sur axes routiers, chemins, zones urbaines — plus net, plus utile, plus rassurant.',
+          'Imaginer des partenariats avec des associations comme les Nez Rouges en Suisse, qui ramènent les gens en sécurité après une soirée.',
+          'Porter des campagnes de sensibilisation dans les écoles et lycées : les bons réflexes s\'apprennent tôt.',
+        ],
+        close: 'Bien-Rentré n\'est que le début de grandes choses.',
+      },
+      cta: {
+        text: 'Si cette histoire vous parle, vous êtes déjà au bon endroit.',
+        button: 'Nous écrire',
+      },
+    },
     roadmap: {
       badge: 'Accès anticipé · places limitées',
       title: 'Roadmap — où on en est',
@@ -409,6 +492,7 @@ export const messages = {
     nav: {
       home: 'Home',
       features: 'Features',
+      about: 'About',
       roadmap: 'Roadmap',
       support: 'Business model',
       faq: 'FAQ',
@@ -611,6 +695,88 @@ export const messages = {
           title: 'Arrival notification',
           description: 'The follower is automatically notified when the traveler reaches the safety zone.',
         },
+      },
+    },
+    about: {
+      eyebrow: 'The origin',
+      title: 'About — why Bien-Rentré exists',
+      lead:
+        'This didn’t come from a brainstorm. It came from nights that ran too long, unanswered messages, and people we love whom we nearly lost — or already lost. A personal story, painfully real, and a tool so fewer families live through the same thing.',
+      quote:
+        '“I’m leaving. Follow me if you want.” Then later: “Hey, made it home ;)”. Two lines. All the difference.',
+      stories: {
+        s1: {
+          title: 'Returns that don’t end well',
+          text:
+            'After a heavy night out, someone you love gets back on the road. You tell yourself it’ll be fine. It’s just a trip — until it isn’t. Until it’s a call, a piece of news, a silence that doesn’t lift. Alcohol, fatigue, speed: ordinary tragedies, until they hit your people.',
+        },
+        s2: {
+          title: 'Walking home alone at night',
+          text:
+            'Loved ones — often women — heading home on foot or by transit after midnight. A street that’s too quiet. A presence that’s too close. An assault that might never have happened — or did. This isn’t a gender lecture. It’s a lesson in vulnerability: when you’re alone, the world can tip in seconds.',
+        },
+        s3: {
+          title: 'A date that goes wrong',
+          text:
+            'You leave confident. You share a rough address. Then nothing. Calls that ring into the void. The dread of people waiting at home. A bad encounter, a sudden illness, a situation that spirals — and no one watching live to see the trip is no longer normal.',
+        },
+        s4: {
+          title: 'The WhatsApp pin that almost tells the truth',
+          text:
+            '“I’m here”… three streets away. A fuzzy location in a messaging app, a jumping pin, a map too rough to really reassure. You just want to know: are you moving? Did you arrive? Is everything okay?',
+        },
+      },
+      prevention: {
+        title: 'Prevention is concrete',
+        subtitle:
+          'Reassuring the people who love you when you head home isn’t paranoia. It’s responsibility — to yourself, and to them.',
+        items: {
+          i1: {
+            title: 'Say “I’m heading home” — and prove it',
+            text:
+              'Voluntary tracking so someone you trust can watch the trip until the arrival zone — without nagging, without drama.',
+          },
+          i2: {
+            title: 'Stop a friend from driving impaired',
+            text:
+              'Drunk, tired, under anything: sometimes the best thing you can do is not let them leave alone behind the wheel — and follow another way.',
+          },
+          i3: {
+            title: 'Keep an eye on the taxi / rideshare',
+            text:
+              'Make sure the vehicle bringing someone home stays on the expected route. A weird detour, a long stop: better to know early.',
+          },
+          i4: {
+            title: 'Give young people the right reflexes',
+            text:
+              'Scooter, car, e-scooter in the city: the world is unpredictable. Good tools and habits protect you — alone or with someone who holds your life in their hands.',
+          },
+        },
+      },
+      messages: {
+        outLabel: 'On the way',
+        out: 'I’m leaving — follow me if you want.',
+        inLabel: 'On arrival',
+        in: 'Hey, made it home! ;)',
+        note:
+          'No speech required. Just a simple gesture, and an automatic alert when the safety zone is reached. Enough to breathe. Enough to act if something feels off.',
+      },
+      future: {
+        title: 'And tomorrow?',
+        lead:
+          'Tracking a trip is the start. Next comes understanding whether things look right — and building the right partnerships.',
+        items: [
+          'Analyze the trip: route deviation, unexpected stop on a highway with no reported traffic, behavior that breaks the pattern.',
+          'Share the traveler’s battery level, so you don’t lose the thread at the worst moment.',
+          'Refine positions on roads, paths, and urban areas — clearer, more useful, more reassuring.',
+          'Explore partnerships with groups like Switzerland’s Nez Rouges, who get people home safely after a night out.',
+          'Run awareness campaigns in schools and high schools: good reflexes are learned early.',
+        ],
+        close: 'Bien-Rentré is only the beginning of something bigger.',
+      },
+      cta: {
+        text: 'If this story resonates, you’re already in the right place.',
+        button: 'Get in touch',
       },
     },
     roadmap: {

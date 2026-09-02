@@ -2,6 +2,7 @@
   <main>
     <HeroSection />
     <FeaturesSection />
+    <AboutSection />
     <RoadmapSection />
     <FAQSection />
     <ContactSection />
@@ -11,6 +12,7 @@
 <script setup>
 import HeroSection from './HeroSection.vue'
 import FeaturesSection from './FeaturesSection.vue'
+import AboutSection from './AboutSection.vue'
 import RoadmapSection from './RoadmapSection.vue'
 import FAQSection from './FAQSection.vue'
 import ContactSection from './ContactSection.vue'

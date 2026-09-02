@@ -9,6 +9,7 @@
 
         <div class="footer-links">
           <a href="#features">{{ $t('nav.features') }}</a>
+          <a href="#about">{{ $t('nav.about') }}</a>
           <a href="#roadmap">{{ $t('nav.roadmap') }}</a>
           <a href="#contact">{{ $t('nav.contact') }}</a>
           <router-link to="/terms">{{ $t('nav.terms') }}</router-link>
