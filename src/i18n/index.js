@@ -14,6 +14,7 @@ export const messages = {
     nav: {
       home: 'Accueil',
       features: 'Fonctionnalités',
+      roadmap: 'Roadmap',
       support: 'Modèle économique',
       faq: 'FAQ',
       contact: 'Contact',
@@ -191,9 +192,9 @@ export const messages = {
       title: 'Bien-Rentré',
       subtitle: 'Le suivi de retour simple et rassurant',
       description:
-        'Créez un trajet, partagez un code, suivez en direct et recevez une notification d\'arrivée. L\'application est actuellement testable en test interne.',
+        'Créez un trajet, partagez un code, suivez en direct et recevez une notification d\'arrivée. Beta privée en cours — ouverture publique prévue pour janvier 2027.',
       support: 'Voir le modèle économique',
-      learnMore: 'En savoir plus',
+      learnMore: 'Voir la roadmap',
     },
     features: {
       title: 'Fonctionnalités',
@@ -219,6 +220,53 @@ export const messages = {
           description:
             'Le suiveur est automatiquement notifié quand le partant arrive dans sa zone de sécurité.',
         },
+      },
+    },
+    roadmap: {
+      badge: 'Accès anticipé · places limitées',
+      title: 'Roadmap — où on en est',
+      subtitle:
+        'Assez pour comprendre la trajectoire. Pas assez pour spoiler ce qui arrive ensuite.',
+      launchLabel: 'Ouverture publique prévue',
+      launchDate: 'Janvier 2027',
+      launchHint:
+        'On prend le temps de bien faire. Ceux qui sont déjà dans la boucle auront une longueur d\'avance.',
+      steps: {
+        s1: {
+          status: 'Fait',
+          when: 'Aujourd\'hui',
+          title: 'Le cœur du produit est vivant',
+          description:
+            'Suivi en direct, code de partage, notification d\'arrivée — le parcours partant / suiveur tourne déjà.',
+        },
+        s2: {
+          status: 'En cours',
+          when: 'Maintenant',
+          title: 'Beta fermée Android',
+          description:
+            'Tests privés, retours ciblés, places limitées. Si tu n\'es pas encore dedans, la fenêtre se resserre.',
+        },
+        s3: {
+          status: 'Bientôt',
+          when: 'Prochaine étape',
+          title: 'Ouverture progressive & Premium',
+          description:
+            'Plus de volume, multi-partage, historique long et replay — réservés à ceux qui veulent aller plus loin.',
+        },
+        s4: {
+          status: 'Cible',
+          when: 'Janvier 2027',
+          title: 'Sortie publique',
+          description:
+            'Disponible pour tout le monde. Les early birds auront déjà leurs habitudes — et probablement un accès privilégié.',
+        },
+      },
+      fomo: {
+        kicker: 'Ne reste pas dehors',
+        title: 'La liste d\'attente se remplit plus vite que la roadmap.',
+        text:
+          'Pas de store public pour l\'instant. Juste une place pour influencer le produit avant tout le monde — ou regarder les autres y entrer.',
+        cta: 'Rejoindre la liste',
       },
     },
     faq: {
@@ -361,6 +409,7 @@ export const messages = {
     nav: {
       home: 'Home',
       features: 'Features',
+      roadmap: 'Roadmap',
       support: 'Business model',
       faq: 'FAQ',
       contact: 'Contact',
@@ -538,9 +587,9 @@ export const messages = {
       title: 'Bien-Rentré',
       subtitle: 'Simple and reassuring return tracking',
       description:
-        'Create a trip, share a code, track live and receive an arrival notification. The app is currently available in internal testing.',
+        'Create a trip, share a code, track live and get an arrival notification. Private beta is live — public launch planned for January 2027.',
       support: 'View business model',
-      learnMore: 'Learn more',
+      learnMore: 'See the roadmap',
     },
     features: {
       title: 'Features',
@@ -562,6 +611,53 @@ export const messages = {
           title: 'Arrival notification',
           description: 'The follower is automatically notified when the traveler reaches the safety zone.',
         },
+      },
+    },
+    roadmap: {
+      badge: 'Early access · limited seats',
+      title: 'Roadmap — where we stand',
+      subtitle:
+        'Enough to see the trajectory. Not enough to spoil what comes next.',
+      launchLabel: 'Public launch planned',
+      launchDate: 'January 2027',
+      launchHint:
+        'We’re taking the time to get it right. People already in the loop will stay ahead.',
+      steps: {
+        s1: {
+          status: 'Done',
+          when: 'Today',
+          title: 'The product core is alive',
+          description:
+            'Live tracking, share codes, arrival alerts — the traveler / follower flow already works.',
+        },
+        s2: {
+          status: 'Now',
+          when: 'Right now',
+          title: 'Closed Android beta',
+          description:
+            'Private tests, focused feedback, limited seats. If you’re not in yet, the window is narrowing.',
+        },
+        s3: {
+          status: 'Next',
+          when: 'Next up',
+          title: 'Gradual rollout & Premium',
+          description:
+            'More volume, multi-share, longer history and replay — for people who want to go further.',
+        },
+        s4: {
+          status: 'Target',
+          when: 'January 2027',
+          title: 'Public release',
+          description:
+            'Open to everyone. Early birds will already have their habits — and likely privileged access.',
+        },
+      },
+      fomo: {
+        kicker: 'Don’t stay outside',
+        title: 'The waitlist fills faster than the roadmap.',
+        text:
+          'No public store yet. Just a seat to shape the product before everyone else — or watch others take it.',
+        cta: 'Join the list',
       },
     },
     faq: {

@@ -44,7 +44,7 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition
     } else if (to.hash) {
-      // Support pour les ancres (#features, #faq, #contact)
+      // Support pour les ancres (#features, #roadmap, #faq, #contact)
       return {
         el: to.hash,
         behavior: 'smooth'

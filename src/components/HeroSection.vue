@@ -40,6 +40,11 @@
 
 <script setup>
 const scrollToFeatures = () => {
+  const roadmapSection = document.querySelector('#roadmap')
+  if (roadmapSection) {
+    roadmapSection.scrollIntoView({ behavior: 'smooth' })
+    return
+  }
   const featuresSection = document.querySelector('#features')
   if (featuresSection) {
     featuresSection.scrollIntoView({ behavior: 'smooth' })
