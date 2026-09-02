@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bien-rentre.fr/sitemap.xml
+
+# Ne pas indexer l’API / back-office (autres hôtes)
+# api.bien-rentre.fr et bo.bien-rentre.fr ont leurs propres robots.

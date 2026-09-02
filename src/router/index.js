@@ -3,38 +3,39 @@ import TermsView from '../views/TermsView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
 import SupportView from '../views/SupportView.vue'
 import CgvView from '../views/CgvView.vue'
+import { applyRouteSeo } from '../seo'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../components/HomePage.vue')
+    component: () => import('../components/HomePage.vue'),
   },
   {
     path: '/terms',
     name: 'Terms',
-    component: TermsView
+    component: TermsView,
   },
   {
     path: '/privacy',
     name: 'Privacy',
-    component: PrivacyView
+    component: PrivacyView,
   },
   {
     path: '/soutenez-nous',
     name: 'Support',
-    component: SupportView
+    component: SupportView,
   },
   {
     path: '/modele-economique',
     name: 'BusinessModel',
-    component: SupportView
+    component: SupportView,
   },
   {
     path: '/cgv',
     name: 'Cgv',
-    component: CgvView
-  }
+    component: CgvView,
+  },
 ]
 
 const router = createRouter({
@@ -43,16 +44,19 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
-    } else if (to.hash) {
-      // Support pour les ancres (#features, #about, #roadmap, #faq, #contact)
+    }
+    if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: 'smooth',
       }
-    } else {
-      return { top: 0 }
     }
-  }
+    return { top: 0 }
+  },
+})
+
+router.afterEach((to) => {
+  applyRouteSeo(to.name)
 })
 
 export default router

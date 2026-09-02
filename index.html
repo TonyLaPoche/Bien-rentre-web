@@ -1,17 +1,90 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bien-Rentré - Application de sécurité nocturne</title>
-    <meta name="description" content="Bien-Rentré, l'application qui veille sur vos retours de soirée. Partagez votre position en temps réel avec vos contacts de confiance.">
-    <link rel="icon" href="/icon-br.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bien-Rentré — Suivi de retour simple et rassurant</title>
+  <meta name="description" content="Partagez un code, suivez le trajet en direct, recevez « bien rentré ». L’app qui rassure ceux qui partent… et ceux qui attendent.">
+  <meta name="keywords" content="suivi trajet, rentrer en sécurité, notification arrivée, partage position, soirée, Bien-Rentré">
+  <meta name="author" content="Bien-Rentré">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="color-scheme" content="light">
+
+  <link rel="canonical" href="https://bien-rentre.fr/">
+  <link rel="alternate" hreflang="fr" href="https://bien-rentre.fr/">
+  <link rel="alternate" hreflang="x-default" href="https://bien-rentre.fr/">
+
+  <link rel="icon" href="/icon-br.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bien-Rentré">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:url" content="https://bien-rentre.fr/">
+  <meta property="og:title" content="Bien-Rentré — Suivi de retour simple et rassurant">
+  <meta property="og:description" content="Partagez un code, suivez le trajet en direct, recevez « bien rentré ». L’app qui rassure ceux qui partent… et ceux qui attendent.">
+  <meta property="og:image" content="https://bien-rentre.fr/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bien-Rentré — suivi de retour simple et rassurant">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bien-Rentré — Suivi de retour simple et rassurant">
+  <meta name="twitter:description" content="Partagez un code, suivez le trajet en direct, recevez « bien rentré ». L’app qui rassure ceux qui partent… et ceux qui attendent.">
+  <meta name="twitter:image" content="https://bien-rentre.fr/og-image.png">
+  <meta name="twitter:image:alt" content="Bien-Rentré — suivi de retour simple et rassurant">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://bien-rentre.fr/#organization",
+        "name": "Bien-Rentré",
+        "url": "https://bien-rentre.fr/",
+        "logo": "https://bien-rentre.fr/icon-br.svg",
+        "email": "contact@antoineterrade.com",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://bien-rentre.fr/#website",
+        "url": "https://bien-rentre.fr/",
+        "name": "Bien-Rentré",
+        "description": "Partagez un code, suivez le trajet en direct, recevez « bien rentré ». L’app qui rassure ceux qui partent… et ceux qui attendent.",
+        "publisher": { "@id": "https://bien-rentre.fr/#organization" },
+        "inLanguage": ["fr", "en"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Bien-Rentré",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Android",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Suivi de retour en direct par code et notification d’arrivée pour rassurer vos proches.",
+        "url": "https://bien-rentre.fr/"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
