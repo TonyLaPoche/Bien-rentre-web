@@ -41,100 +41,48 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
-// État pour suivre quelles FAQ sont ouvertes
-const openStates = ref({
-  emergency: false,
-  offline: false,
-  contacts: false,
-  emergencyActivation: false,
-  networkLoss: false,
-  storageDuration: false,
-  compatibility: false,
-  dualRole: false,
-  sharingInitiation: false,
-  economic: false,
-  dataProtection: false,
-  accuracy: false
-})
+const FAQ_KEYS = [
+  'emergency',
+  'offline',
+  'contacts',
+  'emergencyActivation',
+  'networkLoss',
+  'storageDuration',
+  'compatibility',
+  'platforms',
+  'dualRole',
+  'sharingInitiation',
+  'economic',
+  'dataProtection',
+  'accuracy',
+]
 
-// FAQ items avec traductions réactives
-const faqItems = computed(() => ({
-  emergency: {
-    question: t('faq.questions.emergency.question'),
-    answer: t('faq.questions.emergency.answer'),
-    isOpen: openStates.value.emergency
-  },
-  offline: {
-    question: t('faq.questions.offline.question'),
-    answer: t('faq.questions.offline.answer'),
-    isOpen: openStates.value.offline
-  },
-  contacts: {
-    question: t('faq.questions.contacts.question'),
-    answer: t('faq.questions.contacts.answer'),
-    isOpen: openStates.value.contacts
-  },
-  emergencyActivation: {
-    question: t('faq.questions.emergencyActivation.question'),
-    answer: t('faq.questions.emergencyActivation.answer'),
-    isOpen: openStates.value.emergencyActivation
-  },
-  networkLoss: {
-    question: t('faq.questions.networkLoss.question'),
-    answer: t('faq.questions.networkLoss.answer'),
-    isOpen: openStates.value.networkLoss
-  },
-  storageDuration: {
-    question: t('faq.questions.storageDuration.question'),
-    answer: t('faq.questions.storageDuration.answer'),
-    isOpen: openStates.value.storageDuration
-  },
-  compatibility: {
-    question: t('faq.questions.compatibility.question'),
-    answer: t('faq.questions.compatibility.answer'),
-    isOpen: openStates.value.compatibility
-  },
-  dualRole: {
-    question: t('faq.questions.dualRole.question'),
-    answer: t('faq.questions.dualRole.answer'),
-    isOpen: openStates.value.dualRole
-  },
-  sharingInitiation: {
-    question: t('faq.questions.sharingInitiation.question'),
-    answer: t('faq.questions.sharingInitiation.answer'),
-    isOpen: openStates.value.sharingInitiation
-  },
-  economic: {
-    question: t('faq.questions.economic.question'),
-    answer: t('faq.questions.economic.answer'),
-    isOpen: openStates.value.economic
-  },
-  dataProtection: {
-    question: t('faq.questions.dataProtection.question'),
-    answer: t('faq.questions.dataProtection.answer'),
-    isOpen: openStates.value.dataProtection
-  },
-  accuracy: {
-    question: t('faq.questions.accuracy.question'),
-    answer: t('faq.questions.accuracy.answer'),
-    isOpen: openStates.value.accuracy
-  }
-}))
+const openStates = ref(Object.fromEntries(FAQ_KEYS.map((key) => [key, false])))
+
+const faqItems = computed(() =>
+  Object.fromEntries(
+    FAQ_KEYS.map((key) => [
+      key,
+      {
+        question: t(`faq.questions.${key}.question`),
+        answer: t(`faq.questions.${key}.answer`),
+        isOpen: openStates.value[key],
+      },
+    ]),
+  ),
+)
 
 const toggleFAQ = (key) => {
-  // Fermer toutes les autres FAQ
-  Object.keys(openStates.value).forEach(faqKey => {
+  Object.keys(openStates.value).forEach((faqKey) => {
     if (faqKey !== key) {
       openStates.value[faqKey] = false
     }
   })
-
-  // Basculer l'état de la FAQ cliquée
   openStates.value[key] = !openStates.value[key]
 }
 </script>
@@ -214,7 +162,7 @@ const toggleFAQ = (key) => {
 }
 
 .faq-item--open .faq-answer {
-  max-height: 300px;
+  max-height: 480px;
   padding: 0 32px 24px;
 }
 

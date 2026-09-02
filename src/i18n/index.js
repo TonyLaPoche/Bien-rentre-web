@@ -360,62 +360,67 @@ export const messages = {
         emergency: {
           question: 'Bien-Rentré remplace-t-il les services d\'urgence ?',
           answer:
-            'Non. Bien-Rentré est un service de réassurance et de suivi de trajet. En cas de danger immédiat, il faut contacter les services d\'urgence.',
+            'Non. Bien-Rentré est un service de réassurance et de suivi de trajet. En cas de danger immédiat, contactez les services d\'urgence.',
         },
         offline: {
           question: 'Le suivi fonctionne-t-il hors ligne ?',
           answer:
-            'Le suivi en temps réel nécessite une connexion réseau côté partant et suiveur.',
+            'Non pour le suivi en direct : partant et suiveur ont besoin d\'une connexion réseau. Sans réseau, les positions ne se mettent plus à jour jusqu\'au retour de connexion.',
         },
         contacts: {
           question: 'Faut-il ajouter des contacts de confiance ?',
           answer:
-            'Non. Le flux actuel est volontairement simplifié: code de suivi uniquement, sans gestion de contacts/favoris.',
+            'Non. Le partage se fait par code : vous le envoyez à la personne de votre choix (SMS, WhatsApp, etc.), sans carnet de contacts dans l\'app.',
         },
         emergencyActivation: {
-          question: 'La fonction "Tout va bien ?" est-elle active ?',
+          question: 'Y a-t-il un bouton « Tout va bien ? » ou d\'alerte SOS ?',
           answer:
-            'Non, cette fonction a été retirée du POC pour concentrer l\'expérience sur le suivi et la notification d\'arrivée.',
+            'Pas pour le moment. L\'app se concentre sur le suivi du trajet et la notification automatique d\'arrivée. Ce n\'est pas un dispositif d\'urgence.',
         },
         networkLoss: {
           question: 'Que se passe-t-il si le réseau est instable ?',
           answer:
-            'La mise à jour de position peut ralentir. Dès que la connexion revient, les données de suivi reprennent.',
+            'Les mises à jour de position peuvent ralentir ou se mettre en pause. Dès que la connexion revient, le suivi reprend.',
         },
         storageDuration: {
-          question: 'Combien de temps les données sont-elles conservées ?',
+          question: 'Combien de temps les trajets restent-ils visibles ?',
           answer:
-            'Les données sont conservées pour faire fonctionner le service, avec une politique de minimisation en cours de finalisation avant ouverture publique.',
+            'En freemium, l\'historique est conservé 7 jours. En Premium, 90 jours — avec replay des trajets suivis. La politique de conservation globale continue d\'être affinée avant l\'ouverture publique.',
         },
         compatibility: {
           question: 'L\'application est-elle déjà publique ?',
           answer:
-            'Pas encore. L\'application est actuellement testée en test interne.',
+            'Pas encore. Elle est en beta fermée Android (tests privés). L\'ouverture publique est prévue pour janvier 2027.',
+        },
+        platforms: {
+          question: 'Sur quelles plateformes sera disponible Bien-Rentré ?',
+          answer:
+            'La beta actuelle est Android. iOS et l\'ouverture stores grand public arriveront ensuite, dans le cadre de la feuille de route vers 2027.',
         },
         dualRole: {
-          question: 'Peut-on être partant puis suiveur ?',
+          question: 'Peut-on être partant et suiveur ?',
           answer:
-            'Oui, un même compte peut lancer un trajet et également suivre un autre trajet via code.',
+            'Oui. Un même compte peut lancer un trajet et en suivre un autre via code. Seuls les trajets que vous lancez consomment le quota mensuel freemium.',
         },
         sharingInitiation: {
           question: 'Comment démarrer un partage ?',
           answer:
-            'Depuis l\'écran Départ: adresse de retour + transport + génération du code + démarrage du trajet.',
+            'Écran Départ : adresse de retour, moyen de transport, génération du code, démarrage du trajet. Le suiveur saisit le code pour suivre en direct.',
         },
         economic: {
-          question: 'Quel modèle économique est prévu ?',
+          question: 'Quel est le modèle freemium / Premium ?',
           answer:
-            'Freemium : 5 trajets/mois, code usage unique (1 suiveur). Premium : illimité, code multi-personnes (jusqu\'à 5), historique 90 jours.',
+            'Freemium : 5 trajets lancés par mois (reset le 1er, sans cumul), code à usage unique (1 suiveur), historique 7 jours, suivi illimité. Premium (~4,90 €/mois) : trajets illimités, code réglable de 1 à 5 personnes, historique 90 jours et replay. En beta, les trajets peuvent être illimités pour mesurer l\'usage réel. L\'achat in-app Play arrive plus tard ; avant l\'ouverture publique, les testeurs ne paient rien.',
         },
         dataProtection: {
           question: 'Comment les données sont-elles protégées ?',
           answer:
-            'Accès authentifié, règles Firestore, séparation des rôles partant/suiveur, et politique RGPD alignée sur l\'état actuel de l\'application.',
+            'Accès authentifié, API sécurisée, séparation des rôles partant / suiveur, et pages légales RGPD. Vous pouvez supprimer votre compte depuis les réglages de l\'app.',
         },
         accuracy: {
-          question: 'La position est-elle réellement mise à jour ?',
+          question: 'La position est-elle vraiment mise à jour en direct ?',
           answer:
-            'Oui. Le suiveur reçoit des mises à jour en temps réel et peut aussi effectuer un rafraîchissement manuel.',
+            'Oui. Le suiveur voit la progression en temps réel et peut aussi rafraîchir manuellement. La précision dépend du GPS et du réseau du partant.',
         },
       },
     },
@@ -832,56 +837,72 @@ export const messages = {
     },
     faq: {
       title: 'FAQ',
-      subtitle: 'Frequently asked questions',
+      subtitle: 'Frequently asked questions about the current product',
       questions: {
         emergency: {
           question: 'Does Bien-Rentré replace emergency services?',
-          answer: 'No. It is a reassurance and tracking service, not an emergency service replacement.',
+          answer:
+            'No. It is a reassurance and trip-tracking service. In immediate danger, contact emergency services.',
         },
         offline: {
           question: 'Does tracking work offline?',
-          answer: 'Live tracking requires an internet connection for both traveler and follower.',
+          answer:
+            'Not for live tracking: both traveler and follower need a network connection. Without it, positions pause until connectivity returns.',
         },
         contacts: {
-          question: 'Do I need trusted contacts?',
-          answer: 'No. The current flow is code-based and does not rely on contact/favorite management.',
+          question: 'Do I need to add trusted contacts?',
+          answer:
+            'No. Sharing is code-based: send the code to whoever you choose (SMS, WhatsApp, etc.). No in-app contact book.',
         },
         emergencyActivation: {
-          question: 'Is the "Are you okay?" feature available?',
-          answer: 'No. It was removed from the current POC scope.',
+          question: 'Is there an “Are you okay?” or SOS button?',
+          answer:
+            'Not right now. The app focuses on live trip tracking and an automatic arrival notification. It is not an emergency device.',
         },
         networkLoss: {
-          question: 'What if network quality drops?',
-          answer: 'Position updates may slow down and resume as soon as connection is restored.',
+          question: 'What if the network is unstable?',
+          answer:
+            'Position updates may slow down or pause. Tracking resumes as soon as the connection comes back.',
         },
         storageDuration: {
-          question: 'How long is data stored?',
-          answer: 'Data retention is minimized for service operation and being finalized before public launch.',
+          question: 'How long do trips stay visible?',
+          answer:
+            'Freemium keeps history for 7 days. Premium keeps it for 90 days — including replay of followed trips. Overall retention policy is still being finalized before public launch.',
         },
         compatibility: {
           question: 'Is the app public already?',
-          answer: 'Not yet. The app is currently in internal testing.',
+          answer:
+            'Not yet. It is in a closed Android beta (private testing). Public launch is planned for January 2027.',
+        },
+        platforms: {
+          question: 'Which platforms will Bien-Rentré support?',
+          answer:
+            'The current beta is Android. iOS and a full public store release come later on the roadmap toward 2027.',
         },
         dualRole: {
           question: 'Can one account be both traveler and follower?',
-          answer: 'Yes. The same account can start a trip and follow another one.',
+          answer:
+            'Yes. The same account can start a trip and follow another via code. Only trips you start count toward the freemium monthly quota.',
         },
         sharingInitiation: {
           question: 'How do I start sharing?',
-          answer: 'On the Start screen: choose return address, transport mode, generate code, then start trip.',
+          answer:
+            'Start screen: return address, transport mode, generate the code, then start the trip. The follower enters the code to track live.',
         },
         economic: {
-          question: 'What business model is planned?',
+          question: 'What is the freemium / Premium model?',
           answer:
-            'Freemium 3 trips/month, Premium 10 trips/month (target 4.90 EUR/month), 31-point cap and optional packs.',
+            'Freemium: 5 started trips per month (resets on the 1st, no carry-over), single-use code (1 follower), 7-day history, unlimited following. Premium (~€4.90/month): unlimited trips, code set to 1–5 people, 90-day history and replay. During beta, trips may be unlimited to measure real usage. Play in-app purchase comes later; before public launch, testers never pay.',
         },
         dataProtection: {
           question: 'How is data protected?',
-          answer: 'Authenticated access, Firestore rules, and GDPR-aligned legal pages.',
+          answer:
+            'Authenticated access, a secured API, traveler/follower role separation, and GDPR-aligned legal pages. You can delete your account from the app settings.',
         },
         accuracy: {
           question: 'Is location really updated in real time?',
-          answer: 'Yes, and the follower can also trigger a manual refresh.',
+          answer:
+            'Yes. The follower sees live progress and can also refresh manually. Accuracy depends on the traveler’s GPS and network.',
         },
       },
     },
